@@ -1,0 +1,527 @@
+import CalForm from "@/components/Calculators/MainForm";
+import CalChartArea1 from "@/components/Charts/CalChartArea1";
+import SegmentedBars from "@/components/Charts/SegmentedBars";
+import ContactForm from "@/components/ContactForm";
+import CtaAndFaq from "@/components/CtaAndFaq";
+import Header from "@/components/header";
+import Hero from "@/components/Hero";
+import HeroCalculators from "@/components/hero/HeroCalculators";
+import HeroThinking from "@/components/hero/HeroThinking";
+import RatingStars from "@/components/Testimonials/RatingStars";
+import Image from "next/image";
+import Link from "next/link";
+import { BiEditAlt, BiLocationPlus, BiMailSend, BiPhone } from "react-icons/bi";
+import {
+  BsArrowLeft,
+  BsArrowRight,
+  BsGeoAlt,
+  BsLinkedin,
+  BsTwitterX,
+  BsYoutube,
+} from "react-icons/bs";
+import { FaFacebook } from "react-icons/fa";
+import { LiaLinkedin } from "react-icons/lia";
+import { SlCup } from "react-icons/sl";
+import { TbMoneybag } from "react-icons/tb";
+
+export default function Calculators() {
+  return (
+    <div className="font-sans   grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen   pb-20 ">
+      <HeroThinking />
+      <div style={{ minHeight: "400px", boxSizing: "border-box" }}>
+        <svg
+          width="1240"
+          height="160"
+          viewBox="0 0 1240 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1189.9 0C1208.69 1.50182e-10 1218.08 2.14568e-05 1225.07 4.05859C1229.58 6.67676 1233.32 10.4243 1235.94 14.9316C1240 21.919 1240 31.3128 1240 50.0996V109.9C1240 128.687 1240 138.081 1235.94 145.068C1233.32 149.576 1229.58 153.323 1225.07 155.941C1218.08 160 1208.69 160 1189.9 160H886.734C870.852 160 861.944 145.732 854.402 131.754C851.623 126.603 847.397 122.377 842.246 119.598C835.578 116 826.751 116 809.1 116H430.9C413.249 116 404.422 116 397.754 119.598C392.603 122.377 388.377 126.603 385.598 131.754C378.056 145.732 369.148 160 353.266 160H50.0996C31.3128 160 21.919 160 14.9316 155.941C10.4243 153.323 6.67676 149.576 4.05859 145.068C2.50622e-05 138.081 1.97247e-10 128.687 0 109.9V50.0996C1.97247e-10 31.3128 2.50622e-05 21.919 4.05859 14.9316C6.67676 10.4243 10.4243 6.67676 14.9316 4.05859C21.919 2.51158e-05 31.3128 1.97996e-10 50.0996 0H1189.9Z"
+            fill="#002855"
+          />
+        </svg>
+      </div>
+
+      <section style={{ padding: "70px" }}>
+        <div style={{ display: "flex", gap: "50px" }}>
+          <div style={{ flex: 1 }}>
+            <Image
+              src="/images/think.jpg"
+              alt="hero"
+              width={600}
+              height={270}
+              style={{ height: "270px", borderRadius: "20px" }}
+            />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h4 style={{ fontSize: "44px", fontWeight: 700 }}>
+              Our <span style={{ color: "#0047AB" }}>Philosophy</span>
+            </h4>
+            <p style={{ color: "#545454", fontWeight: 400, fontSize: "18px" }}>
+              We believe financial advice should be as easy as a coffee chat. No
+              hard sells. No confusion. Just straight talk about your money and
+              goals.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h4 style={{ fontSize: "44px", fontWeight: 700 ,textAlign:'center'}}>
+          How We <span style={{ color: "#0047AB" }}>Help</span>
+        </h4>
+        <div style={{ display: "flex", flexDirection: "raw", gap: "20px" }}>
+          <div
+            style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}
+          >
+            <div
+              style={{
+                height: "160px",
+                width: "160px",
+                borderRadius: "50%",
+                backgroundColor: "#FFF",
+                border: "2px solid #DDEAF9",
+                display: "flex",
+
+                alignItems: "center",
+                justifyContent: "center",
+                // padding:'10px 10px'
+              }}
+            >
+              <div
+                style={{
+                  height: "130px",
+                  width: "130px",
+                  borderRadius: "50%",
+                  backgroundColor: "#ECF4FE",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  width="42"
+                  height="46"
+                  viewBox="0 0 42 46"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M29.666 19.7656C29.666 18.7732 28.8616 17.9688 27.8691 17.9688H9.36133C8.36891 17.9688 7.56445 18.7732 7.56445 19.7656C7.56445 20.758 8.36891 21.5625 9.36133 21.5625H27.8691C28.8616 21.5625 29.666 20.758 29.666 19.7656Z"
+                    fill="#0047AB"
+                  />
+                  <path
+                    d="M9.36133 25.1562C8.36891 25.1562 7.56445 25.9607 7.56445 26.9531C7.56445 27.9455 8.36891 28.75 9.36133 28.75H20.6018C21.5942 28.75 22.3986 27.9455 22.3986 26.9531C22.3986 25.9607 21.5942 25.1562 20.6018 25.1562H9.36133Z"
+                    fill="#0047AB"
+                  />
+                  <path
+                    d="M13.5838 42.4062H7.57422C5.59262 42.4062 3.98047 40.7941 3.98047 38.8125V7.1875C3.98047 5.20591 5.59262 3.59375 7.57422 3.59375H29.6658C31.6474 3.59375 33.2596 5.20591 33.2596 7.1875V18.2383C33.2596 19.2307 34.064 20.0352 35.0564 20.0352C36.0488 20.0352 36.8533 19.2307 36.8533 18.2383V7.1875C36.8533 3.22431 33.629 0 29.6658 0H7.57422C3.61103 0 0.386719 3.22431 0.386719 7.1875V38.8125C0.386719 42.7757 3.61103 46 7.57422 46H13.5838C14.5762 46 15.3807 45.1955 15.3807 44.2031C15.3807 43.2107 14.5762 42.4062 13.5838 42.4062Z"
+                    fill="#0047AB"
+                  />
+                  <path
+                    d="M40.0364 26.0163C37.9346 23.9145 34.5148 23.9144 32.4143 26.0148L22.5492 35.8581C22.3397 36.0672 22.1852 36.3247 22.0991 36.6079L19.9507 43.6808C19.7602 44.3079 19.9261 44.9888 20.3838 45.4579C20.7266 45.8093 21.1924 46 21.6701 46C21.8299 46 21.9913 45.9786 22.1497 45.9347L29.4023 43.9257C29.7008 43.8431 29.9728 43.6847 30.192 43.4658L40.0365 33.6399C42.1383 31.5381 42.1383 28.1182 40.0364 26.0163ZM27.9876 40.5886L24.3389 41.5993L25.4067 38.0838L32.0631 31.4421L34.6048 33.9838L27.9876 40.5886ZM37.4966 31.0976L37.1485 31.4451L34.6072 28.9038L34.9542 28.5576C35.6548 27.857 36.7948 27.857 37.4954 28.5576C38.196 29.2582 38.196 30.3981 37.4966 31.0976Z"
+                    fill="#0047AB"
+                  />
+                  <path
+                    d="M27.8691 10.7812H9.36133C8.36891 10.7812 7.56445 11.5857 7.56445 12.5781C7.56445 13.5705 8.36891 14.375 9.36133 14.375H27.8691C28.8616 14.375 29.666 13.5705 29.666 12.5781C29.666 11.5857 28.8616 10.7812 27.8691 10.7812Z"
+                    fill="#0047AB"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
+              {" "}
+              Plans, not products
+            </h4>
+            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+          </div>
+          <div style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}>
+            <div
+              style={{
+                height: "160px",
+                width: "160px",
+                borderRadius: "50%",
+                backgroundColor: "#FFF",
+                border: "1px solid #ECF4FE",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                // padding:'10px 10px'
+              }}
+            >
+              <div
+                style={{
+                  height: "130px",
+                  width: "130px",
+                  borderRadius: "50%",
+                  backgroundColor: "#ECF4FE",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 64 64"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M13.333 53.3333C14.0663 53.3333 14.6663 53.9333 14.6663 54.6666C14.6663 55.4 14.0663 56 13.333 56C12.5997 56 11.9997 55.4 11.9997 54.6666C11.9997 53.9333 12.5997 53.3333 13.333 53.3333ZM23.9997 53.3333H17.333C16.5997 53.3333 15.9997 53.9333 15.9997 54.6666C15.9997 55.4 16.5997 56 17.333 56H23.9997C24.733 56 25.333 55.4 25.333 54.6666C25.333 53.9333 24.733 53.3333 23.9997 53.3333ZM26.1463 17.3733C24.213 18.2933 22.413 19.64 20.813 21.28C19.6263 22.4933 18.5463 23.8666 17.613 25.3466H10.6663C9.93301 25.3466 9.33301 25.9466 9.33301 26.68C9.33301 27.4133 9.93301 28.0133 10.6663 28.0133H16.1063C14.613 31.0133 13.6663 34.2666 13.3997 37.3466H10.6663C9.93301 37.3466 9.33301 37.9466 9.33301 38.68C9.33301 39.4133 9.93301 40.0133 10.6663 40.0133H13.3597C13.8797 49.6533 21.9463 53.3466 31.9997 53.3466C34.8663 53.3466 37.5863 53.04 39.9863 52.3866C40.9857 53.5281 42.218 54.4424 43.6002 55.068C44.9824 55.6935 46.4825 56.0159 47.9997 56.0133C53.893 56.0133 58.6663 51.24 58.6663 45.3466C58.6663 40.24 55.0663 35.96 50.253 34.92C49.1997 29.48 46.173 23.8533 42.0397 20.2C40.733 19.0533 39.333 18.0933 37.8397 17.3866L39.9063 11.8133C40.093 11.3066 39.9597 10.72 39.5463 10.36C39.5463 10.36 37.0397 8.01331 31.9863 8.01331C26.933 8.01331 24.4263 10.36 24.4263 10.36C24.013 10.72 23.8797 11.3066 24.0663 11.8133L26.133 17.3866L26.1463 17.3733ZM47.9997 37.3333C52.413 37.3333 55.9997 40.92 55.9997 45.3333C55.9997 49.7466 52.413 53.3333 47.9997 53.3333C43.5863 53.3333 39.9997 49.7466 39.9997 45.3333C39.9997 40.92 43.5863 37.3333 47.9997 37.3333ZM47.4797 34.68C46.413 30.0266 43.7997 25.3066 40.2797 22.1866C37.8663 20.0533 35.0397 18.6666 31.9997 18.6666C28.5197 18.6666 25.333 20.4666 22.7197 23.1333C18.653 27.2933 15.9997 33.5733 15.9997 39C15.9997 47.7466 23.253 50.6666 31.9997 50.6666C34.2797 50.6666 36.4397 50.4666 38.413 50.0266C37.6978 48.5657 37.3283 46.9599 37.333 45.3333C37.3332 42.5945 38.3868 39.9606 40.2758 37.9774C42.1647 35.9942 44.7441 34.8135 47.4797 34.68ZM11.9997 46.6666H6.66634C5.93301 46.6666 5.33301 47.2666 5.33301 48C5.33301 48.7333 5.93301 49.3333 6.66634 49.3333H11.9997C12.733 49.3333 13.333 48.7333 13.333 48C13.333 47.2666 12.733 46.6666 11.9997 46.6666ZM46.6663 41.3333V45.3333C46.6663 46.0666 47.2663 46.6666 47.9997 46.6666H51.9997C52.733 46.6666 53.333 46.0666 53.333 45.3333C53.333 44.6 52.733 44 51.9997 44H49.333V41.3333C49.333 40.6 48.733 40 47.9997 40C47.2663 40 46.6663 40.6 46.6663 41.3333ZM30.6663 30.7333C29.8562 30.8978 29.1362 31.3574 28.6459 32.023C28.1556 32.6885 27.9301 33.5125 28.0132 34.335C28.0963 35.1574 28.482 35.9197 29.0954 36.4737C29.7089 37.0278 30.5064 37.3341 31.333 37.3333H32.6663C32.8397 37.3333 33.013 37.4 33.133 37.5333C33.253 37.6533 33.333 37.8266 33.333 38C33.333 38.1733 33.2663 38.3466 33.133 38.4666C33.0091 38.5911 32.8419 38.6627 32.6663 38.6666H29.333C28.5997 38.6666 27.9997 39.2666 27.9997 40C27.9997 40.7333 28.5997 41.3333 29.333 41.3333H30.6663V42.6666C30.6663 43.4 31.2663 44 31.9997 44C32.733 44 33.333 43.4 33.333 42.6666V41.2666C34.0873 41.1158 34.7657 40.7074 35.2522 40.1115C35.7386 39.5156 36.0029 38.7692 35.9997 38C35.9997 37.1066 35.653 36.2666 35.0263 35.64C34.3997 35.0133 33.5597 34.6666 32.6663 34.6666H31.333C31.2456 34.6677 31.1589 34.6505 31.0785 34.616C30.9981 34.5816 30.9259 34.5307 30.8663 34.4666C30.7463 34.3466 30.6663 34.1733 30.6663 34C30.6663 33.8266 30.733 33.6533 30.8663 33.5333C30.9902 33.4089 31.1575 33.3372 31.333 33.3333H34.6663C35.3997 33.3333 35.9997 32.7333 35.9997 32C35.9997 31.2666 35.3997 30.6666 34.6663 30.6666H33.333V29.3333C33.333 28.6 32.733 28 31.9997 28C31.2663 28 30.6663 28.6 30.6663 29.3333V30.7333ZM6.66634 37.3333C7.39967 37.3333 7.99967 37.9333 7.99967 38.6666C7.99967 39.4 7.39967 40 6.66634 40C5.93301 40 5.33301 39.4 5.33301 38.6666C5.33301 37.9333 5.93301 37.3333 6.66634 37.3333ZM35.3463 16.44C35.7997 15.2266 37.053 11.84 37.053 11.84C36.173 11.3466 34.4797 10.6533 31.9997 10.6533C29.5197 10.6533 27.8263 11.3466 26.9463 11.84L28.653 16.44C29.7463 16.1466 30.8663 16 31.9997 16C33.133 16 34.2663 16.16 35.3463 16.44ZM10.6663 12C11.3997 12 11.9997 12.6 11.9997 13.3333C11.9997 14.0666 11.3997 14.6666 10.6663 14.6666C9.93301 14.6666 9.33301 14.0666 9.33301 13.3333C9.33301 12.6 9.93301 12 10.6663 12ZM21.333 12H14.6663C13.933 12 13.333 12.6 13.333 13.3333C13.333 14.0666 13.933 14.6666 14.6663 14.6666H21.333C22.0663 14.6666 22.6663 14.0666 22.6663 13.3333C22.6663 12.6 22.0663 12 21.333 12Z"
+                    fill="#0047AB"
+                  />
+                </svg>
+              </div>
+            </div>
+               <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
+              {" "}
+              Plans, not products
+            </h4>
+            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+          </div>
+        <div
+            style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}
+          >
+            <div
+              style={{
+                height: "160px",
+                width: "160px",
+                borderRadius: "50%",
+                backgroundColor: "#FFF",
+                border: "1px solid #ECF4FE",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                // padding:'10px 10px'
+              }}
+            >
+              <div
+                style={{
+                  height: "130px",
+                  width: "130px",
+                  borderRadius: "50%",
+                  backgroundColor: "#ECF4FE",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25.3115 34.375V38.75"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14.8965 45.8334H35.7298V43.7501C35.7298 41.4584 33.8548 39.5834 31.5631 39.5834H19.0631C16.7715 39.5834 14.8965 41.4584 14.8965 43.7501V45.8334V45.8334Z"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-miterlimit="10"
+                  />
+                  <path
+                    d="M12.8115 45.8334H37.8115"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M24.9984 33.3332C16.9359 33.3332 10.415 26.8124 10.415 18.7499V12.4999C10.415 7.89573 14.1442 4.16656 18.7484 4.16656H31.2484C35.8525 4.16656 39.5817 7.89573 39.5817 12.4999V18.7499C39.5817 26.8124 33.0609 33.3332 24.9984 33.3332Z"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.3958 24.2709C9.83333 23.7709 8.45833 22.8542 7.375 21.7709C5.5 19.6876 4.25 17.1876 4.25 14.2709C4.25 11.3542 6.54167 9.06256 9.45833 9.06256H10.8125C10.3958 10.0209 10.1875 11.0834 10.1875 12.1876V18.4376C10.1875 20.5209 10.625 22.4792 11.3958 24.2709Z"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M38.6064 24.2709C40.1689 23.7709 41.5439 22.8542 42.6273 21.7709C44.5023 19.6876 45.7523 17.1876 45.7523 14.2709C45.7523 11.3542 43.4606 9.06256 40.5439 9.06256H39.1898C39.6064 10.0209 39.8148 11.0834 39.8148 12.1876V18.4376C39.8148 20.5209 39.3773 22.4792 38.6064 24.2709Z"
+                    stroke="#0047AB"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </div> <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
+              {" "}
+              Plans, not products
+            </h4>
+            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "60px 70px" }}>
+        <div style={{ display: "flex" }}>
+          <div style={{ flex: 1, padding: "20px" }}>
+            <h1
+              style={{ fontSize: "44px", fontWeight: 700, marginBottom: "0" }}
+            >
+              <span style={{ color: "#0047AB" }}> How we calculate </span>
+            </h1>
+            <h1
+              style={{
+                fontSize: "44px",
+                fontWeight: 700,
+                marginBottom: "25px",
+              }}
+            >
+              Our assessment and Our assumptions
+            </h1>
+            <p
+              style={{
+                color: "#545454",
+                fontWeight: 400,
+                fontSize: "18px",
+                marginBottom: "25px",
+              }}
+            >
+              Yet bed any for assistance indulgence unpleasing. Not thoughts all
+              exercise blessing. Indulgence way everything joy alteration
+              boisterous the attachment.{" "}
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <p
+                style={{ color: "#0047AB", fontWeight: 700, fontSize: "18px" }}
+              >
+                More FAQs
+              </p>{" "}
+              <BsArrowRight
+                style={{ color: "#0047AB", fontWeight: 700, fontSize: "18px" }}
+              />
+            </div>
+          </div>
+          <div style={{ display: "flex", flex: 2 }}>
+            <CtaAndFaq />
+          </div>
+        </div>
+      </section>
+      <section
+        style={{
+          padding: "60px 70px",
+          display: "flex",
+          flex: 2,
+          width: "100%",
+        }}
+      >
+        <div style={{ flex: 1, backgroundColor: "#ffffffff" }}>
+          <ContactForm />
+        </div>
+        <div style={{ flex: 1, padding: "36px" }}>
+          <h5 style={{ color: "#1F1F1F", fontSize: "44px", fontWeight: 700 }}>
+            Contact Us
+          </h5>
+          <p style={{ color: "#1F1F1F", fontSize: "18px", fontWeight: 400 }}>
+            There is now an abundance of readable dummy texts. These are usually
+            used when a text is required purely to fill a space.
+          </p>
+          <div style={{ display: "flex", gap: 10 }}>
+            <div style={{ display: "flex", flex: 1 }}>
+              <div
+                style={{
+                  backgroundColor: "#002855",
+                  color: "#FFF",
+                  borderRadius: "16px",
+                  width: "60px",
+                  height: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <BiPhone style={{ fontSize: "32px", color: "#FFF" }} />
+              </div>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 10 }}
+              >
+                <p
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "22px",
+                    color: "#1F1F1F",
+                  }}
+                >
+                  Phone
+                </p>
+                <p
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#545454",
+                  }}
+                >
+                  {" "}
+                  (+081) 9876 1234
+                </p>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: 20 }}>
+              <div
+                style={{
+                  backgroundColor: "#002855",
+                  color: "#FFF",
+                  borderRadius: "16px",
+                  width: "60px",
+                  height: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <BiMailSend style={{ fontSize: "32px", color: "#FFF" }} />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <p
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "22px",
+                    color: "#1F1F1F",
+                  }}
+                >
+                  Email
+                </p>
+                <p
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#545454",
+                  }}
+                >
+                  johndoe@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style={{ display: "flex", gap: 20 }}>
+              <div
+                style={{
+                  backgroundColor: "#002855",
+                  color: "#FFF",
+                  borderRadius: "16px",
+                  width: "60px",
+                  height: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <BsGeoAlt style={{ fontSize: "32px", color: "#FFF" }} />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <p
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "22px",
+                    color: "#1F1F1F",
+                  }}
+                >
+                  Address
+                </p>
+                <p
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#545454",
+                  }}
+                >
+                  London Eye, London
+                </p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                gap: 20,
+                padding: "50px",
+                borderTop: "1px solid #dddddd",
+                marginTop: "20px",
+              }}
+            >
+              <div
+                style={{ color: "#1F1F1F", fontSize: "22px", fontWeight: 700 }}
+              >
+                Social Media
+              </div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "#0047AB solid 1px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FaFacebook style={{ color: "#0047AB" }} />{" "}
+              </div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "#0047AB solid 1px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <BsTwitterX style={{ color: "#0047AB" }} />
+              </div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "#0047AB solid 1px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <BsYoutube style={{ color: "#0047AB" }} />
+              </div>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "#0047AB solid 1px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <BsLinkedin style={{ color: "#0047AB" }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
