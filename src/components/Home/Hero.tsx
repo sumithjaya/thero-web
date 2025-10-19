@@ -1,24 +1,14 @@
 import Link from "next/link";
+import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <div
-      style={{
-        boxSizing:'border-box',
-        background:
-          "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(255,255,255,1) 0%, rgba(0,71,171,0.51) 100%)", 
-          minHeight:'800px',
-          marginTop:'150px'
-      }}
-      className="w-full mb-20 m-0 flex flex-col justify-center items-center"
-    >
-      <section
-        className="relative   text-center  flex flex-row"
-        aria-labelledby="hero-heading"
-      >
+    <div className={styles.heroRoot}>
+      <section className={styles.heroSection} aria-labelledby="hero-heading">
         {/* Subtle backdrop */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-60" />
-        <div  className="pt-45">
+        <div className={styles.backdrop} />
+
+        <div className={styles.leftOrnamentPad}>
           <svg
             width="734"
             height="74"
@@ -42,28 +32,24 @@ export default function Hero() {
             </g>
           </svg>
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:pt-16 lg:pb-24   ">
-          <div className="flex flex-col items-center gap-6 pt-25">
-            <h1
-              id="hero-heading"
-              className="text-3xl font-bold p-10 leading-tight tracking-tight sm:text-4xl lg:text-5xl"
-            >
-              <span className="text-brand">Optimize your retirement </span>plan with confidence
+
+        <div className={styles.container}>
+          <div className={styles.heroStack}>
+            <h1 id="hero-heading" className={styles.heroTitle}>
+              <span className={styles.brand}>Optimize your retirement </span>plan with confidence
             </h1>
-            <p className="text-lg text-gray-800 max-w-2xl p-5">
-              We help you plan & manage your retirement income, investments, and
-              projections. We’re experts, but we explain things in a way that’s
-              easy to understand. We’re here to help.
+            <p className={styles.heroSubtitle}>
+              We help you plan & manage your retirement income, investments, and projections. We’re experts, but we explain things in a way that’s easy to understand. We’re here to help.
             </p>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 text-base font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
-            >
+            <div className={styles.ctaBar}>
+              <Link href="/get-started" className={styles.ctaPrimary}>
               Get Started
             </Link>
+            </div>
           </div>
         </div>
-        <div  className="pt-50 ">
+
+        <div className={styles.rightOrnamentPad}>
           <svg
             width="113"
             height="43"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
+import styles from "./CtaAndFaq.module.css";
 
 type FAQ = { q: string; a: string };
 
@@ -47,28 +47,26 @@ function AccordionItem({
   }, [open]);
 
   return (
-    <li className="border-t border-black/10">
+    <li className={styles.item}>
       <button
         type="button"
         aria-expanded={open}
         aria-controls={`${id}-content`}
         onClick={onToggle}
-        className="relative flex w-full items-center gap-2 py-5 text-left text-base font-semibold md:text-lg"
+        className={styles.btn}
+        suppressHydrationWarning
       >
-        <span className="flex-1 text-foreground">{q}</span>
+        <span className={styles.q}>{q}</span>
+
         {/* plus/minus icon */}
-        <svg
-          className="ml-auto h-4 w-4 flex-shrink-0"
-          viewBox="0 0 16 16"
-          aria-hidden
-        >
+        <svg className={styles.icon} viewBox="0 0 16 16" aria-hidden>
           {/* Horizontal bar */}
           <rect
             y="7"
             width="16"
             height="2"
             rx="1"
-            className="origin-center transition duration-200 ease-out fill-current"
+            className={`${styles.iconBar} ${styles.iconBarHorizontal}`}
           />
           {/* Vertical bar rotates away when open */}
           <rect
@@ -76,8 +74,8 @@ function AccordionItem({
             width="16"
             height="2"
             rx="1"
-            className={`origin-center transition duration-200 ease-out fill-current ${
-              open ? "rotate-0 scale-0 opacity-0" : "rotate-90"
+            className={`${styles.iconBar} ${
+              open ? styles.iconBarHidden : styles.iconBarVertical
             }`}
           />
         </svg>
@@ -86,10 +84,10 @@ function AccordionItem({
       <div
         id={`${id}-content`}
         ref={contentRef}
-        className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+        className={styles.content}
         style={{ maxHeight: maxH }}
       >
-        <div className="pb-5 leading-relaxed text-foreground/80">{a}</div>
+        <div className={styles.contentInner}>{a}</div>
       </div>
     </li>
   );
@@ -99,30 +97,25 @@ export default function CtaAndFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <>
-      {/* FAQ */}
-      <section style={{ padding: "0 70px" }}>
-        <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
-          <div style={{ flex: 1 }}>
-            <div className="px-0 md:px-8 py-8 md:py-12 mx-auto flex flex-col gap-6">
-              <ul className="mt-2">
-                {faqs.map((f, i) => (
-                  <AccordionItem
-                    key={i}
-                    id={`faq-${i}`}
-                    q={f.q}
-                    a={f.a}
-                    open={openIndex === i}
-                    onToggle={() =>
-                      setOpenIndex((idx) => (idx === i ? null : i))
-                    }
-                  />
-                ))}
-              </ul>
-            </div>
+    <section className={styles.section}>
+      <div className={styles.wrapper}>
+        <div className={styles.col}>
+          <div className={styles.inner}>
+            <ul className={styles.faqList}>
+              {faqs.map((f, i) => (
+                <AccordionItem
+                  key={i}
+                  id={`faq-${i}`}
+                  q={f.q}
+                  a={f.a}
+                  open={openIndex === i}
+                  onToggle={() => setOpenIndex((idx) => (idx === i ? null : i))}
+                />
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

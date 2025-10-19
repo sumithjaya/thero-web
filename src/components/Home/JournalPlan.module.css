@@ -1,0 +1,117 @@
+.sectionPadLg {
+  display: flex;
+  padding: 20px 100px;
+  flex: 2;
+  gap: 20px;
+}
+
+.journalTextCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 120px 0 0 ;
+}
+
+.journalArtCol {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+.journalTitleDark {
+  font-size: 44px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  margin: 0;
+  padding: 0;
+}
+
+.journalTitlePrimary {
+  font-size: 44px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #0047ab;
+  margin: 0;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.journalParagraph {
+  font-size: 18px;
+  font-weight: 400;
+  color: #545454;
+  margin-top: 38px;
+}
+.journalArtBox {
+  background-image: url("/images/image.png");
+  width: 490px;
+  height: 490px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.journalBubbleOne {
+  position: absolute;
+  top: 80;
+  left: -70;
+}
+
+.journalBubbleOne img{
+    width: 154px;
+    height: 154px;
+    border-radius: 50%;
+}
+
+.journalBubbleTwo {
+  position: absolute;
+  top: -20;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.journalBubbleTwo img {
+  
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.journalBubbleThree {
+  position: absolute;
+  bottom: 40;
+  left: 30;
+}
+.journalBubbleThree img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.journalBubbleFour {
+  position: absolute;
+  bottom: 50;
+  right: 40;
+}
+.journalBubbleFour img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.journalBubbleFive {
+  position: absolute;
+  top: 160;
+  right: 20;
+}
+.journalBubbleFive img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

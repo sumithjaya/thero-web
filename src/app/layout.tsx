@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
+'use client';
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { useEffect, useState } from "react";  
+import Loading from "@/components/loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,24 +17,35 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "THERO",
-  description: "The Retirement Optimiser",
-};
+// Remove metadata export - it only works in Server Components
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <html lang="en">
-      <body
-         
-      >
-        <Header/>
-        {children}
-        <Footer/>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Header />
+            {children}
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import SegmentedBars from "@/components/Charts/SegmentedBars";
 import ContactForm from "@/components/ContactForm";
 import CtaAndFaq from "@/components/CtaAndFaq";
 import Header from "@/components/header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Home/Hero";
 import HeroCalculators from "@/components/hero/HeroCalculators";
 import RatingStars from "@/components/Testimonials/RatingStars";
 import Image from "next/image";

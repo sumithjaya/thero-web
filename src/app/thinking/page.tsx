@@ -4,7 +4,7 @@ import SegmentedBars from "@/components/Charts/SegmentedBars";
 import ContactForm from "@/components/ContactForm";
 import CtaAndFaq from "@/components/CtaAndFaq";
 import Header from "@/components/header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Home/Hero";
 import HeroCalculators from "@/components/hero/HeroCalculators";
 import HeroThinking from "@/components/hero/HeroThinking";
 import RatingStars from "@/components/Testimonials/RatingStars";
@@ -70,7 +70,7 @@ export default function Calculators() {
         <h4 style={{ fontSize: "44px", fontWeight: 700 ,textAlign:'center'}}>
           How We <span style={{ color: "#0047AB" }}>Help</span>
         </h4>
-        <div style={{ display: "flex", flexDirection: "raw", gap: "20px" }}>
+        <div style={{ display: "flex",flexDirection:'row' , gap: "20px" }}>
           <div
             style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}
           >

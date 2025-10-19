@@ -1,0 +1,97 @@
+.section {
+  padding: 0 70px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.col {
+  flex: 1;
+}
+
+.inner {
+  padding: 32px 0;       /* py-8 */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;             /* gap-6 */
+  margin: 0 auto;
+}
+
+.faqList {
+  margin-top: 8px;       /* mt-2 */
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.item {
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* border-black/10 */
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding-top: 20px;     /* py-5 */
+  padding-bottom: 20px;
+  text-align: left;
+  font-size: 1rem;       /* text-base */
+  font-weight: 600;      /* font-semibold */
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    font-size: 1.125rem; /* md:text-lg */
+  }
+}
+
+.q {
+  flex: 1;
+  color: rgb(17, 17, 17); /* replaces text-foreground */
+}
+
+.icon {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.iconBar {
+  transform-origin: center;
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  fill: currentColor;
+}
+
+.iconBarHorizontal {
+  /* the horizontal bar (—) stays as-is */
+}
+
+.iconBarVertical {
+  transform: rotate(90deg);
+}
+
+.iconBarHidden {
+  transform: rotate(0deg) scale(0);
+  opacity: 0;
+}
+
+.content {
+  overflow: hidden;
+  transition: max-height 300ms ease-in-out;
+}
+
+.contentInner {
+  padding-bottom: 20px; /* pb-5 */
+  line-height: 1.75;    /* leading-relaxed */
+  color: rgba(17, 17, 17, 0.8); /* text-foreground/80 */
+}

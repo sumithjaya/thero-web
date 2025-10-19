@@ -1,95 +1,185 @@
 "use client";
 
 import { BiMailSend, BiMessage, BiUserCircle } from "react-icons/bi";
+import styles from "./ContactForm.module.css";
+import Image from "next/image";
+import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 export default function ContactForm() {
   return (
-    <div className="flex gap-8 p-12 bg-[#ECF4FE] rounded-2xl">
-      <div className="flex-1">
-        <form className="space-y-8">
-          <div className="border-b border-white/10  ">
-            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
-              {/* First Name */}
-              <div>
-                <label
-                  htmlFor="first-name"
-                  className="flex  gap-2 items-center  block text-sm font-medium text-[#545454]"
-                >
-                  <BiUserCircle style={{ color: "#0047AB" }} /> First Name
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <form>
+          <div className={styles.fieldset}>
+            <div className={styles.grid}> 
+              <div className={styles.fullWidth} suppressHydrationWarning>
+                <label htmlFor="first-name" className={styles.label}>
+                  <Image
+                    src="/images/svg/contactUser.svg"
+                    alt="user"
+                    width={20}
+                    height={20}
+                  />{" "}
+                  <div>First Name</div>
                 </label>
                 <input
                   type="text"
                   id="first-name"
                   name="first-name"
                   placeholder="John"
-                  className="mt-2 block w-full rounded-md bg-white  px-3 py-2 text-white placeholder-gray-400 outline outline-1 outline-white/10 focus:outline-2 focus:outline-indigo-500"
+                  className={styles.input}
+                  suppressHydrationWarning
                 />
               </div>
 
               {/* Last Name */}
-              <div>
-                <label
-                  htmlFor="last-name"
-                  className="flex  gap-2 items-center  block text-sm font-medium text-[#545454]"
-                >
-                  <BiUserCircle style={{ color: "#0047AB" }} /> Last Name
+              <div suppressHydrationWarning>
+                <label htmlFor="last-name" className={styles.label}>
+                  <Image
+                    src="/images/svg/contactUser.svg"
+                    alt="user"
+                    width={20}
+                    height={20}
+                  />{" "}
+                  <div>Last Name</div>
                 </label>
                 <input
                   type="text"
                   id="last-name"
                   name="last-name"
                   placeholder="Doe"
-                  className="mt-2 block w-full rounded-md bg-white  px-3 py-2 text-white placeholder-gray-400 outline outline-1 outline-white/10 focus:outline-2 focus:outline-indigo-500"
+                  className={styles.input}
+                  suppressHydrationWarning
                 />
               </div>
 
               {/* Email */}
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="email"
-                  className="flex  gap-2 items-center justify-start block flex  gap-2 text-sm font-medium text-[#545454]"
-                >
-                  <BiMailSend style={{ color: "#0047AB" }} /> Email
+              <div className={styles.fullWidth} suppressHydrationWarning>
+                <label htmlFor="email" className={styles.label}>
+                  <Image
+                    src="/images/svg/contactEmail.svg"
+                    alt="user"
+                    width={20}
+                    height={20}
+                  />{" "}
+                  <div>Email</div>
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   placeholder="john@example.com"
-                  className="mt-2 block w-full rounded-md bg-white  px-3 py-2 text-white placeholder-gray-400 outline outline-1 outline-white/10 focus:outline-2 focus:outline-indigo-500"
+                  className={styles.input}
+                  suppressHydrationWarning
                 />
               </div>
 
               {/* Message */}
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="message"
-                  className="flex  gap-2 items-center  block text-sm font-medium text-[#545454]"
-                >
-                  <BiMessage style={{ color: "#0047AB" }} />
-                  Message
+              <div className={styles.fullWidth} >
+                <label htmlFor="message" className={styles.label}>
+                  <Image
+                    src="/images/svg/contactMessage.svg"
+                    alt="user"
+                    width={20}
+                    height={20}
+                  />{" "}
+                  <div>Message</div>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
                   placeholder="Write your message..."
-                  className="mt-2 block w-full rounded-md bg-white  px-3 py-2 text-white placeholder-gray-400 outline outline-1 outline-white/10 focus:outline-2 focus:outline-indigo-500"
+                  className={styles.textarea}
+                  suppressHydrationWarning
                 />
               </div>
             </div>
           </div>
 
           {/* Submit Button */}
-          <div>
-            <button
-              type="submit"
-              className="rounded-md bg-[#0047AB] px-6 py-3 font-semibold text-[#FFFFFF] hover:opacity-90 transition"
-            >
-             Submit
+          <div style={{ marginTop: "2rem" }}>
+            <button type="submit" className={styles.button}>
+              Submit
             </button>
           </div>
         </form>
+      </div>
+      <div className={styles.contactInfo}>
+        <div className={styles.contactTitle}>Contact Us</div>
+        <div className={styles.contactIntro}>
+          There is now an abundance of readable dummy texts. These are usually
+          used when a text is required purely to fill a space.
+        </div>
+        <div className={styles.contactGridTop}>
+          <div className={styles.contactItem}>
+            <div className={styles.contactIcon}>
+              <Image
+                src="/images/svg/phone.svg"
+                alt="image"
+                width={154}
+                height={154}
+                className={styles.fullRound}
+              />
+            </div>
+            <div className={styles.contactDetails}>
+              <div className={styles.contactLabel}>Phone</div>
+              <div className={styles.contactValue}>(+081) 9876 1234</div>
+            </div>
+          </div>
+          <div className={styles.contactItem}>
+            <div className={styles.contactIcon}>
+              <Image
+                src="/images/svg/mail.svg"
+                alt="image"
+                width={154}
+                height={154}
+                className={styles.fullRound}
+              />
+            </div>
+            <div className={styles.contactDetails}>
+              <div className={styles.contactLabel}>Email</div>
+              <div className={styles.contactValue}>john@example.com</div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.contactGrid}>
+          <div className={styles.contactItem}>
+            <div className={styles.contactIcon}>
+              <Image
+                src="/images/svg/location.svg"
+                alt="image"
+                width={154}
+                height={154}
+                className={styles.fullRound}
+              />
+            </div>
+            <div className={styles.contactDetails}>
+              <div className={styles.contactLabel}>Address</div>
+              <div className={styles.contactValue}>
+                123 Street, City, Country
+              </div>
+            </div>
+          </div>
+        </div>{" "}
+        <div className={styles.socialMedia}>
+          <div className={styles.socialMediaTitle}>Social Media:</div>
+          <div className={styles.socialIcons}>
+            <div className={styles.socialIcon}>
+              <FaFacebook />
+            </div>
+            <div className={styles.socialIcon}>
+              <FaXTwitter />
+            </div>
+            <div className={styles.socialIcon}>
+              <FaYoutube />
+            </div>
+            <div className={styles.socialIcon}>
+              <FaLinkedinIn />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

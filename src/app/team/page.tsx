@@ -3,7 +3,7 @@ import CalChartArea1 from "@/components/Charts/CalChartArea1";
 import ContactForm from "@/components/ContactForm";
 import CtaAndFaq from "@/components/CtaAndFaq";
 import Header from "@/components/header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Home/Hero";
 import HeroCalculators from "@/components/hero/HeroCalculators";
 import HeroTeam from "@/components/hero/HeroTeam";
 import RatingStars from "@/components/Testimonials/RatingStars";
