@@ -105,11 +105,14 @@ export default function CalForm() {
           </p>
         </div>
       </div>
-
+      <script src="https://elfsightcdn.com/platform.js" async></script>{" "}
+      <div
+        className="elfsight-app-4e747e1c-d9a2-4e2f-8118-2955ba126861"
+        data-elfsight-app-lazy
+      ></div>{" "}
       <h1 style={{ color: "#1F1F1F", fontSize: "26px", fontWeight: 700 }}>
         Enter your details
       </h1>
-
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* User fields */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -359,9 +362,6 @@ export default function CalForm() {
           </button>
         </div>
       </form>
-
-      
     </div>
-    
   );
 }
