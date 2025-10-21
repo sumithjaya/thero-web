@@ -48,6 +48,10 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-background/80 backdrop-blur-md">
+      <title>THERO :: The Retirement Optimiser</title>
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/site.webmanifest" />
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6">
         {/* Brand */}
         <Link
