@@ -1,5 +1,5 @@
 .heroRoot{
- 
+ z-index:0;
 }
 .heroSection{
    background: #ffffff;
@@ -66,3 +66,14 @@
       background-color: #003580; /* Darker shade of blue */
 }
  
+@media (max-width: 768px) {
+    .heroStack{
+        padding: 50px 50px;
+    }
+    .heroTitle{
+        font-size: 44px;
+    }
+    .heroSubtitle{
+        padding: 0 50px;  
+    }
+}

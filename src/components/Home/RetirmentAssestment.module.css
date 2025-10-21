@@ -187,3 +187,12 @@
     color: #1F1F1F;
     margin-bottom: 12px;
 } 
+
+@media (max-width: 640px) {
+    .planCharts{
+        flex-direction: column;
+    }
+    .sectionPadLg{
+        flex-direction: column;
+    }
+}

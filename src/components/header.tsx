@@ -171,8 +171,7 @@ export default function Header() {
                       src="/images/logo.png"
                       alt="Thero"
                       fill
-                      className="object-contain"
-                      width={500}
+                      className="object-contain" 
                     />
                   </div>
                 </Link>
