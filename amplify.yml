@@ -3,11 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Use the Node version from .nvmrc if present (recommended)
         - 'if command -v nvm >/dev/null 2>&1; then nvm install && nvm use; fi'
         - node -v
+        # Use pnpm via Corepack and pin the version for reproducibility
         - corepack enable
         - corepack prepare pnpm@9 --activate
         - pnpm -v
+        # Deterministic install (fails if pnpm-lock.yaml is out of sync)
         - pnpm install --frozen-lockfile
     build:
       commands:
