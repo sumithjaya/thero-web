@@ -5,7 +5,9 @@ frontend:
       commands:
         - node -v
         - npm -v
-        - npm ci
+        # If you keep a .nvmrc, use it to match Node:
+        - nvm use || echo "using default node"
+        - npm install --legacy-peer-deps
     build:
       commands:
         - npm run build
@@ -16,4 +18,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - .next/cache/**/*
