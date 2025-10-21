@@ -62,8 +62,8 @@
 
 .journalBubbleOne {
   position: absolute;
-  top: 80;
-  left: -70;
+  top: 80px;
+  left: -70px;
 }
 
 .journalBubbleOne img{
@@ -74,7 +74,7 @@
 
 .journalBubbleTwo {
   position: absolute;
-  top: -20;
+  top: -20px;
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -87,8 +87,8 @@
 }
 .journalBubbleThree {
   position: absolute;
-  bottom: 40;
-  left: 30;
+  bottom: 40px;
+  left: 30px;
 }
 .journalBubbleThree img{
     width: 100px;
