@@ -90,7 +90,7 @@ export default function CalForm() {
         }}
       >
         <Image
-          src="/images/oldlady.JPG"
+          src="/images/oldlady.jpg"
           alt="thero"
           width={300}
           height={300}
