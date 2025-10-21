@@ -3,18 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
+        - 'if command -v nvm >/dev/null 2>&1; then nvm install && nvm use; fi'
         - node -v
-        - npm -v
-        # If you keep a .nvmrc, use it to match Node:
-        - nvm use || echo "using default node"
-        - npm install --legacy-peer-deps
+        - corepack enable
+        - corepack prepare pnpm@9 --activate
+        - pnpm -v
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - npm run build
+        - pnpm run build
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
   cache:
     paths:
+      - .next/cache/**/*
       - node_modules/**/*
+      - ~/.pnpm-store/**/*
