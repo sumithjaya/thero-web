@@ -194,5 +194,29 @@
     }
     .sectionPadLg{
         flex-direction: column;
+        padding: 0 20px;
+    }
+    .rowBetween{
+        flex-direction: column;
+    }
+    .assessmentCard{
+        padding: 20px;
+        flex-direction: column;
+    }
+    .assessmentCta{
+        padding: 17px 20px;
+    }
+    .sustainabilityCard{
+        padding: 20px;
+        flex-direction: column;
+    }
+    .sustainabilityCta{
+        padding: 17px 20px;
+    }
+    .planPanel{
+        padding: 20px;
+    }
+    .planCharts{
+        gap: 20px;
     }
 }
