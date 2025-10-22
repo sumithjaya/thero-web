@@ -75,6 +75,9 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
    
 }
 .cardContent{
@@ -198,17 +201,23 @@
     }
     .rowBetween{
         flex-direction: column;
+        padding: 50px;
     }
     .assessmentCard{
         padding: 20px;
         flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
     .assessmentCta{
-        padding: 17px 20px;
+        padding: 15px 18px;
+        font-size: 13px;
+        border-radius: 10px;
     }
     .sustainabilityCard{
         padding: 20px;
         flex-direction: column;
+        align-items: center;
     }
     .sustainabilityCta{
         padding: 17px 20px;
@@ -219,4 +228,103 @@
     .planCharts{
         gap: 20px;
     }
+    .cardContent{
+        padding: 20px ;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 20px;;
+    
+    }
+   .cardText{
+    margin-bottom: 50px;
+   }
+
+   .sustainabilityContent{
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+   }
+.sustainabilityTitle{
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+   .sustainabilityText{
+    margin-bottom: 50px;
+    font-size: 13px;
+   }
+   .iconCircle{
+    width: 60px;
+    height: 60px;
+   }
+   .iconCircle img{
+    width: 30px;
+    height: 30px;
+   }
+
+   .iconCirclePrimary{
+    width: 60px;
+    height: 60px;
+   }
+   .iconCirclePrimary img{
+    width: 30px;
+    height: 30px;
+   }
+
+   .cardTitle{
+    font-size: 17px;
+    margin-bottom: 10px;
+   }
+
+   .cardText{
+    font-size: 12px;
+    margin-bottom: 40px;
+   }
+   .sustainabilityTitle{
+    font-size: 17px;
+    margin-bottom: 20px;
+   }
+   .sustainabilityText{
+    margin-bottom: 50px;
+    font-size: 12px;
+   }
+
+   .sustainabilityCta{
+    padding: 15px 18px;
+    font-size: 13px;
+    border-radius: 10px;
+   }
+
+   .planCharts{
+    display: flex;
+    flex-direction: row;
+   }
+
+   .donutSvgWrap{
+    display: none;
+   }
+
+   .donutSvgWrapMobile{
+    display: block;
+    width: 100px;
+    height: 100px;
+   }
+
+   .areaSvgWrap{
+    display: none;
+   }
+   .areaSvgWrapMobile{
+    display: block;
+    width: 100px;
+    height: 100px;
+   }
+
+   .planTitle{
+    font-size: 20px;
+    text-align: center;
+   }
+   .planSubtitle{
+    font-size: 12px;
+    text-align: center;
+   }
 }

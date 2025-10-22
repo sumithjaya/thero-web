@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row; 
     padding: 50px 100px;
+    background-color: #ffffff;
 }
 
 .testimonialTitle{
@@ -95,4 +96,16 @@ z-index: 2;
 
 .testimonialCard:first-child{
     margin-left: 150px;
+}
+
+@media (max-width: 1024px) {
+    .sectionPadLg{
+        padding: 50px 50px;
+    }
+    .testimonialCard:first-child{
+        margin-left: 0;
+    }
+    .testimonialRow{
+        flex-direction: column;
+    }
 }
