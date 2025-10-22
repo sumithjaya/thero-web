@@ -37,3 +37,15 @@
     padding: 17px 45px;
     border-radius: 16px;
 }
+
+@media (max-width: 1024px) {
+    .sectionPadLg{
+        padding: 50px;
+    }
+
+    .ctaBar{
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}

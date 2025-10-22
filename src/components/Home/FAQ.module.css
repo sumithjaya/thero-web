@@ -53,3 +53,15 @@
     color: #0047AB;
     margin-left: 10px;
 }
+
+@media (max-width: 1024px) {
+    .sectionPadLg{
+        padding: 50px 50px;
+    }
+    .faqIntro{
+        padding: 50px 0 50px 0;
+    }
+    .faqRow{
+        flex-direction: column;
+    }
+}
