@@ -1,0 +1,764 @@
+/* If you use CSS variables for colors, set these in your globals:
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --brand-blue01: #0046bf; 
+  --ring: rgba(0,0,0,0.1);
+  --muted: rgba(17,24,39,0.1);
+}
+*/
+
+/* Header shell */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* Semi-transparent app background with blur */
+  background: color-mix(in srgb, var(--background, #ffffff) 80%, transparent);
+  backdrop-filter: blur(6px);
+  /* If you use CSS variables for colors, set these in your globals:
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --brand-blue01: #0046bf; 
+  --ring: rgba(0,0,0,0.1);
+  --muted: rgba(17,24,39,0.1);
+}
+*/
+
+/* Header shell */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10050;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* Semi-transparent app background with blur */
+  background: color-mix(in srgb, var(--background, #ffffff) 80%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+/* Container */
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  height: 4rem; /* h-16 */
+  max-width: 80rem; /* max-w-7xl */
+  align-items: center;
+  gap: 0.75rem; /* gap-3 */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .inner {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.logoBox {
+  position: relative;
+  height: 5rem; /* h-20 */
+  width: 130px; /* w-[130px] */
+}
+
+.mobileLogoBox {
+  position: relative;
+  width: 140px;
+  height: 48px;
+}
+
+.logoImg {
+  object-fit: contain;
+}
+
+/* Desktop nav */
+.navDesktop {
+  margin-left: auto;
+  display: none;
+  align-items: center;
+  gap: 0.25rem; /* gap-1 */
+}
+@media (min-width: 768px) {
+  .navDesktop {
+    display: flex;
+  }
+}
+
+.navLink {
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 0.5rem 0.75rem; /* px-3 py-2 */
+  font-size: 1rem; /* text-base */
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: opacity 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.navLink:hover {
+  opacity: 0.9;
+}
+
+.navLinkActive {
+  color: var(--brand-blue01, #0046bf);
+  font-weight: 700;
+}
+
+/* Dropdown group */
+.menuGroup {
+  position: relative;
+}
+
+.menuSummary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.menuSummary:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+.menuSummaryInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 150ms ease;
+}
+.menuGroup[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.menuPopover {
+  position: absolute;
+  left: 0;
+  margin-top: 0.5rem;
+  width: 320px;
+  border-radius: 1rem; /* rounded-2xl */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--background, #ffffff);
+  padding: 0.5rem; /* p-2 */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  outline: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 40;
+}
+
+.menuItem {
+  display: block;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  transition: background 150ms ease;
+}
+.menuItem:hover {
+  background: var(--brand-blue01, #0046bf);
+  color: white;
+}
+
+.menuItemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground, #111827);
+}
+.menuItem:hover .menuItemTitle {
+  color: white;
+}
+
+.menuItemDesc {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--foreground, #111827) 70%, transparent);
+}
+.menuItem:hover .menuItemDesc {
+  color: white;
+}
+
+/* CTA + divider */
+.cta {
+  margin-left: 0.25rem;
+  border-radius: 0.75rem;
+  background: var(--brand-blue01, #0046bf);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--background, #ffffff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+.cta:hover {
+  opacity: 0.9;
+}
+
+.vrule {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  width: 1px;
+  height: 1.25rem; /* h-5 */
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+}
+
+/* Mobile controls */
+.mobileToggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  background: transparent;
+  transition: background 120ms ease;
+}
+.mobileToggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+@media (min-width: 768px) {
+  .mobileToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    padding: 30px;
+    width: 100%;
+  }
+  .logoBox{
+    width: 100px;
+  }
+}
+.iconMd {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.iconSm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Mobile overlay + drawer */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+@media (min-width: 768px) {
+  .mobileOverlay {
+    display: none;
+  }
+}
+
+.drawer {
+  margin-left: auto;
+  height: 100%;
+  width: 20rem; /* w-80 */
+  max-width: 85%;
+  overflow-y: auto;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--background, #ffffff);
+  padding: 1rem; /* p-4 */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.drawerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Mobile list */
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileLink {
+  display: block;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.75rem; /* px-3 py-3 */
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 150ms ease, color 150ms ease;
+}
+.mobileLink:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+.mobileLinkActive {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+/* Mobile collapsible groups */
+.mobileGroup {
+  border-radius: 0.75rem;
+  border: 1px solid
+    color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  padding: 0.5rem;
+}
+.mobileGroup[open] {
+  background: color-mix(in srgb, var(--foreground, #111827) 5%, transparent);
+}
+
+.mobileSummary {
+  cursor: pointer;
+  padding: 0.25rem 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+}
+
+.mobileSubList {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileSubLink {
+  display: block;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 120ms ease, color 120ms ease;
+}
+.mobileSubLink:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+.mobileSubTitle {
+  font-weight: 600;
+}
+
+.mobileSubDesc {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--foreground, #111827) 70%, transparent);
+}
+
+/* Mobile CTA */
+.mobileCtaWrap {
+  margin-top: 0.75rem;
+}
+.mobileCta {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: var(--foreground, #111827);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--background, #ffffff);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+.mobileCta:hover {
+  opacity: 0.9;
+}
+
+/* Buttons */
+.closeBtn {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  background: transparent;
+  transition: background 120ms ease;
+}
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+}
+
+/* Container */
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  height: 4rem; /* h-16 */
+  max-width: 80rem; /* max-w-7xl */
+  align-items: center;
+  gap: 0.75rem; /* gap-3 */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .inner {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.logoBox {
+  position: relative;
+  height: 5rem; /* h-20 */
+  width: 130px; /* w-[130px] */
+}
+
+.mobileLogoBox {
+  position: relative;
+  width: 140px;
+  height: 48px;
+}
+
+.logoImg {
+  object-fit: contain;
+}
+
+/* Desktop nav */
+.navDesktop {
+  margin-left: auto;
+  display: none;
+  align-items: center;
+  gap: 0.25rem; /* gap-1 */
+}
+@media (min-width: 768px) {
+  .navDesktop {
+    display: flex;
+  }
+}
+
+.navLink {
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 0.5rem 0.75rem; /* px-3 py-2 */
+  font-size: 1rem; /* text-base */
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: opacity 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.navLink:hover {
+  opacity: 0.9;
+}
+
+.navLinkActive {
+  color: var(--brand-blue01, #0046bf);
+  font-weight: 700;
+}
+
+/* Dropdown group */
+.menuGroup {
+  position: relative;
+}
+
+.menuSummary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.menuSummary:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+.menuSummaryInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 150ms ease;
+}
+.menuGroup[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.menuPopover {
+  position: absolute;
+  left: 0;
+  margin-top: 0.5rem;
+  width: 320px;
+  border-radius: 1rem; /* rounded-2xl */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--background, #ffffff);
+  padding: 0.5rem; /* p-2 */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  outline: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 40;
+}
+
+.menuItem {
+  display: block;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  transition: background 150ms ease;
+}
+.menuItem:hover {
+  background: var(--brand-blue01, #0046bf);
+  color: white;
+}
+
+.menuItemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground, #111827);
+}
+.menuItem:hover .menuItemTitle {
+  color: white;
+}
+
+.menuItemDesc {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--foreground, #111827) 70%, transparent);
+}
+.menuItem:hover .menuItemDesc {
+  color: white;
+}
+
+/* CTA + divider */
+.cta {
+  margin-left: 0.25rem;
+  border-radius: 0.75rem;
+  background: var(--brand-blue01, #0046bf);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--background, #ffffff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+.cta:hover {
+  opacity: 0.9;
+}
+
+.vrule {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  width: 1px;
+  height: 1.25rem; /* h-5 */
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+}
+
+/* Mobile controls */
+.mobileToggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  background: transparent;
+  transition: background 120ms ease;
+}
+.mobileToggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+@media (min-width: 768px) {
+  .mobileToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    padding: 30px;
+    width: 100%;
+  }
+  .logoBox{
+    width: 100px;
+  }
+}
+.iconMd {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.iconSm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Mobile overlay + drawer */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+@media (min-width: 768px) {
+  .mobileOverlay {
+    display: none;
+  }
+}
+
+.drawer {
+  margin-left: auto;
+  height: 100%;
+  width: 20rem; /* w-80 */
+  max-width: 85%;
+  overflow-y: auto;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--background, #ffffff);
+  padding: 1rem; /* p-4 */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 10001;
+}
+
+.drawerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Mobile list */
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileLink {
+  display: block;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.75rem; /* px-3 py-3 */
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 150ms ease, color 150ms ease;
+}
+.mobileLink:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+.mobileLinkActive {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+/* Mobile collapsible groups */
+.mobileGroup {
+  border-radius: 0.75rem;
+  border: 1px solid
+    color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  padding: 0.5rem;
+}
+.mobileGroup[open] {
+  background: color-mix(in srgb, var(--foreground, #111827) 5%, transparent);
+}
+
+.mobileSummary {
+  cursor: pointer;
+  padding: 0.25rem 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+}
+
+.mobileSubList {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileSubLink {
+  display: block;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
+  transition: background 120ms ease, color 120ms ease;
+}
+.mobileSubLink:hover {
+  background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
+  color: var(--foreground, #111827);
+}
+
+.mobileSubTitle {
+  font-weight: 600;
+}
+
+.mobileSubDesc {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--foreground, #111827) 70%, transparent);
+}
+
+/* Mobile CTA */
+.mobileCtaWrap {
+  margin-top: 0.75rem;
+}
+.mobileCta {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: var(--foreground, #111827);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--background, #ffffff);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+.mobileCta:hover {
+  opacity: 0.9;
+}
+
+/* Buttons */
+.closeBtn {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  background: transparent;
+  transition: background 120ms ease;
+}
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

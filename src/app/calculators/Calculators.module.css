@@ -1,0 +1,272 @@
+.page {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  justify-items: center;
+  align-items: start;
+  padding-bottom: 5rem;
+}
+
+/* Wave under hero */
+.heroWaveWrap {
+  min-height: 400px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.waveSvg {
+  width: 1240px;
+  height: 160px;
+  max-width: 100%;
+}
+
+/* Calculator form section */
+.calSection {
+  width: 100%;
+}
+
+/* Cards section */
+.cardsSection {
+  width: 100%;
+  padding: 70px;
+}
+@media (max-width: 768px) {
+  .cardsSection {
+    padding: 32px 20px;
+  }
+}
+
+.cardsRow {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  align-items: stretch;
+}
+@media (max-width: 1024px) {
+  .cardsRow {
+    flex-direction: column;
+  }
+}
+
+.card {
+  background-color: #fff;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  box-shadow: 0 0 10px 10px rgba(189, 185, 185, 0.15);
+  border-radius: 26px;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.reportWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.reportBtn {
+  background-color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 20px 30px;
+  border: none;
+  cursor: pointer;
+}
+
+/* How we calculate */
+.calcHowSection {
+  padding: 60px 70px;
+  display: flex;
+  width: 100%;
+  gap: 40px;
+}
+@media (max-width: 1024px) {
+  .calcHowSection {
+    padding: 40px 20px;
+    flex-direction: column;
+  }
+}
+
+.calcHowLeft {
+  flex: 1;
+  padding: 20px;
+}
+
+.brandBlue {
+  color: #0047ab;
+}
+
+.calcHowTitle {
+  font-size: 44px;
+  font-weight: 700;
+  margin: 0 0 25px 0;
+}
+
+.calcHowText {
+  color: #545454;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0 0 25px 0;
+}
+
+.faqMore {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faqMoreText {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+}
+.faqMoreIcon {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.calcHowRight {
+  display: flex;
+  flex: 2;
+}
+
+/* Contact section */
+.contactSection {
+  padding: 60px 70px;
+  display: flex;
+  width: 100%;
+  gap: 36px;
+}
+@media (max-width: 1024px) {
+  .contactSection {
+    padding: 40px 20px;
+    flex-direction: column;
+  }
+}
+
+.contactLeft {
+  flex: 1;
+  background: #fff;
+}
+
+.contactRight {
+  flex: 1;
+  padding: 36px;
+}
+
+.contactTitle {
+  color: #1f1f1f;
+  font-size: 44px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.contactText {
+  color: #1f1f1f;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 24px 0;
+}
+
+.contactRow {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex: 1 1 320px;
+  min-width: 280px;
+}
+
+.iconBox {
+  background-color: #002855;
+  color: #fff;
+  border-radius: 16px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  flex: 0 0 60px;
+}
+
+.iconLg {
+  font-size: 32px;
+  color: #fff;
+}
+
+.itemTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemTitle {
+  font-weight: 700;
+  font-size: 22px;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.itemText {
+  font-weight: 400;
+  font-size: 16px;
+  color: #545454;
+  margin: 0;
+}
+
+.addressRow {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 10px 0 0 0;
+}
+
+.socialRow {
+  display: flex;
+  gap: 20px;
+  padding: 50px 0 0 0;
+  border-top: 1px solid #dddddd;
+  margin-top: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.socialTitle {
+  color: #1f1f1f;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.socialIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid #0047ab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0047ab;
+}

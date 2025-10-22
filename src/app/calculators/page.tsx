@@ -44,7 +44,7 @@ export default function Calculators() {
         <CalForm />
       </section>
       <section style={{width:'100%',padding:'70px 70px'}}>
-        <div style={{ display: "flex", gap: "50px", flex: 2, width: "100%" }}>
+        <div style={{ display: "flex", gap: "50px", flex: 2, width: "100%" }} >
           <div
             style={{
               backgroundColor: "#ffffff",
