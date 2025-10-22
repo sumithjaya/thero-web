@@ -12,9 +12,7 @@ export default function RetirmentAssestment() {
           {/* Assessment card */}
           <div className={styles.assessmentCard}>
             <div className={styles.cardIconPad}>
-              <div
-                className={styles.iconCircle}
-              >
+              <div className={styles.iconCircle}>
                 <Image
                   src="/images/writing.png"
                   width={44}
@@ -37,9 +35,7 @@ export default function RetirmentAssestment() {
           {/* Sustainability card */}
           <div className={styles.sustainabilityCard}>
             <div className={styles.sustainabilityIconWrap}>
-              <div
-                className={`${styles.iconCirclePrimary}  `}
-              >
+              <div className={`${styles.iconCirclePrimary}  `}>
                 <Image src="/images/saving.png" width={44} height={44} alt="" />
               </div>
             </div>
@@ -63,7 +59,7 @@ export default function RetirmentAssestment() {
           <p className={styles.planSubtitle}>
             Get a report with a strategy and balance projections
           </p>
-          <div className= {styles.planCharts} >
+          <div className={styles.planCharts}>
             {/* Donut + label */}
             <div className={styles.donutCol}>
               <div className={styles.donutSvgWrap}>
@@ -87,7 +83,8 @@ export default function RetirmentAssestment() {
                     fill="#1D65C9"
                   />
                 </svg>
-              </div> <div className={styles.donutSvgWrapMobile}>
+              </div>{" "}
+              <div className={styles.donutSvgWrapMobile}>
                 <svg
                   width="75"
                   height="75"
@@ -109,9 +106,7 @@ export default function RetirmentAssestment() {
                   />
                 </svg>
               </div>
-              <div
-                className= {styles.legendRow}  
-              >
+              <div className={styles.legendRow}>
                 <div className={styles.legendDotPrimary} />
                 <div className={styles.legendLabel}>Cash</div>
               </div>
@@ -136,7 +131,8 @@ export default function RetirmentAssestment() {
                     fill="#CDE0FC"
                   />
                 </svg>
-              </div>    <div className={styles.areaSvgWrapMobile}>
+              </div>{" "}
+              <div className={styles.areaSvgWrapMobile}>
                 <svg
                   width="100"
                   height="151"

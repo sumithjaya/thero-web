@@ -1,67 +1,75 @@
-.sectionPadLg{
-    padding: 0 100px;
-    display: flex;
+.sectionPadLg {
+  padding: 0 100px;
+  display: flex;
 }
 
-.faqRow{
-    display: flex;
+.faqRow {
+  display: flex;
 }
 
-.faqTitle{
-    font-size: 44px;
-    font-weight: 700;
-    color: #1F1F1F;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+.faqTitle {
+  font-size: 44px;
+  font-weight: 700;
+  color: #1f1f1f;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
-.faqCopy{
-    font-size: 18;
-    font-weight: 400;
-    color: #1F1F1F;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: #545454;
-    margin-top: 24px;
+.faqCopy {
+  font-size: 18;
+  font-weight: 400;
+  color: #1f1f1f;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #545454;
+  margin-top: 24px;
 }
-.primary{
-    color: #0047AB;
+.primary {
+  color: #0047ab;
 }
-.faqIntro{
-    padding: 50px 180px 50px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.faqIntro {
+  padding: 50px 180px 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.moreFaqRow{
-    display: flex;
-    align-items: center;
-    margin-top: 42px;
-}
-
-.moreFaqLink{
-    font-size: 18px;
-    font-weight: 700;
-    color: #0047AB;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+.moreFaqRow {
+  display: flex;
+  align-items: center;
+  margin-top: 42px;
 }
 
-.moreFaqIcon{
-    color: #0047AB;
-    margin-left: 10px;
+.moreFaqLink {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0047ab;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.moreFaqIcon {
+  color: #0047ab;
+  margin-left: 10px;
 }
 
 @media (max-width: 1024px) {
-    .sectionPadLg{
-        padding: 50px 50px;
-    }
-    .faqIntro{
-        padding: 50px 0 50px 0;
-    }
-    .faqRow{
-        flex-direction: column;
-    }
+  .sectionPadLg {
+    padding: 50px 50px;
+  }
+  .faqIntro {
+    padding: 50px 0 50px 0;
+  }
+  .faqRow {
+    flex-direction: column;
+  }
+  .faqTitle {
+    text-align: center;
+    font-size: 30px;
+  }
+  .faqCopy{
+    text-align: center;
+    font-size: 16px;
+  }
 }

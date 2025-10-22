@@ -1,330 +1,330 @@
-.sectionPadLg{
-    display: flex;
- justify-content: space-between;
- padding: 10px 100px;
-
+.sectionPadLg {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 100px;
 }
 
-.rowBetween{ 
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 40px;
+.rowBetween {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 40px;
 }
-
-.leftCol{
+.donutSvgWrapMobile {
+  display: none;
+}
+.areaSvgWrapMobile {
+  display: none;
+}
+.leftCol {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.assessmentCard{
-    background-color: #ECF4FE;
-    display: flex;
-    padding: 30px;
-    border-radius: 20px;
-    height: 100%;
-
+.assessmentCard {
+  background-color: #ecf4fe;
+  display: flex;
+  padding: 30px;
+  border-radius: 20px;
+  height: 100%;
 }
-.iconCircle{
-    background-color: #FFF;
-    padding: 10px;
-    height: 100px;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.cardTitle{
-    font-size: 22px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: #1F1F1F;
-    margin-bottom: 12px;
-    
-}
-.cardText{
-    font-size: 16px;
-    font-weight: 400;
-    color: #545454;
-    margin-bottom: 20px;
-}
-.planPanel{
-    background-color: #f0f2f5;
-    border-radius: 20px;
-    padding: 40px;
+.iconCircle {
+  background-color: #fff;
+  padding: 10px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-.sustainabilityCard{
-    background-color: #0047AB;
-    padding: 30px;
-    border-radius: 20px;
-    display: flex;
-     margin-top: 40px;
-     height: 100%;
+.cardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  margin-bottom: 12px;
+}
+.cardText {
+  font-size: 16px;
+  font-weight: 400;
+  color: #545454;
+  margin-bottom: 20px;
+}
+.planPanel {
+  background-color: #f0f2f5;
+  border-radius: 20px;
+  padding: 40px;
 }
 
-.iconCirclePrimary{
-    background-color: #175EC3;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-}
-.cardContent{
-    padding: 0 20px;
-}
-.sustainabilityContent{
-    padding: 0 20px;
-}
-.assessmentCta{
-    color: #0047AB;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 16px;
-    border: #0047AB 1px solid;
-    padding: 17px 35px;
-    margin-top: 20px;
-}
-.sustainabilityTitle{
-    color: #FFF;
-    font-size: 22px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
+.sustainabilityCard {
+  background-color: #0047ab;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  margin-top: 40px;
+  height: 100%;
 }
 
-.sustainabilityText{
-    color: #FFF;
-    font-size: 16px;
-    font-weight: 400;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: 20px;
+.iconCirclePrimary {
+  background-color: #175ec3;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardContent {
+  padding: 0 20px;
+}
+.sustainabilityContent {
+  padding: 0 20px;
+}
+.assessmentCta {
+  color: #0047ab;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 16px;
+  border: #0047ab 1px solid;
+  padding: 17px 35px;
+  margin-top: 20px;
+}
+.sustainabilityTitle {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
 }
 
-.sustainabilityCta{
-    color: #FFF;
-    border: #FFF 1px solid;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 16px;
-    margin-top: 20px;
-    font-family: "Open Sans", sans-serif;
-    padding: 17px 35px;
+.sustainabilityText {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
 }
 
-.planTitle{
-    font-size: 34px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: #1F1F1F;
-    margin-bottom: 12px;
-}
-.planSubtitle{
-    font-size: 18px;
-    font-weight: 400;
-    color: #545454;
-    margin-bottom: 60px;
-}
-.legendRow{
-    display: flex;
-    align-items: center; 
-    gap: 20px;
-}
-.planCharts{
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    gap: 60px;
-}
-.donutCol{
-    height:  fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    gap: 20px;
-}
-.areaCol{
-    height:  fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    gap: 50px;
-    
+.sustainabilityCta {
+  color: #fff;
+  border: #fff 1px solid;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 16px;
+  margin-top: 20px;
+  font-family: "Open Sans", sans-serif;
+  padding: 17px 35px;
 }
 
-.legendDotPrimary{
-    width: 26px;
-    height: 26px;
-    background-color: #0047AB;
-    border-radius: 50%;
+.planTitle {
+  font-size: 34px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  margin-bottom: 12px;
+}
+.planSubtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #545454;
+  margin-bottom: 60px;
+}
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.planCharts {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  gap: 60px;
+}
+.donutCol {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.areaCol {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
 }
 
-.legendDotSecondary{
-    width: 26px;
-    height: 26px;
-    background-color: #6FA3EC;
-    border-radius: 50%;
+.legendDotPrimary {
+  width: 26px;
+  height: 26px;
+  background-color: #0047ab;
+  border-radius: 50%;
 }
-.legendLabel{
-    font-size: 22px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: #1F1F1F;
-    margin-bottom: 12px;
-} 
+
+.legendDotSecondary {
+  width: 26px;
+  height: 26px;
+  background-color: #6fa3ec;
+  border-radius: 50%;
+}
+.legendLabel {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  margin-bottom: 12px;
+}
 
 @media (max-width: 640px) {
-    .planCharts{
-        flex-direction: column;
-    }
-    .sectionPadLg{
-        flex-direction: column;
-        padding: 0 20px;
-    }
-    .rowBetween{
-        flex-direction: column;
-        padding: 50px;
-    }
-    .assessmentCard{
-        padding: 20px;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-    .assessmentCta{
-        padding: 15px 18px;
-        font-size: 13px;
-        border-radius: 10px;
-    }
-    .sustainabilityCard{
-        padding: 20px;
-        flex-direction: column;
-        align-items: center;
-    }
-    .sustainabilityCta{
-        padding: 17px 20px;
-    }
-    .planPanel{
-        padding: 20px;
-    }
-    .planCharts{
-        gap: 20px;
-    }
-    .cardContent{
-        padding: 20px ;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 20px;;
-    
-    }
-   .cardText{
-    margin-bottom: 50px;
-   }
-
-   .sustainabilityContent{
+  .planCharts {
+    flex-direction: column;
+  }
+  .sectionPadLg {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .rowBetween {
+    flex-direction: column;
+    padding: 50px;
+  }
+  .assessmentCard {
+    padding: 20px;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding: 30px;
-   }
-.sustainabilityTitle{
-    font-size: 19px;
-    margin-bottom: 20px;
-}
-   .sustainabilityText{
-    margin-bottom: 50px;
-    font-size: 13px;
-   }
-   .iconCircle{
-    width: 60px;
-    height: 60px;
-   }
-   .iconCircle img{
-    width: 30px;
-    height: 30px;
-   }
-
-   .iconCirclePrimary{
-    width: 60px;
-    height: 60px;
-   }
-   .iconCirclePrimary img{
-    width: 30px;
-    height: 30px;
-   }
-
-   .cardTitle{
-    font-size: 17px;
-    margin-bottom: 10px;
-   }
-
-   .cardText{
-    font-size: 12px;
-    margin-bottom: 40px;
-   }
-   .sustainabilityTitle{
-    font-size: 17px;
-    margin-bottom: 20px;
-   }
-   .sustainabilityText{
-    margin-bottom: 50px;
-    font-size: 12px;
-   }
-
-   .sustainabilityCta{
+    gap: 30px;
+  }
+  .assessmentCta {
     padding: 15px 18px;
     font-size: 13px;
     border-radius: 10px;
-   }
+  }
+  .sustainabilityCard {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sustainabilityCta {
+    padding: 17px 20px;
+  }
+  .planPanel {
+    padding: 20px;
+  }
+  .planCharts {
+    gap: 20px;
+  }
+  .cardContent {
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .cardText {
+    margin-bottom: 50px;
+  }
 
-   .planCharts{
+  .sustainabilityContent {
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+  }
+  .sustainabilityTitle {
+    font-size: 19px;
+    margin-bottom: 20px;
+  }
+  .sustainabilityText {
+    margin-bottom: 50px;
+    font-size: 13px;
+  }
+  .iconCircle {
+    width: 60px;
+    height: 60px;
+  }
+  .iconCircle img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .iconCirclePrimary {
+    width: 60px;
+    height: 60px;
+  }
+  .iconCirclePrimary img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cardTitle {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .cardText {
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+  .sustainabilityTitle {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .sustainabilityText {
+    margin-bottom: 50px;
+    font-size: 12px;
+  }
+
+  .sustainabilityCta {
+    padding: 15px 18px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .planCharts {
     display: flex;
     flex-direction: row;
-   }
+  }
 
-   .donutSvgWrap{
+  .donutSvgWrap {
     display: none;
-   }
+  }
 
-   .donutSvgWrapMobile{
+  .donutSvgWrapMobile {
     display: block;
     width: 100px;
     height: 100px;
-   }
+  }
 
-   .areaSvgWrap{
+  .areaSvgWrap {
     display: none;
-   }
-   .areaSvgWrapMobile{
+  }
+  .areaSvgWrapMobile {
     display: block;
     width: 100px;
     height: 100px;
-   }
+  }
 
-   .planTitle{
+  .planTitle {
     font-size: 20px;
     text-align: center;
-   }
-   .planSubtitle{
+  }
+  .planSubtitle {
     font-size: 12px;
     text-align: center;
-   }
+  }
+  
 }
