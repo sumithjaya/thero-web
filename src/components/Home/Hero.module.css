@@ -1,5 +1,5 @@
 .heroRoot{
- z-index:0;
+   position: relative; 
 }
 .heroSection{
    background: #ffffff;

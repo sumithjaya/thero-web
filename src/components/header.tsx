@@ -1,225 +1,289 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
+import React, { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./Header.module.css";
+import { usePathname } from "next/navigation";
 
-type NavItem =
-  | { label: string; href: string }
-  | {
-      label: string;
-      items: { label: string; href: string; description?: string }[];
-    };
+/** helper hook */
+function useActive() {
+  const pathname = usePathname();
 
-const NAV: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Calculators", href: "/calculators" },
-  { label: "Our Team", href: "/team" },
-  { label: "How we think", href: "/thinking" },
-  { label: "Our investments", href: "/investments" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact Us", href: "/contact" },
-];
+  const normalize = (p: string) => {
+    if (!p) return "/";
+    const n = p.replace(/\/+$/, "");
+    return n.length ? n : "/";
+  };
 
-function cn(...xs: (string | false | undefined)[]) {
-  return xs.filter(Boolean).join(" ");
+  const current = normalize(pathname);
+
+  const isActive = (href: string) => current === normalize(href);
+  const isSectionActive = (href: string) =>
+    current === normalize(href) || current.startsWith(normalize(href) + "/");
+
+  return { pathname: current, isActive, isSectionActive };
 }
 
-export default function Header() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
-
-  const isActive = (href: string) =>
-    href === "/"
-      ? pathname === "/"
-      : pathname === href || pathname.startsWith(href + "/");
-
-  // Close on ESC
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  // Close drawer when the route changes
-  useEffect(() => setOpen(false), [pathname]);
+/** Memoized child so it doesn't re-render unless props change */
+const MobileMenu = React.memo(function MobileMenu({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
+  const { pathname, isActive } = useActive();
 
   return (
-    <header className={styles.header}>
-      <title>THERO :: The Retirement Optimiser</title>
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-
-      <div className={styles.inner}>
-        {/* Brand */}
-        <Link href="/" className={styles.brand} aria-label="Go to homepage">
-          <div className={styles.logoBox}>
+    <div
+      className={styles.mobileOverlay}
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
+      <div
+        className={styles.drawer}
+        onClick={(e) => e.stopPropagation()}
+        role="document"
+      >
+        <div className={styles.drawerTop}>
+          <div className={styles.logoBoxNav}>
             <Image
               src="/images/logo.png"
-              alt="Thero logo"
-              fill
-              sizes="(max-width: 768px) 350px, 380px"
+              alt="Logo"
+              width={100}
+              height={80}
               priority
               className={styles.logoImg}
             />
           </div>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav aria-label="Main" className={styles.navDesktop}>
-          {NAV.map((item) =>
-            "href" in item ? (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  styles.navLink,
-                  isActive(item.href) && styles.navLinkActive
-                )}
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <details key={item.label} className={styles.menuGroup}>
-                <summary className={styles.menuSummary}>
-                  <span className={styles.menuSummaryInner}>
-                    {item.label}
-                    <svg
-                      className={styles.chevron}
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className={styles.menuPopover}>
-                  {item.items.map((it) => (
-                    <Link key={it.href} href={it.href} className={styles.menuItem}>
-                      <div className={styles.menuItemTitle}>{it.label}</div>
-                      {it.description && (
-                        <div className={styles.menuItemDesc}>{it.description}</div>
-                      )}
-                    </Link>
-                  ))}
-                </div>
-              </details>
-            )
-          )}
-
-          {/* CTA then divider */}
-          <Link href="/get-started" className={styles.cta}>
-            Get Started
-          </Link>
-          <div className={styles.vrule} />
-        </nav>
-
-        {/* Mobile toggle */}
-        <button
-          className={styles.mobileToggle}
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-        >
-          <svg viewBox="0 0 24 24" className={styles.iconMd} fill="currentColor">
-            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
-          </svg>
-        </button>
-
-        {/* Mobile Drawer */}
-        {open && (
-          <div
-            className={styles.mobileOverlay}
-            onClick={() => setOpen(false)}
-            aria-hidden
+          <button
+            className={styles.closeBtn}
+            onClick={onClose}
+            aria-label="Close menu"
           >
-            <div
-              ref={drawerRef}
-              onClick={(e) => e.stopPropagation()}
-              className={styles.drawer}
+            <svg
+              width="15px"
+              height="15px"
+              viewBox="0 0 24 24"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              fill="#000000"
             >
-              <div className={styles.drawerTop}>
-                <Link
-                  href="/"
-                  onClick={() => setOpen(false)}
-                  className={styles.brand}
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <title>close_fill</title>{" "}
+                <g
+                  id="页面-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
                 >
-                  <div className={styles.mobileLogoBox}>
-                    <Image
-                      src="/images/logo.png"
-                      alt="Thero"
-                      fill
-                      className={styles.logoImg}
-                    />
-                  </div>
-                </Link>
-                <button
-                  aria-label="Close menu"
-                  className={styles.closeBtn}
-                  onClick={() => setOpen(false)}
-                >
-                  <svg viewBox="0 0 24 24" className={styles.iconSm} fill="currentColor">
-                    <path d="M6.4 4.98L4.98 6.4 10.59 12l-5.6 5.6 1.41 1.41L12 13.41l5.6 5.6 1.41-1.41L13.41 12l5.6-5.6-1.41-1.41L12 10.59z" />
-                  </svg>
-                </button>
-              </div>
-
-              <div className={styles.mobileList}>
-                {NAV.map((item) =>
-                  "href" in item ? (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        styles.mobileLink,
-                        isActive(item.href) && styles.mobileLinkActive
-                      )}
+                  {" "}
+                  <g id="System" transform="translate(-288.000000, -48.000000)">
+                    {" "}
+                    <g
+                      id="close_fill"
+                      transform="translate(288.000000, 48.000000)"
                     >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <details key={item.label} className={styles.mobileGroup}>
-                      <summary className={styles.mobileSummary}>{item.label}</summary>
-                      <div className={styles.mobileSubList}>
-                        {item.items.map((it) => (
-                          <Link
-                            key={it.href}
-                            href={it.href}
-                            onClick={() => setOpen(false)}
-                            className={styles.mobileSubLink}
-                          >
-                            <div className={styles.mobileSubTitle}>{it.label}</div>
-                            {it.description && (
-                              <div className={styles.mobileSubDesc}>
-                                {it.description}
-                              </div>
-                            )}
-                          </Link>
-                        ))}
-                      </div>
-                    </details>
-                  )
-                )}
-              </div>
+                      {" "}
+                      <path
+                        d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z"
+                        id="MingCute"
+                        fill-rule="nonzero"
+                      >
+                        {" "}
+                      </path>{" "}
+                      <path
+                        d="M12,14.1215 L17.3032,19.4248 C17.889,20.0106 18.8388,20.0106 19.4246,19.4248 C20.0104,18.839 20.0104,17.8893 19.4246,17.3035 L14.1213,12.0002 L19.4246,6.6969 C20.0104,6.11112 20.0104,5.16137 19.4246,4.57558 C18.8388,3.9898 17.889,3.9898 17.3032,4.57558 L12,9.87888 L6.69665,4.57557 C6.11086,3.98978 5.16111,3.98978 4.57533,4.57557 C3.98954,5.16136 3.98954,6.1111 4.57533,6.69689 L9.87863,12.0002 L4.57533,17.3035 C3.98954,17.8893 3.98954,18.839 4.57533,19.4248 C5.16111,20.0106 6.11086,20.0106 6.69665,19.4248 L12,14.1215 Z"
+                        id="路径"
+                        fill="#09244B"
+                      >
+                        {" "}
+                      </path>{" "}
+                    </g>{" "}
+                  </g>{" "}
+                </g>{" "}
+              </g>
+            </svg>
+          </button>
+        </div>
 
-              <div className={styles.mobileCtaWrap}>
-                <Link
-                  href="/get-started"
-                  onClick={() => setOpen(false)}
-                  className={styles.mobileCta}
-                >
-                  Get Started
-                </Link>
-              </div>
-            </div>
+        <nav className={styles.mobileList}>
+          <Link
+            href="/calculators"
+            className={`${styles.navLink} ${
+              isActive("/calculators") ? styles.activeLinkMobile : ""
+            }`}
+            aria-current={isActive("/calculators") ? "page" : undefined}
+            onClick={onClose}
+          >
+            Calculators
+          </Link>
+
+          <Link
+            href="/investments"
+            className={`${styles.navLink} ${
+              isActive("/investments") ? styles.activeLinkMobile : ""
+            }`}
+            aria-current={isActive("/investments") ? "page" : undefined}
+            onClick={onClose}
+          >
+            Investments
+          </Link>
+
+          <Link
+            href="/thinking"
+            className={`${styles.navLink} ${
+              isActive("/thinking") ? styles.activeLinkMobile : ""
+            }`}
+            aria-current={isActive("/thinking") ? "page" : undefined}
+            onClick={onClose}
+          >
+            Thinking
+          </Link>
+
+          <Link
+            href="/team"
+            className={`${styles.navLink} ${
+              isActive("/team") ? styles.activeLinkMobile : ""
+            }`}
+            aria-current={isActive("/team") ? "page" : undefined}
+            onClick={onClose}
+          >
+            Team
+          </Link>
+
+          <Link
+            href="/contact"
+            className={`${styles.navLink} ${
+              isActive("/contact") ? styles.activeLinkMobile : ""
+            }`}
+            aria-current={isActive("/contact") ? "page" : undefined}
+            onClick={onClose}
+          >
+            Contact
+          </Link>
+
+          <div className={styles.mobileCtaWrap}>
+            <Link
+              href="/get-started"
+              className={styles.mobileCta}
+              onClick={onClose}
+            >
+              Get Started
+            </Link>
           </div>
-        )}
+        </nav>
       </div>
-    </header>
+    </div>
+  );
+});
+
+export default function Header() {
+  const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { isActive } = useActive();
+
+  useEffect(() => setMounted(true), []);
+
+  // body scroll lock while menu is open
+  useEffect(() => {
+    if (!mounted) return;
+    const prev = document.body.style.overflow;
+    if (open) document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mounted, open]);
+
+  const handleOpen = useCallback(() => setOpen(true), []);
+  const handleClose = useCallback(() => setOpen(false), []);
+
+  return (
+    <>
+      <header className={styles.header}>
+        <div className={styles.inner}>
+          <Link className={styles.brand} href="/">
+            <div className={styles.logoBox}>
+              <Image
+                src="/images/logo.png"
+                alt="Logo"
+                width={130}
+                height={80}
+                priority
+                className={styles.logoImg}
+              />
+            </div>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className={styles.navDesktop} aria-label="Main">
+            <Link
+              href="/calculators"
+              className={`${styles.navLink} ${
+                isActive("/calculators") ? styles.activeLink : ""
+              }`}
+              aria-current={isActive("/calculators") ? "page" : undefined}
+            >
+              Calculators
+            </Link>
+            <Link
+              href="/investments"
+              className={`${styles.navLink} ${
+                isActive("/investments") ? styles.activeLink : ""
+              }`}
+              aria-current={isActive("/investments") ? "page" : undefined}
+            >
+              Investments
+            </Link>
+            <Link
+              href="/thinking"
+              className={`${styles.navLink} ${
+                isActive("/thinking") ? styles.activeLink : ""
+              }`}
+              aria-current={isActive("/thinking") ? "page" : undefined}
+            >
+              Thinking
+            </Link>
+            <Link
+              href="/team"
+              className={`${styles.navLink} ${
+                isActive("/team") ? styles.activeLink : ""
+              }`}
+              aria-current={isActive("/team") ? "page" : undefined}
+            >
+              Team
+            </Link>
+            <div className={styles.vrule} />
+            <Link href="/get-started" className={styles.cta}>
+              Get Started
+            </Link>
+          </nav>
+
+          {/* Mobile toggle */}
+          <button
+            className={styles.mobileToggle}
+            onClick={handleOpen}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+      </header>
+
+      {/* Portal the memoized child when open */}
+      {mounted && open
+        ? createPortal(<MobileMenu onClose={handleClose} />, document.body)
+        : null}
+    </>
   );
 }
