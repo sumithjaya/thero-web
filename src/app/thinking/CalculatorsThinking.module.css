@@ -1,0 +1,97 @@
+/* Wave */
+.waveWrapper {
+  min-height: 400px;
+  box-sizing: border-box;
+}
+.waveSvg {
+  width: 1240px;
+  height: 160px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Philosophy */
+.philosophySection { padding: 70px; }
+.philosophyGrid { display: flex; gap: 50px; }
+.philosophyImgCol { flex: 1; }
+.philosophyImg { height: 270px; width: 100%; border-radius: 20px; object-fit: cover; }
+.philosophyTextCol { flex: 1; }
+.h44 { font-size: 44px; font-weight: 700; margin: 0 0 16px 0; }
+.accent { color: #0047ab; }
+.lead { color: #545454; font-weight: 400; font-size: 18px; }
+
+/* How we help */
+.helpSection { padding: 0 70px 10px; }
+.helpTitle { font-size: 44px; font-weight: 700; text-align: center; margin: 0 0 30px; }
+.helpRow { display: flex; flex-direction: row; gap: 20px; justify-content: center; }
+.helpCol { display: flex; gap: 20px; flex-direction: column; align-items: center; }
+
+.circleOuter {
+  height: 160px; width: 160px; border-radius: 50%;
+  background-color: #fff; border: 2px solid #ddeaf9;
+  display: flex; align-items: center; justify-content: center;
+}
+.circleInner {
+  height: 130px; width: 130px; border-radius: 50%;
+  background-color: #ecf4fe;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.helpCardTitle { font-weight: 700; font-size: 22px; text-align: center; margin: 0; }
+.helpCardText { font-weight: 400; font-size: 16px; text-align: center; margin: 0; }
+
+/* How we calculate */
+.howWeCalcSection { padding: 60px 70px; }
+.howWeCalcGrid { display: flex; }
+.howWeCalcLeft { flex: 1; padding: 20px; }
+.h1 { font-size: 44px; font-weight: 700; margin-bottom: 25px; }
+.faqLinkWrap { display: flex; align-items: center; gap: 10px; }
+.faqLinkText { color: #0047ab; font-weight: 700; font-size: 18px; }
+.faqLinkIcon { color: #0047ab; font-weight: 700; font-size: 18px; }
+.howWeCalcRight { display: flex; flex: 2; }
+
+/* Contact */
+.contactSection { padding: 60px 70px; display: flex; width: 100%; }
+.contactGrid { display: flex; flex: 2; width: 100%; }
+.contactLeft { flex: 1; background-color: #ffffffff; }
+.contactRight { flex: 1; padding: 36px; }
+.contactTitle { color: #1f1f1f; font-size: 44px; font-weight: 700; }
+.contactIntro { color: #1f1f1f; font-size: 18px; font-weight: 400; }
+
+.contactRow2 { display: flex; gap: 10px; }
+.contactItem { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 10px; }
+.contactIcon {
+  background-color: #002855; color: #fff; border-radius: 16px;
+  width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;
+}
+.iconLg { font-size: 32px; color: #fff; }
+.contactTextCol { display: flex; flex-direction: column; gap: 10px; }
+.contactLabel { font-weight: 700; font-size: 22px; color: #1f1f1f; margin: 0; }
+.contactValue { font-weight: 400; font-size: 16px; color: #545454; margin: 0; }
+
+/* Social */
+.socialBlock {
+  display: flex; gap: 20px; padding: 50px; border-top: 1px solid #dddddd;
+  margin-top: 20px; align-items: center;
+}
+.socialTitle { color: #1f1f1f; font-size: 22px; font-weight: 700; }
+.socialIcon {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: #0047ab solid 1px; display: flex; align-items: center; justify-content: center; color: #0047ab;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .waveSvg { width: 100%; height: auto; }
+
+  .philosophySection { padding: 40px 24px; }
+  .philosophyGrid { flex-direction: column; gap: 24px; }
+
+  .helpSection { padding: 0 24px 24px; }
+  .helpRow { flex-direction: column; }
+  .circleOuter { height: 140px; width: 140px; }
+  .circleInner { height: 112px; width: 112px; }
+
+  .howWeCalcSection, .contactSection { padding: 40px 24px; }
+  .howWeCalcGrid, .contactGrid { flex-direction: column; }
+}

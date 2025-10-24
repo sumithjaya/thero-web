@@ -1,18 +1,11 @@
-import CalForm from "@/components/Calculators/MainForm";
-import CalChartArea1 from "@/components/Charts/CalChartArea1";
-import SegmentedBars from "@/components/Charts/SegmentedBars";
-import ContactForm from "@/components/ContactForm";
+"use client";
+
 import CtaAndFaq from "@/components/CtaAndFaq";
-import Header from "@/components/header";
-import Hero from "@/components/Home/Hero";
-import HeroCalculators from "@/components/hero/HeroCalculators";
+import ContactForm from "@/components/ContactForm";
 import HeroThinking from "@/components/hero/HeroThinking";
-import RatingStars from "@/components/Testimonials/RatingStars";
 import Image from "next/image";
-import Link from "next/link";
-import { BiEditAlt, BiLocationPlus, BiMailSend, BiPhone } from "react-icons/bi";
+import { BiMailSend, BiPhone } from "react-icons/bi";
 import {
-  BsArrowLeft,
   BsArrowRight,
   BsGeoAlt,
   BsLinkedin,
@@ -20,21 +13,21 @@ import {
   BsYoutube,
 } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
-import { LiaLinkedin } from "react-icons/lia";
-import { SlCup } from "react-icons/sl";
-import { TbMoneybag } from "react-icons/tb";
+
+import styles from "./CalculatorsThinking.module.css";
 
 export default function Calculators() {
   return (
-    <div className="font-sans   grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen   pb-20 ">
+    <div className="font-sans grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20">
       <HeroThinking />
-      <div style={{ minHeight: "400px", boxSizing: "border-box" }}>
+
+      <div className={styles.waveWrapper}>
         <svg
-          width="1240"
-          height="160"
+          className={styles.waveSvg}
           viewBox="0 0 1240 160"
-          fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          focusable="false"
         >
           <path
             d="M1189.9 0C1208.69 1.50182e-10 1218.08 2.14568e-05 1225.07 4.05859C1229.58 6.67676 1233.32 10.4243 1235.94 14.9316C1240 21.919 1240 31.3128 1240 50.0996V109.9C1240 128.687 1240 138.081 1235.94 145.068C1233.32 149.576 1229.58 153.323 1225.07 155.941C1218.08 160 1208.69 160 1189.9 160H886.734C870.852 160 861.944 145.732 854.402 131.754C851.623 126.603 847.397 122.377 842.246 119.598C835.578 116 826.751 116 809.1 116H430.9C413.249 116 404.422 116 397.754 119.598C392.603 122.377 388.377 126.603 385.598 131.754C378.056 145.732 369.148 160 353.266 160H50.0996C31.3128 160 21.919 160 14.9316 155.941C10.4243 153.323 6.67676 149.576 4.05859 145.068C2.50622e-05 138.081 1.97247e-10 128.687 0 109.9V50.0996C1.97247e-10 31.3128 2.50622e-05 21.919 4.05859 14.9316C6.67676 10.4243 10.4243 6.67676 14.9316 4.05859C21.919 2.51158e-05 31.3128 1.97996e-10 50.0996 0H1189.9Z"
@@ -43,22 +36,23 @@ export default function Calculators() {
         </svg>
       </div>
 
-      <section style={{ padding: "70px" }}>
-        <div style={{ display: "flex", gap: "50px" }}>
-          <div style={{ flex: 1 }}>
+      {/* Philosophy */}
+      <section className={styles.philosophySection}>
+        <div className={styles.philosophyGrid}>
+          <div className={styles.philosophyImgCol}>
             <Image
               src="/images/think.jpg"
               alt="hero"
               width={600}
               height={270}
-              style={{ height: "270px", borderRadius: "20px" }}
+              className={styles.philosophyImg}
             />
           </div>
-          <div style={{ flex: 1 }}>
-            <h4 style={{ fontSize: "44px", fontWeight: 700 }}>
-              Our <span style={{ color: "#0047AB" }}>Philosophy</span>
+          <div className={styles.philosophyTextCol}>
+            <h4 className={styles.h44}>
+              Our <span className={styles.accent}>Philosophy</span>
             </h4>
-            <p style={{ color: "#545454", fontWeight: 400, fontSize: "18px" }}>
+            <p className={styles.lead}>
               We believe financial advice should be as easy as a coffee chat. No
               hard sells. No confusion. Just straight talk about your money and
               goals.
@@ -66,45 +60,25 @@ export default function Calculators() {
           </div>
         </div>
       </section>
-      <section>
-        <h4 style={{ fontSize: "44px", fontWeight: 700 ,textAlign:'center'}}>
-          How We <span style={{ color: "#0047AB" }}>Help</span>
-        </h4>
-        <div style={{ display: "flex",flexDirection:'row' , gap: "20px" }}>
-          <div
-            style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}
-          >
-            <div
-              style={{
-                height: "160px",
-                width: "160px",
-                borderRadius: "50%",
-                backgroundColor: "#FFF",
-                border: "2px solid #DDEAF9",
-                display: "flex",
 
-                alignItems: "center",
-                justifyContent: "center",
-                // padding:'10px 10px'
-              }}
-            >
-              <div
-                style={{
-                  height: "130px",
-                  width: "130px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ECF4FE",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+      {/* How We Help */}
+      <section className={styles.helpSection}>
+        <h4 className={styles.helpTitle}>
+          How We <span className={styles.accent}>Help</span>
+        </h4>
+
+        <div className={styles.helpRow}>
+          {/* Card 1 */}
+          <div className={styles.helpCol}>
+            <div className={styles.circleOuter}>
+              <div className={styles.circleInner}>
+                {/* icon 1 */}
                 <svg
                   width="42"
                   height="46"
                   viewBox="0 0 42 46"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
                   <path
                     d="M29.666 19.7656C29.666 18.7732 28.8616 17.9688 27.8691 17.9688H9.36133C8.36891 17.9688 7.56445 18.7732 7.56445 19.7656C7.56445 20.758 8.36891 21.5625 9.36133 21.5625H27.8691C28.8616 21.5625 29.666 20.758 29.666 19.7656Z"
@@ -129,44 +103,23 @@ export default function Calculators() {
                 </svg>
               </div>
             </div>
-
-            <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
-              {" "}
-              Plans, not products
-            </h4>
-            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+            <h4 className={styles.helpCardTitle}>Plans, not products</h4>
+            <p className={styles.helpCardText}>
+              We’re not here to sell you stuff—we build strategies.
+            </p>
           </div>
-          <div style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}>
-            <div
-              style={{
-                height: "160px",
-                width: "160px",
-                borderRadius: "50%",
-                backgroundColor: "#FFF",
-                border: "1px solid #ECF4FE",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                // padding:'10px 10px'
-              }}
-            >
-              <div
-                style={{
-                  height: "130px",
-                  width: "130px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ECF4FE",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+
+          {/* Card 2 */}
+          <div className={styles.helpCol}>
+            <div className={styles.circleOuter}>
+              <div className={styles.circleInner}>
+                {/* icon 2 */}
                 <svg
                   width="64"
                   height="64"
                   viewBox="0 0 64 64"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
                   <path
                     fill-rule="evenodd"
@@ -177,346 +130,124 @@ export default function Calculators() {
                 </svg>
               </div>
             </div>
-               <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
-              {" "}
-              Plans, not products
-            </h4>
-            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+            <h4 className={styles.helpCardTitle}>Plans, not products</h4>
+            <p className={styles.helpCardText}>
+              We’re not here to sell you stuff—we build strategies.
+            </p>
           </div>
-        <div
-            style={{ display: "flex", gap: "20px", flexDirection: "column",alignItems:"center" }}
-          >
-            <div
-              style={{
-                height: "160px",
-                width: "160px",
-                borderRadius: "50%",
-                backgroundColor: "#FFF",
-                border: "1px solid #ECF4FE",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                // padding:'10px 10px'
-              }}
-            >
-              <div
-                style={{
-                  height: "130px",
-                  width: "130px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ECF4FE",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+
+          {/* Card 3 */}
+          <div className={styles.helpCol}>
+            <div className={styles.circleOuter}>
+              <div className={styles.circleInner}>
+                {/* icon 3 */}
                 <svg
                   width="50"
                   height="50"
                   viewBox="0 0 50 50"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-                  <path
-                    d="M25.3115 34.375V38.75"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M14.8965 45.8334H35.7298V43.7501C35.7298 41.4584 33.8548 39.5834 31.5631 39.5834H19.0631C16.7715 39.5834 14.8965 41.4584 14.8965 43.7501V45.8334V45.8334Z"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-miterlimit="10"
-                  />
-                  <path
-                    d="M12.8115 45.8334H37.8115"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M24.9984 33.3332C16.9359 33.3332 10.415 26.8124 10.415 18.7499V12.4999C10.415 7.89573 14.1442 4.16656 18.7484 4.16656H31.2484C35.8525 4.16656 39.5817 7.89573 39.5817 12.4999V18.7499C39.5817 26.8124 33.0609 33.3332 24.9984 33.3332Z"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M11.3958 24.2709C9.83333 23.7709 8.45833 22.8542 7.375 21.7709C5.5 19.6876 4.25 17.1876 4.25 14.2709C4.25 11.3542 6.54167 9.06256 9.45833 9.06256H10.8125C10.3958 10.0209 10.1875 11.0834 10.1875 12.1876V18.4376C10.1875 20.5209 10.625 22.4792 11.3958 24.2709Z"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M38.6064 24.2709C40.1689 23.7709 41.5439 22.8542 42.6273 21.7709C44.5023 19.6876 45.7523 17.1876 45.7523 14.2709C45.7523 11.3542 43.4606 9.06256 40.5439 9.06256H39.1898C39.6064 10.0209 39.8148 11.0834 39.8148 12.1876V18.4376C39.8148 20.5209 39.3773 22.4792 38.6064 24.2709Z"
-                    stroke="#0047AB"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                  <path d="M25.3115 34.375V38.75" stroke="#0047AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M14.8965 45.8334H35.7298V43.7501C35.7298 41.4584 33.8548 39.5834 31.5631 39.5834H19.0631C16.7715 39.5834 14.8965 41.4584 14.8965 43.7501V45.8334Z" stroke="#0047AB" strokeWidth="3" strokeMiterlimit="10"/>
+                  <path d="M12.8115 45.8334H37.8115" stroke="#0047AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M24.9984 33.3332C16.9359 33.3332 10.415 26.8124 10.415 18.7499V12.4999C10.415 7.89573 14.1442 4.16656 18.7484 4.16656H31.2484C35.8525 4.16656 39.5817 7.89573 39.5817 12.4999V18.7499C39.5817 26.8124 33.0609 33.3332 24.9984 33.3332Z" stroke="#0047AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M11.3958 24.2709C9.83333 23.7709 8.45833 22.8542 7.375 21.7709C5.5 19.6876 4.25 17.1876 4.25 14.2709C4.25 11.3542 6.54167 9.06256 9.45833 9.06256H10.8125C10.3958 10.0209 10.1875 11.0834 10.1875 12.1876V18.4376C10.1875 20.5209 10.625 22.4792 11.3958 24.2709Z" stroke="#0047AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M38.6064 24.2709C40.1689 23.7709 41.5439 22.8542 42.6273 21.7709C44.5023 19.6876 45.7523 17.1876 45.7523 14.2709C45.7523 11.3542 43.4606 9.06256 40.5439 9.06256H39.1898C39.6064 10.0209 39.8148 11.0834 39.8148 12.1876V18.4376C39.8148 20.5209 39.3773 22.4792 38.6064 24.2709Z" stroke="#0047AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-            </div> <h4 style={{ fontWeight: 700, fontSize: "22px",textAlign:'center' }}>
-              {" "}
-              Plans, not products
-            </h4>
-            <p  style={{ fontWeight: 400, fontSize: "16px",textAlign:'center' }}>We’re not here to sell you stuff—we build strategies.</p>
+            </div>
+            <h4 className={styles.helpCardTitle}>Plans, not products</h4>
+            <p className={styles.helpCardText}>
+              We’re not here to sell you stuff—we build strategies.
+            </p>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: "60px 70px" }}>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: 1, padding: "20px" }}>
-            <h1
-              style={{ fontSize: "44px", fontWeight: 700, marginBottom: "0" }}
-            >
-              <span style={{ color: "#0047AB" }}> How we calculate </span>
+      {/* How we calculate */}
+      <section className={styles.howWeCalcSection}>
+        <div className={styles.howWeCalcGrid}>
+          <div className={styles.howWeCalcLeft}>
+            <h1 className={styles.h1}>
+              <span className={styles.accent}> How we calculate </span>
             </h1>
-            <h1
-              style={{
-                fontSize: "44px",
-                fontWeight: 700,
-                marginBottom: "25px",
-              }}
-            >
-              Our assessment and Our assumptions
-            </h1>
-            <p
-              style={{
-                color: "#545454",
-                fontWeight: 400,
-                fontSize: "18px",
-                marginBottom: "25px",
-              }}
-            >
+            <h1 className={styles.h1}>Our assessment and Our assumptions</h1>
+            <p className={styles.lead}>
               Yet bed any for assistance indulgence unpleasing. Not thoughts all
               exercise blessing. Indulgence way everything joy alteration
-              boisterous the attachment.{" "}
+              boisterous the attachment.
             </p>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <p
-                style={{ color: "#0047AB", fontWeight: 700, fontSize: "18px" }}
-              >
-                More FAQs
-              </p>{" "}
-              <BsArrowRight
-                style={{ color: "#0047AB", fontWeight: 700, fontSize: "18px" }}
-              />
+            <div className={styles.faqLinkWrap}>
+              <p className={styles.faqLinkText}>More FAQs</p>
+              <BsArrowRight className={styles.faqLinkIcon} />
             </div>
           </div>
-          <div style={{ display: "flex", flex: 2 }}>
+          <div className={styles.howWeCalcRight}>
             <CtaAndFaq />
           </div>
         </div>
       </section>
-      <section
-        style={{
-          padding: "60px 70px",
-          display: "flex",
-          flex: 2,
-          width: "100%",
-        }}
-      >
-        <div style={{ flex: 1, backgroundColor: "#ffffffff" }}>
-          <ContactForm />
-        </div>
-        <div style={{ flex: 1, padding: "36px" }}>
-          <h5 style={{ color: "#1F1F1F", fontSize: "44px", fontWeight: 700 }}>
-            Contact Us
-          </h5>
-          <p style={{ color: "#1F1F1F", fontSize: "18px", fontWeight: 400 }}>
-            There is now an abundance of readable dummy texts. These are usually
-            used when a text is required purely to fill a space.
-          </p>
-          <div style={{ display: "flex", gap: 10 }}>
-            <div style={{ display: "flex", flex: 1 }}>
-              <div
-                style={{
-                  backgroundColor: "#002855",
-                  color: "#FFF",
-                  borderRadius: "16px",
-                  width: "60px",
-                  height: "60px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                }}
-              >
-                <BiPhone style={{ fontSize: "32px", color: "#FFF" }} />
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 10 }}
-              >
-                <p
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "22px",
-                    color: "#1F1F1F",
-                  }}
-                >
-                  Phone
-                </p>
-                <p
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    color: "#545454",
-                  }}
-                >
-                  {" "}
-                  (+081) 9876 1234
-                </p>
-              </div>
-            </div>
-            <div style={{ display: "flex", gap: 20 }}>
-              <div
-                style={{
-                  backgroundColor: "#002855",
-                  color: "#FFF",
-                  borderRadius: "16px",
-                  width: "60px",
-                  height: "60px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                }}
-              >
-                <BiMailSend style={{ fontSize: "32px", color: "#FFF" }} />
-              </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <p
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "22px",
-                    color: "#1F1F1F",
-                  }}
-                >
-                  Email
-                </p>
-                <p
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    color: "#545454",
-                  }}
-                >
-                  johndoe@gmail.com
-                </p>
-              </div>
-            </div>
+
+      {/* Contact */}
+      <section className={styles.contactSection}>
+        <div className={styles.contactGrid}>
+          <div className={styles.contactLeft}>
+            <ContactForm />
           </div>
-          <div>
-            <div style={{ display: "flex", gap: 20 }}>
-              <div
-                style={{
-                  backgroundColor: "#002855",
-                  color: "#FFF",
-                  borderRadius: "16px",
-                  width: "60px",
-                  height: "60px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                }}
-              >
-                <BsGeoAlt style={{ fontSize: "32px", color: "#FFF" }} />
+
+          <div className={styles.contactRight}>
+            <h5 className={styles.contactTitle}>Contact Us</h5>
+            <p className={styles.contactIntro}>
+              There is now an abundance of readable dummy texts. These are
+              usually used when a text is required purely to fill a space.
+            </p>
+
+            <div className={styles.contactRow2}>
+              <div className={styles.contactItem}>
+                <div className={styles.contactIcon}>
+                  <BiPhone className={styles.iconLg} />
+                </div>
+                <div className={styles.contactTextCol}>
+                  <p className={styles.contactLabel}>Phone</p>
+                  <p className={styles.contactValue}>(+081) 9876 1234</p>
+                </div>
               </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <p
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "22px",
-                    color: "#1F1F1F",
-                  }}
-                >
-                  Address
-                </p>
-                <p
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    color: "#545454",
-                  }}
-                >
-                  London Eye, London
-                </p>
+
+              <div className={styles.contactItem}>
+                <div className={styles.contactIcon}>
+                  <BiMailSend className={styles.iconLg} />
+                </div>
+                <div className={styles.contactTextCol}>
+                  <p className={styles.contactLabel}>Email</p>
+                  <p className={styles.contactValue}>johndoe@gmail.com</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <div
-              style={{
-                display: "flex",
-                gap: 20,
-                padding: "50px",
-                borderTop: "1px solid #dddddd",
-                marginTop: "20px",
-              }}
-            >
-              <div
-                style={{ color: "#1F1F1F", fontSize: "22px", fontWeight: 700 }}
-              >
-                Social Media
+
+            <div className={styles.contactItem}>
+              <div className={styles.contactIcon}>
+                <BsGeoAlt className={styles.iconLg} />
               </div>
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "50%",
-                  border: "#0047AB solid 1px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <FaFacebook style={{ color: "#0047AB" }} />{" "}
+              <div className={styles.contactTextCol}>
+                <p className={styles.contactLabel}>Address</p>
+                <p className={styles.contactValue}>London Eye, London</p>
               </div>
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "50%",
-                  border: "#0047AB solid 1px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <BsTwitterX style={{ color: "#0047AB" }} />
+            </div>
+
+            <div className={styles.socialBlock}>
+              <div className={styles.socialTitle}>Social Media</div>
+              <div className={styles.socialIcon}>
+                <FaFacebook />
               </div>
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "50%",
-                  border: "#0047AB solid 1px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <BsYoutube style={{ color: "#0047AB" }} />
+              <div className={styles.socialIcon}>
+                <BsTwitterX />
               </div>
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "50%",
-                  border: "#0047AB solid 1px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <BsLinkedin style={{ color: "#0047AB" }} />
+              <div className={styles.socialIcon}>
+                <BsYoutube />
+              </div>
+              <div className={styles.socialIcon}>
+                <BsLinkedin />
               </div>
             </div>
           </div>

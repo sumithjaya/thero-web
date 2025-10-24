@@ -1,63 +1,38 @@
-.page {
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  justify-items: center;
-  align-items: start;
-  padding-bottom: 5rem;
-}
-
-/* Wave under hero */
-.heroWaveWrap {
+/* Wave header */
+.waveWrapper {
   min-height: 400px;
   box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 .waveSvg {
   width: 1240px;
   height: 160px;
-  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
-/* Calculator form section */
-.calSection {
+/* Sections */
+.sectionForm {
+  /* no extra rules; here so you can hook in later if needed */
+}
+
+.sectionCharts {
   width: 100%;
+  padding: 70px 70px;
 }
 
-/* Cards section */
-.cardsSection {
-  width: 100%;
-  padding: 70px;
-}
-@media (max-width: 768px) {
-  .cardsSection {
-    padding: 32px 20px;
-  }
-}
-
-.cardsRow {
+.chartsRow {
   display: flex;
   gap: 50px;
   width: 100%;
-  align-items: stretch;
-}
-@media (max-width: 1024px) {
-  .cardsRow {
-    flex-direction: column;
-  }
 }
 
 .card {
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 50px;
-  box-shadow: 0 0 10px 10px rgba(189, 185, 185, 0.15);
+  box-shadow: 0px 0px 10px 10px rgba(189, 185, 185, 0.15);
   border-radius: 26px;
   flex: 1;
 }
@@ -65,10 +40,10 @@
 .cardTitle {
   font-size: 26px;
   font-weight: 700;
-  margin: 0;
 }
 
-.reportWrap {
+/* CTA bar */
+.ctaBar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +51,7 @@
   padding: 30px 0;
 }
 
-.reportBtn {
+.btnPrimary {
   background-color: #0047ab;
   font-weight: 700;
   font-size: 18px;
@@ -88,80 +63,75 @@
 }
 
 /* How we calculate */
-.calcHowSection {
+.howWeCalcSection {
   padding: 60px 70px;
-  display: flex;
-  width: 100%;
-  gap: 40px;
-}
-@media (max-width: 1024px) {
-  .calcHowSection {
-    padding: 40px 20px;
-    flex-direction: column;
-  }
 }
 
-.calcHowLeft {
+.howWeCalcGrid {
+  display: flex;
+}
+
+.howWeCalcLeft {
   flex: 1;
   padding: 20px;
 }
 
-.brandBlue {
+.h1 {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.h1Accent {
   color: #0047ab;
 }
 
-.calcHowTitle {
-  font-size: 44px;
-  font-weight: 700;
-  margin: 0 0 25px 0;
-}
-
-.calcHowText {
+.lead {
   color: #545454;
   font-weight: 400;
   font-size: 18px;
-  margin: 0 0 25px 0;
+  margin-bottom: 25px;
 }
 
-.faqMore {
+.faqLinkWrap {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.faqMoreText {
-  color: #0047ab;
-  font-weight: 700;
-  font-size: 18px;
-  margin: 0;
-}
-.faqMoreIcon {
+
+.faqLinkText {
   color: #0047ab;
   font-weight: 700;
   font-size: 18px;
 }
 
-.calcHowRight {
+.faqLinkIcon {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.howWeCalcRight {
   display: flex;
   flex: 2;
 }
 
-/* Contact section */
+/* Contact */
 .contactSection {
   padding: 60px 70px;
   display: flex;
   width: 100%;
-  gap: 36px;
 }
-@media (max-width: 1024px) {
-  .contactSection {
-    padding: 40px 20px;
-    flex-direction: column;
-  }
+
+.contactGrid {
+  display: flex;
+  flex: 2;
+  width: 100%;
 }
 
 .contactLeft {
   flex: 1;
-  background: #fff;
+  background-color: #ffffffff;
 }
 
 .contactRight {
@@ -173,33 +143,27 @@
   color: #1f1f1f;
   font-size: 44px;
   font-weight: 700;
-  margin: 0 0 12px 0;
 }
 
-.contactText {
+.contactIntro {
   color: #1f1f1f;
   font-size: 18px;
   font-weight: 400;
-  margin: 0 0 24px 0;
 }
 
 .contactRow {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
+  gap: 10px;
 }
 
 .contactItem {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: flex-start;
-  flex: 1 1 320px;
-  min-width: 280px;
+  margin-bottom: 10px;
 }
 
-.iconBox {
+.contactIcon {
   background-color: #002855;
   color: #fff;
   border-radius: 16px;
@@ -209,7 +173,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  flex: 0 0 60px;
 }
 
 .iconLg {
@@ -217,41 +180,34 @@
   color: #fff;
 }
 
-.itemTextCol {
+.contactTextCol {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.itemTitle {
+.contactLabel {
   font-weight: 700;
   font-size: 22px;
   color: #1f1f1f;
   margin: 0;
 }
 
-.itemText {
+.contactValue {
   font-weight: 400;
   font-size: 16px;
   color: #545454;
   margin: 0;
 }
 
-.addressRow {
+/* Social */
+.socialBlock {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
-  margin: 10px 0 0 0;
-}
-
-.socialRow {
-  display: flex;
-  gap: 20px;
-  padding: 50px 0 0 0;
+  padding: 50px;
   border-top: 1px solid #dddddd;
   margin-top: 20px;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .socialTitle {
@@ -263,10 +219,31 @@
 .socialIcon {
   width: 44px;
   height: 44px;
-  border-radius: 9999px;
-  border: 1px solid #0047ab;
+  border-radius: 50%;
+  border: #0047ab solid 1px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #0047ab;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .chartsRow,
+  .howWeCalcGrid,
+  .contactGrid {
+    flex-direction: column;
+  }
+  .waveSvg {
+    width: 100%;
+    height: auto;
+  }
+  .sectionCharts,
+  .howWeCalcSection,
+  .contactSection {
+    padding: 40px 24px;
+  }
+  .card {
+    gap: 24px;
+  }
 }
