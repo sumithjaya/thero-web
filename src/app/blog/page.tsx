@@ -3,13 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Blog.module.css";
-import posts from "./posts";
-import type { Post } from "./posts"; // ✅ use the source of truth
+import type { Post } from "./posts";
+import { fetchPosts } from "./posts"; // ✅ Import dynamic fetch function
+import { useEffect, useState } from "react";
 
 export default function BlogIndexPage() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        const data = await fetchPosts(); // ✅ Fetch dynamically from Strapi
+        setPosts(data);
+      } catch (err: any) {
+        setError("Failed to load posts");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadPosts();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-20">Loading blog posts...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-20 text-red-500">{error}</div>;
+  }
+
   return (
     <div className="font-sans min-h-screen pb-20">
-      {/* Wave header to match your site style */}
+      {/* Wave header */}
       <div className={styles.waveWrapper}>
         <svg
           className={styles.waveSvg}
@@ -24,6 +51,7 @@ export default function BlogIndexPage() {
         </svg>
       </div>
 
+      {/* Header */}
       <section className={styles.indexHeader}>
         <h1 className={styles.pageTitle}>
           Our <span className={styles.accent}>Blog</span>
@@ -34,7 +62,7 @@ export default function BlogIndexPage() {
         </p>
       </section>
 
-      {/* Posts grid */}
+      {/* Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
           {posts.map((p: Post) => (
@@ -46,7 +74,7 @@ export default function BlogIndexPage() {
                     alt={p.title}
                     fill
                     className={styles.cardImage}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" // 👍 perf
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
                 </div>
                 <div className={styles.cardBody}>

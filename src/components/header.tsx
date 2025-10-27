@@ -273,6 +273,15 @@ export default function Header() {
             >
               Team
             </Link>
+            <Link
+              href="/blog"
+              className={`${styles.navLink} ${
+                isActive("/blog") ? styles.activeLink : ""
+              }`}
+              aria-current={isActive("/blog") ? "page" : undefined}
+            >
+              Blog
+            </Link>
             <div className={styles.vrule} />
             <Link href="/get-started" className={styles.cta}>
               Get Started
