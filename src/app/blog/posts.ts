@@ -14,11 +14,12 @@ export type Post = {
   title: string;
   excerpt: string;
   author: string;
-  date: string;       // ISO format
+  date: string; // ISO format
   prettyDate: string; // formatted string
   category: string;
   coverImage: string;
   content: ContentBlock[];
+  tags: string[];
 };
 
 export const CATEGORIES = ["Planning", "Super", "Investing"] as const;
@@ -35,32 +36,63 @@ const fallbackPosts: ReadonlyArray<Post> = [
   {
     slug: "retirement-checklist-2025",
     title: "Your 2025 Retirement Readiness Checklist",
-    excerpt: "A practical, 7-step list to pressure-test your plan in 30 minutes.",
+    excerpt:
+      "A practical, 7-step list to pressure-test your plan in 30 minutes.",
     author: "Alice Johnson",
     date: "2025-10-20",
     prettyDate: "Oct 20, 2025",
     category: "Planning",
     coverImage: "/images/blog1.jpg",
+    tags: ["retirement", "plan", "checklist"],
     content: [
-      { p: "This is the blunt, no-BS checklist we use with clients before year-end." },
-      { h2: "1) Cash buffer", p: "Target 6–12 months of essential expenses in a high-interest account." },
-      { h2: "2) Contributions", ul: ["Max employer match", "Consider salary sacrifice", "Avoid end-of-year scramble"] },
-      { h2: "3) Insurance sanity check", p: "If one thing goes wrong, your plan shouldn’t implode." },
+      {
+        p: "This is the blunt, no-BS checklist we use with clients before year-end.",
+      },
+      {
+        h2: "1) Cash buffer",
+        p: "Target 6–12 months of essential expenses in a high-interest account.",
+      },
+      {
+        h2: "2) Contributions",
+        ul: [
+          "Max employer match",
+          "Consider salary sacrifice",
+          "Avoid end-of-year scramble",
+        ],
+      },
+      {
+        h2: "3) Insurance sanity check",
+        p: "If one thing goes wrong, your plan shouldn’t implode.",
+      },
     ],
   },
   {
     slug: "super-fees-explained",
     title: "Super Fees: What Actually Matters",
-    excerpt: "Cut the noise. Here’s how to compare funds without getting lost in PDFs.",
+    excerpt:
+      "Cut the noise. Here’s how to compare funds without getting lost in PDFs.",
     author: "Bob Smith",
     date: "2025-09-12",
     prettyDate: "Sep 12, 2025",
     category: "Super",
     coverImage: "/images/blog2.jpg",
+    tags: ["super", "fees", "comparison"],
     content: [
-      { p: "Fees compound too — just like returns. Tiny percentages matter over decades." },
-      { h2: "The signal", ul: ["Administration fee", "Investment fee", "Performance fees (when they exist)"] },
-      { h2: "The noise", p: "Marketing names, seasonal offers, shiny apps. Look at the PDS and compare apples to apples." },
+      {
+        p: "Fees compound too — just like returns. Tiny percentages matter over decades.",
+      },
+      {
+        h2: "The signal",
+        ul: [
+          "Administration fee",
+          "Investment fee",
+          "Performance fees (when they exist)",
+        ],
+      },
+      {
+        h2: "The noise",
+        p: "Marketing names, seasonal offers, shiny apps. Look at the PDS and compare apples to apples.",
+      },
     ],
   },
   {
@@ -72,9 +104,19 @@ const fallbackPosts: ReadonlyArray<Post> = [
     prettyDate: "Aug 3, 2025",
     category: "Investing",
     coverImage: "/images/blog3.jpg",
+    tags: ["sequence", "risk", "retirement"],
     content: [
-      { p: "Two portfolios with the same average return can produce wildly different outcomes if the bad years hit early." },
-      { h2: "Mitigations", ul: ["Dynamic withdrawal rules", "Cash bucket for 2–3 years", "Rebalance discipline"] },
+      {
+        p: "Two portfolios with the same average return can produce wildly different outcomes if the bad years hit early.",
+      },
+      {
+        h2: "Mitigations",
+        ul: [
+          "Dynamic withdrawal rules",
+          "Cash bucket for 2–3 years",
+          "Rebalance discipline",
+        ],
+      },
     ],
   },
 ];
@@ -103,12 +145,14 @@ function safeExcerptFromContent(content: any[]): string {
 export function toPost(node: any): Post {
   const a = node ?? {};
 
+  console.log("node", node);
   const imgUrl =
     toAbsUrl(a?.CoverImage?.url) ??
     toAbsUrl(a?.CoverImage?.data?.attributes?.url) ??
     "/images/placeholder.jpg";
 
-  const isoDate: string = a.CreatedDate || a.publishedAt || a.createdAt || new Date().toISOString();
+  const isoDate: string =
+    a.CreatedDate || a.publishedAt || a.createdAt || new Date().toISOString();
 
   const pretty = new Date(isoDate).toLocaleDateString("en-US", {
     month: "short",
@@ -124,6 +168,16 @@ export function toPost(node: any): Post {
       }))
     : [];
 
+  const tags = Array.isArray(a.Tags)
+  ? a.Tags
+      .filter((tag: any) => tag?.Slug === "tag")
+      .map((tag: any) => ({
+        Title: tag.Title,
+        Slug: tag.Slug
+      }))
+  : [];
+
+console.log("tags", tags);
   return {
     slug: a.slug ?? a.documentId ?? String(a.id ?? ""),
     title: a.Title ?? "",
@@ -134,6 +188,7 @@ export function toPost(node: any): Post {
     category: a.Category ?? "General",
     coverImage: imgUrl,
     content: contentBlocks,
+    tags: tags,
   };
 }
 
@@ -142,11 +197,13 @@ export function toPost(node: any): Post {
 // -----------------------------
 async function strapiFetch<T>(path: string, init: RequestInit = {}) {
   if (!STRAPI_URL) {
-    console.warn("NEXT_PUBLIC_STRAPI_URL missing: using fallback data."); 
+    console.warn("NEXT_PUBLIC_STRAPI_URL missing: using fallback data.");
     return { data: [] } as T;
   }
 
-  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
   if (STRAPI_TOKEN) headers.Authorization = `Bearer ${STRAPI_TOKEN}`;
 
   const res = await fetch(`${STRAPI_URL}${path}`, {
@@ -182,7 +239,7 @@ export async function fetchLatestPost(): Promise<Post | null> {
         `&sort[0]=CreatedDate:desc&sort[1]=publishedAt:desc&sort[2]=createdAt:desc`
     );
     const node = json.data?.[0];
-    return node ? toPost(node) : (fallbackPosts[0] ?? null);
+    return node ? toPost(node) : fallbackPosts[0] ?? null;
   } catch (e) {
     console.error("❌ fetchLatestPost failed:", e);
     return fallbackPosts[0] ?? null;

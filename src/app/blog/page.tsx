@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Blog.module.css";
 import type { Post } from "./posts";
-import { fetchLatestPost, fetchPosts } from "./posts"; // ✅ Import dynamic fetch function
+import { fetchLatestPost, fetchPosts } from "./posts";
 import { useEffect, useState } from "react";
 import HeroBlog from "@/components/hero/HeroBlog";
 
@@ -18,7 +18,7 @@ export default function BlogIndexPage() {
     async function loadPosts() {
       try {
         const dataLastPost = await fetchLatestPost();
-        const data = await fetchPosts(); // ✅ Fetch dynamically from Strapi
+        const data = await fetchPosts();
         setPosts(data);
         setLatestPost(dataLastPost);
       } catch (err: any) {
@@ -39,7 +39,7 @@ export default function BlogIndexPage() {
   }
 
   return (
-    <div className="font-sans min-h-screen pb-20">
+    <div className={styles.container}>
       <HeroBlog />
       <div className={styles.waveWrapper}>
         <svg
@@ -58,7 +58,9 @@ export default function BlogIndexPage() {
       {/* Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
-          {posts.map((p: Post) => (
+          {posts.map((p: Post) =>  {
+            console.log("post-",p);
+            return(
             <article key={p.slug} className={styles.card}>
               <div className={styles.cardImageWrap}>
                 <Image
@@ -78,14 +80,48 @@ export default function BlogIndexPage() {
                   <span>•</span>
                   <time dateTime={p.date}>{p.prettyDate}</time>
                 </div>
+
+                {/* TAGS (added) */}
+                {Array.isArray((p as any).tags) && (p as any).tags.length > 0 ? (
+                  <div className={styles.tags}>
+                    {(p as any).tags.map((t: any, i: number) => {
+                      const title = typeof t === "string" ? t : t.Title || t.title || "";
+                      const slug =
+                        typeof t === "string"
+                          ? t.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+                          : t.Slug ||
+                            t.slug ||
+                            (title || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                      if (!title) return null;
+                      return (
+                        <Link
+                          key={`${p.slug}-tag-${i}-${slug}`}
+                          href={`/tags/${encodeURIComponent(slug)}`}
+                          className={styles.tag}
+                          aria-label={`Filter by ${title}`}
+                        >
+                          {title}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={styles.tags}>
+                    <span className={styles.tagEmpty}>No tags</span>
+                  </div>
+                )}
+
                 <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
                   Read More
                 </Link>
               </div>
             </article>
-          ))}
+          )
+          })}
         </div>
       </section>
+
+      {/* Featured section (unchanged structure) */}
       <section className={styles.featuredPost}>
         <div className={styles.featuredPostBody}>
           <div className={styles.badge}>
@@ -101,7 +137,8 @@ export default function BlogIndexPage() {
           </Link>
         </div>
       </section>
-      {/* Posts Grid */}
+
+      {/* Second Posts Grid (kept as-is), just add the same TAGS block */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
           {posts.map((p: Post) => (
@@ -124,6 +161,37 @@ export default function BlogIndexPage() {
                   <span>•</span>
                   <time dateTime={p.date}>{p.prettyDate}</time>
                 </div>
+
+                {/* TAGS (added) */}
+                {Array.isArray((p as any).tags) && (p as any).tags.length > 0 ? (
+                  <div className={styles.tags}>
+                    {(p as any).tags.map((t: any, i: number) => {
+                      const title = typeof t === "string" ? t : t.Title || t.title || "";
+                      const slug =
+                        typeof t === "string"
+                          ? t.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+                          : t.Slug ||
+                            t.slug ||
+                            (title || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                      if (!title) return null;
+                      return (
+                        <Link
+                          key={`${p.slug}-tag-${i}-${slug}`}
+                          href={`/tags/${encodeURIComponent(slug)}`}
+                          className={styles.tag}
+                          aria-label={`Filter by ${title}`}
+                        >
+                          {title}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={styles.tags}>
+                    <span className={styles.tagEmpty}>No tags</span>
+                  </div>
+                )}
+
                 <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
                   Read More
                 </Link>

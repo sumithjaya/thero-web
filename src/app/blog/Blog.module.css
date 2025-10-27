@@ -11,9 +11,8 @@
   --border: #e7eef7;
   --ring: rgba(0, 71, 171, 0.35);
 }
-
 /* Wave header */
-.waveWrapper { min-height: 160px; box-sizing: border-box; }
+.waveWrapper { min-height: 160px; box-sizing: border-box;padding: 0 150px; }
 .waveSvg { width: 100%; height: auto; display: block; }
 
 /* Index header */
@@ -224,4 +223,33 @@
 
 .cardExcerpt{
     color: #fff;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #1e40af;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag:hover {
+  background: #dbeafe;
+}
+
+.tagEmpty {
+  font-size: 0.8rem;
+  color: #64748b;
 }

@@ -1,44 +1,31 @@
 import Link from "next/link";
+import styles from "./HeroBlog.module.css";
 
 export default function HeroBlog() {
   return (
-    <div
-      style={{
-        boxSizing: "border-box",
-        background:
-          "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(255,255,255,1) 0%, rgba(0,71,171,0.51) 100%)",
-         
-      }}
-      className="w-full mb-20 m-0 flex flex-col justify-center items-center"
-    >
-      <section
-        className="relative   text-center  flex flex-row"
-        aria-labelledby="hero-heading"
-      >
-        {/* Subtle backdrop */}
-     
-         
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:pt-16 lg:pb-24   ">
-          <div className="flex flex-col items-center gap-6 pt-25">
-            <h1 style={{color:'#1F1F1F',fontSize:'54px',fontWeight:700}}><span style={{color:'#0047AB',fontSize:'54px',fontWeight:700}}>Retirement</span> Blog</h1>
-            <p style={{color:'#545454',fontSize:'18px',fontWeight:400}}  >
-          Expert insights for your golden years
-            </p>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 text-base font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
-            >
+    <div className={styles.heroRoot}>
+      <section className={styles.section} aria-labelledby="hero-heading">
+        <div className={styles.container}>
+          <div className={styles.inner}>
+            <h1 id="hero-heading" className={styles.title}>
+              <span className={styles.titleBlue}>Retirement</span> Blog
+            </h1>
+            <p className={styles.subtitle}>Expert insights for your golden years</p>
+            <Link href="/get-started" className={styles.btn}>
               Explore
             </Link>
           </div>
         </div>
-        <div className="pt-50 ">
+
+        <div className={styles.svgWrap}>
           <svg
             width="113"
             height="43"
             viewBox="0 0 113 43"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
           >
             <path
               opacity="0.5"
