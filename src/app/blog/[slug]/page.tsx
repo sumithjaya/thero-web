@@ -39,7 +39,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [post.coverImage],
     },
   };
 }
@@ -73,7 +73,7 @@ export default async function BlogPostPage({
       {/* Feature image */}
       <div className={styles2.featureImageWrap}>
         <Image
-          src={p.image}
+          src={p.coverImage}
           alt={p.title}
           fill
           className={styles2.featureImage}

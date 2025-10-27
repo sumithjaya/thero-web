@@ -4,19 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Blog.module.css";
 import type { Post } from "./posts";
-import { fetchPosts } from "./posts"; // ✅ Import dynamic fetch function
+import { fetchLatestPost, fetchPosts } from "./posts"; // ✅ Import dynamic fetch function
 import { useEffect, useState } from "react";
+import HeroBlog from "@/components/hero/HeroBlog";
 
 export default function BlogIndexPage() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [latestPost, setLatestPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadPosts() {
       try {
+        const dataLastPost = await fetchLatestPost();
         const data = await fetchPosts(); // ✅ Fetch dynamically from Strapi
         setPosts(data);
+        setLatestPost(dataLastPost);
       } catch (err: any) {
         setError("Failed to load posts");
       } finally {
@@ -36,7 +40,7 @@ export default function BlogIndexPage() {
 
   return (
     <div className="font-sans min-h-screen pb-20">
-      {/* Wave header */}
+       <HeroBlog/>
       <div className={styles.waveWrapper}>
         <svg
           className={styles.waveSvg}
@@ -70,9 +74,9 @@ export default function BlogIndexPage() {
               <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
                 <div className={styles.cardImageWrap}>
                   <Image
-                    src={p.image}
+                    src={p.coverImage}
                     alt={p.title}
-                    fill
+                    fill 
                     className={styles.cardImage}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
