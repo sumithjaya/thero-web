@@ -40,7 +40,7 @@ const fallbackPosts: ReadonlyArray<Post> = [
     date: "2025-10-20",
     prettyDate: "Oct 20, 2025",
     category: "Planning",
-    coverImage: "/images/blog/retirement-checklist.jpg",
+    coverImage: "/images/blog1.jpg",
     content: [
       { p: "This is the blunt, no-BS checklist we use with clients before year-end." },
       { h2: "1) Cash buffer", p: "Target 6–12 months of essential expenses in a high-interest account." },
@@ -56,7 +56,7 @@ const fallbackPosts: ReadonlyArray<Post> = [
     date: "2025-09-12",
     prettyDate: "Sep 12, 2025",
     category: "Super",
-    coverImage: "/images/blog/super-fees.jpg",
+    coverImage: "/images/blog2.jpg",
     content: [
       { p: "Fees compound too — just like returns. Tiny percentages matter over decades." },
       { h2: "The signal", ul: ["Administration fee", "Investment fee", "Performance fees (when they exist)"] },
@@ -71,7 +71,7 @@ const fallbackPosts: ReadonlyArray<Post> = [
     date: "2025-08-03",
     prettyDate: "Aug 3, 2025",
     category: "Investing",
-    coverImage: "/images/blog/sequence-risk.jpg",
+    coverImage: "/images/blog3.jpg",
     content: [
       { p: "Two portfolios with the same average return can produce wildly different outcomes if the bad years hit early." },
       { h2: "Mitigations", ul: ["Dynamic withdrawal rules", "Cash bucket for 2–3 years", "Rebalance discipline"] },

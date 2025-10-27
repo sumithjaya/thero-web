@@ -40,7 +40,7 @@ export default function BlogIndexPage() {
 
   return (
     <div className="font-sans min-h-screen pb-20">
-       <HeroBlog/>
+      <HeroBlog />
       <div className={styles.waveWrapper}>
         <svg
           className={styles.waveSvg}
@@ -55,45 +55,48 @@ export default function BlogIndexPage() {
         </svg>
       </div>
 
-      {/* Header */}
-      <section className={styles.indexHeader}>
-        <h1 className={styles.pageTitle}>
-          Our <span className={styles.accent}>Blog</span>
-        </h1>
-        <p className={styles.lead}>
-          Insights on retirement, super, and smart money moves — written the way
-          we talk: clear and no fluff.
-        </p>
-      </section>
-
       {/* Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
           {posts.map((p: Post) => (
             <article key={p.slug} className={styles.card}>
-              <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
-                <div className={styles.cardImageWrap}>
-                  <Image
-                    src={p.coverImage}
-                    alt={p.title}
-                    fill 
-                    className={styles.cardImage}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
+              <div className={styles.cardImageWrap}>
+                <Image
+                  src={p.coverImage}
+                  alt={p.title}
+                  fill
+                  className={styles.cardImage}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.badge}>{p.category}</div>
+                <h2 className={styles.cardTitle}>{p.title}</h2>
+                <p className={styles.cardExcerpt}>{p.excerpt}</p>
+                <div className={styles.cardMeta}>
+                  <span>{p.author}</span>
+                  <span>•</span>
+                  <time dateTime={p.date}>{p.prettyDate}</time>
                 </div>
-                <div className={styles.cardBody}>
-                  <div className={styles.badge}>{p.category}</div>
-                  <h2 className={styles.cardTitle}>{p.title}</h2>
-                  <p className={styles.cardExcerpt}>{p.excerpt}</p>
-                  <div className={styles.cardMeta}>
-                    <span>{p.author}</span>
-                    <span>•</span>
-                    <time dateTime={p.date}>{p.prettyDate}</time>
-                  </div>
-                </div>
-              </Link>
+                <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
+                  Read More
+                </Link>
+              </div>
             </article>
           ))}
+        </div>
+      </section>
+      <section className={styles.featuredPost}>
+        <div className={styles.featuredPostBody}>
+          <div className={styles.badge}>Your Money Deserves This Level of Care</div>
+          <div className={styles.cardExcerpt}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+            porttitor eros vel aliquam tempor. Curabitur auctor commodo neque eu
+            sollicitudin. Suspendisse sapien lorem, finibus.
+          </div>
+          <Link  className= {styles.cardLink} href={`/blog/1$`}>
+            Read More
+          </Link>
         </div>
       </section>
     </div>

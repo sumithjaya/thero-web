@@ -22,13 +22,13 @@ export default function HeroBlog() {
           <div className="flex flex-col items-center gap-6 pt-25">
             <h1 style={{color:'#1F1F1F',fontSize:'54px',fontWeight:700}}><span style={{color:'#0047AB',fontSize:'54px',fontWeight:700}}>Retirement</span> Blog</h1>
             <p style={{color:'#545454',fontSize:'18px',fontWeight:400}}  >
-            Let’s get it sorted for you...meet with one of our Retirement Experts. Via chat, video or face to face.
+          Expert insights for your golden years
             </p>
             <Link
               href="/get-started"
               className="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 text-base font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
             >
-              Get Started
+              Explore
             </Link>
           </div>
         </div>
