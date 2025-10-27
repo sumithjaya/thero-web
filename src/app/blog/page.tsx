@@ -88,15 +88,48 @@ export default function BlogIndexPage() {
       </section>
       <section className={styles.featuredPost}>
         <div className={styles.featuredPostBody}>
-          <div className={styles.badge}>Your Money Deserves This Level of Care</div>
+          <div className={styles.badge}>
+            Your Money Deserves This Level of Care
+          </div>
           <div className={styles.cardExcerpt}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
             porttitor eros vel aliquam tempor. Curabitur auctor commodo neque eu
             sollicitudin. Suspendisse sapien lorem, finibus.
           </div>
-          <Link  className= {styles.cardLink} href={`/blog/1$`}>
+          <Link className={styles.cardLink} href={`/blog/1$`}>
             Read More
           </Link>
+        </div>
+      </section>
+      {/* Posts Grid */}
+      <section className={styles.gridSection}>
+        <div className={styles.grid}>
+          {posts.map((p: Post) => (
+            <article key={p.slug} className={styles.card}>
+              <div className={styles.cardImageWrap}>
+                <Image
+                  src={p.coverImage}
+                  alt={p.title}
+                  fill
+                  className={styles.cardImage}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.badge}>{p.category}</div>
+                <h2 className={styles.cardTitle}>{p.title}</h2>
+                <p className={styles.cardExcerpt}>{p.excerpt}</p>
+                <div className={styles.cardMeta}>
+                  <span>{p.author}</span>
+                  <span>•</span>
+                  <time dateTime={p.date}>{p.prettyDate}</time>
+                </div>
+                <Link className={styles.cardLink} href={`/blog/${p.slug}`}>
+                  Read More
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </div>
