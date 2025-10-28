@@ -8,6 +8,37 @@ import { fetchLatestPost, fetchPosts } from "./posts";
 import { useEffect, useState } from "react";
 import HeroBlog from "@/components/hero/HeroBlog";
 
+/* ---------------- Skeleton components ---------------- */
+function SkeletonCard() {
+  return (
+    <article className={styles.card} aria-hidden>
+      <div className={`${styles.cardImageWrap} ${styles.skeleton} ${styles.skeletonImage}`} />
+      <div className={styles.cardBody}>
+        <div className={`${styles.badge} ${styles.skeleton} ${styles.skeletonBadge}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonLine}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonLine}`} />
+        <div className={`${styles.cardMeta} ${styles.skeleton} ${styles.skeletonMeta}`} />
+        <div className={`${styles.cardLink} ${styles.skeleton} ${styles.skeletonButton}`} />
+      </div>
+    </article>
+  );
+}
+
+function SkeletonFeatured() {
+  return (
+    <section className={`${styles.featuredPost} ${styles.skeletonFeatured}`} aria-hidden>
+      <div className={styles.featuredPostBody}>
+        <div className={`${styles.badge} ${styles.skeleton} ${styles.skeletonBadgeWide}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonLine}`} />
+        <div className={`${styles.skeleton} ${styles.skeletonLine}`} />
+        <div className={`${styles.cardLink} ${styles.skeleton} ${styles.skeletonButton}`} />
+      </div>
+    </section>
+  );
+}
+/* ----------------------------------------------------- */
+
 export default function BlogIndexPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [latestPost, setLatestPost] = useState<Post | null>(null);
@@ -21,7 +52,7 @@ export default function BlogIndexPage() {
         const data = await fetchPosts();
         setPosts(data);
         setLatestPost(dataLastPost);
-      } catch (err: any) {
+      } catch (_err) {
         setError("Failed to load posts");
       } finally {
         setLoading(false);
@@ -30,8 +61,43 @@ export default function BlogIndexPage() {
     loadPosts();
   }, []);
 
+  // ✅ Proper skeleton while loading
   if (loading) {
-    return <div className="text-center py-20">Loading blog posts...</div>;
+    return (
+      <div className={styles.container} aria-busy="true" aria-live="polite">
+        <div className={styles.waveWrapper}>
+          <svg
+            className={styles.waveSvg}
+            viewBox="0 0 1240 160"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+          >
+            <path
+              d="M1189.9 0C1208.69 0 1218.08 0 1225.07 4.05859C1229.58 6.67676 1233.32 10.4243 1235.94 14.9316C1240 21.919 1240 31.3128 1240 50.0996V109.9C1240 128.687 1240 138.081 1235.94 145.068C1233.32 149.576 1229.58 153.323 1225.07 155.941C1218.08 160 1208.69 160 1189.9 160H886.734C870.852 160 861.944 145.732 854.402 131.754C851.623 126.603 847.397 122.377 842.246 119.598C835.578 116 826.751 116 809.1 116H430.9C413.249 116 404.422 116 397.754 119.598C392.603 122.377 388.377 126.603 385.598 131.754C378.056 145.732 369.148 160 353.266 160H50.0996C31.3128 160 21.919 160 14.9316 155.941C10.4243 153.323 6.67676 149.576 4.05859 145.068C0 138.081 0 128.687 0 109.9V50.0996C0 31.3128 0 21.919 4.05859 14.9316C6.67676 10.4243 10.4243 6.67676 14.9316 4.05859C21.919 0 31.3128 0 50.0996 0H1189.9Z"
+              fill="var(--brand-900)"
+            />
+          </svg>
+        </div>
+
+        <section className={styles.gridSection}>
+          <div className={styles.grid}>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
+        </section>
+
+        <SkeletonFeatured />
+
+        <section className={styles.gridSection}>
+          <div className={styles.grid}>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
+        </section>
+      </div>
+    );
   }
 
   if (error) {
@@ -41,6 +107,7 @@ export default function BlogIndexPage() {
   return (
     <div className={styles.container}>
       <HeroBlog />
+
       <div className={styles.waveWrapper}>
         <svg
           className={styles.waveSvg}
@@ -58,9 +125,7 @@ export default function BlogIndexPage() {
       {/* Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
-          {posts.map((p: Post) =>  {
-            console.log("post-",p);
-            return(
+          {posts.map((p: Post) => (
             <article key={p.slug} className={styles.card}>
               <div className={styles.cardImageWrap}>
                 <Image
@@ -81,7 +146,7 @@ export default function BlogIndexPage() {
                   <time dateTime={p.date}>{p.prettyDate}</time>
                 </div>
 
-                {/* TAGS (added) */}
+                {/* TAGS */}
                 {Array.isArray((p as any).tags) && (p as any).tags.length > 0 ? (
                   <div className={styles.tags}>
                     {(p as any).tags.map((t: any, i: number) => {
@@ -116,12 +181,11 @@ export default function BlogIndexPage() {
                 </Link>
               </div>
             </article>
-          )
-          })}
+          ))}
         </div>
       </section>
 
-      {/* Featured section (unchanged structure) */}
+      {/* Featured section */}
       <section className={styles.featuredPost}>
         <div className={styles.featuredPostBody}>
           <div className={styles.badge}>
@@ -132,17 +196,18 @@ export default function BlogIndexPage() {
             porttitor eros vel aliquam tempor. Curabitur auctor commodo neque eu
             sollicitudin. Suspendisse sapien lorem, finibus.
           </div>
-          <Link className={styles.cardLink} href={`/blog/1$`}>
+          {/* fixed URL — removed stray "$" */}
+          <Link className={styles.cardLink} href={`/blog/${latestPost?.slug ?? "1"}`}>
             Read More
           </Link>
         </div>
       </section>
 
-      {/* Second Posts Grid (kept as-is), just add the same TAGS block */}
+      {/* Second Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
           {posts.map((p: Post) => (
-            <article key={p.slug} className={styles.card}>
+            <article key={`second-${p.slug}`} className={styles.card}>
               <div className={styles.cardImageWrap}>
                 <Image
                   src={p.coverImage}
@@ -162,7 +227,7 @@ export default function BlogIndexPage() {
                   <time dateTime={p.date}>{p.prettyDate}</time>
                 </div>
 
-                {/* TAGS (added) */}
+                {/* TAGS */}
                 {Array.isArray((p as any).tags) && (p as any).tags.length > 0 ? (
                   <div className={styles.tags}>
                     {(p as any).tags.map((t: any, i: number) => {
@@ -176,7 +241,7 @@ export default function BlogIndexPage() {
                       if (!title) return null;
                       return (
                         <Link
-                          key={`${p.slug}-tag-${i}-${slug}`}
+                          key={`second-${p.slug}-tag-${i}-${slug}`}
                           href={`/tags/${encodeURIComponent(slug)}`}
                           className={styles.tag}
                           aria-label={`Filter by ${title}`}
