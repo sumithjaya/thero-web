@@ -28,12 +28,12 @@ export type FAQ={
   answer: string;
 }
 
-export const CATEGORIES = ["Planning", "Super", "Investing"] as const;
-export type Category = (typeof CATEGORIES)[number];
+  export const CATEGORIES = ["Planning", "Super", "Investing"] as const;
+  export type Category = (typeof CATEGORIES)[number];
 
-// Env (frontend)
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "";
-const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN || "";
+  // Env (frontend)
+  const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "";
+  const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN || "";
 
 // -----------------------------
 // Static Local Fallback
