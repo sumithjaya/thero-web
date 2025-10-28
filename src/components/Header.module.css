@@ -219,9 +219,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: transparent;
+  outline: none;
   border-radius: 0.75rem;
-  padding: 0.5rem;
-  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  padding: 0.1rem;
+  font-size: 33px;
+  color: #67696b;
+  /* box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset; */
   background: transparent;
   transition: background 120ms ease;
 }

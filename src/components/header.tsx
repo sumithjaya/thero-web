@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
+import { HiOutlineBars3, HiOutlineBars4 } from "react-icons/hi2";
 
 /** helper hook */
 function useActive() {
@@ -294,7 +295,7 @@ export default function Header() {
             onClick={handleOpen}
             aria-label="Open menu"
           >
-            ☰
+            <HiOutlineBars3/>
           </button>
         </div>
       </header>
