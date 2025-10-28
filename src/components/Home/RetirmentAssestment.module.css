@@ -15,6 +15,12 @@
 .donutSvgWrapMobile {
   display: none;
 }
+.donutSvgWrap{
+  background-color: pink;
+}
+.areaSvgWrap{
+  background-color: green;
+}
 .areaSvgWrapMobile {
   display: none;
 }
