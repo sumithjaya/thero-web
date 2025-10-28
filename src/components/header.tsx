@@ -71,7 +71,7 @@ const MobileMenu = React.memo(function MobileMenu({
               xmlnsXlink="http://www.w3.org/1999/xlink"
               fill="#000000"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
                 stroke-linecap="round"
