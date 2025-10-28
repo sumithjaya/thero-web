@@ -117,7 +117,7 @@ export default function RetirmentAssestment() {
               <div className={styles.areaSvgWrap}>
                 <svg
                   width="301"
-                  height="151"
+                  height="219"
                   viewBox="0 0 301 151"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

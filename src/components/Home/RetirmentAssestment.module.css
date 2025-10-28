@@ -15,11 +15,9 @@
 .donutSvgWrapMobile {
   display: none;
 }
-.donutSvgWrap{
-  background-color: pink;
+.donutSvgWrap{ 
 }
-.areaSvgWrap{
-  background-color: green;
+.areaSvgWrap{ 
 }
 .areaSvgWrapMobile {
   display: none;
@@ -164,19 +162,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
-  background-color: chartreuse;
+  gap: 20px; 
   height: 100%;
   object-fit: contain;
   box-sizing: border-box;
+  height: 350px;
 }
 .areaCol {
-  height: auto;   
+  height: 350px;   
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 50px;
-  background-color: cornflowerblue;
+  gap: 50px; 
 }
 
 .legendDotPrimary {
