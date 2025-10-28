@@ -41,7 +41,7 @@
 }
 
 .logoBox {
-  position: relative; 
+  position: relative;
   width: 130px; /* w-[130px] */
 }
 
@@ -71,7 +71,7 @@
     display: flex;
   }
 }
-.drawerTop{
+.drawerTop {
   /* background-color: green;  */
 }
 .navLink {
@@ -88,20 +88,20 @@
   color: #0046bf;
 }
 .navLinkActive {
-    color: var(--brand-blue01, #0046bf);
+  color: var(--brand-blue01, #0046bf);
   font-weight: 700;
 }
 .navLinkActive::after {
- content: "";
+  content: "";
   position: absolute;
   left: 50%;
-  bottom: -6px;              /* push below the text a bit */
+  bottom: -6px; /* push below the text a bit */
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
   background-color: var(--brand-blue01, #0046bf);
   border-radius: 50%;
-  pointer-events: none;  
+  pointer-events: none;
 }
 .navLink:hover::after {
   content: "";
@@ -224,7 +224,7 @@
   border-radius: 0.75rem;
   padding: 0.1rem;
   font-size: 33px;
-  color: #67696b;
+  color: #062252;
   /* box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset; */
   background: transparent;
   transition: background 120ms ease;
@@ -233,11 +233,11 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
-.mobileCta{
-    background-color: #0046bf;
-    color: #FFF;
-    padding: 10px 20px;
-    border-radius: 5px;
+.mobileCta {
+  background-color: #0046bf;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 @media (min-width: 768px) {
   .mobileToggle {
@@ -253,6 +253,22 @@
   .logoBox {
     width: 100px;
   }
+  .activeLinkMobile {
+    position: relative;
+    color: #0046bf;
+    font-weight: 700;
+  }
+  .activeLinkMobile::after {
+    content: "";
+    position: absolute;
+    left: 50%; 
+    top:16px;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+  }
 }
 .iconMd {
   width: 1.5rem;
@@ -265,37 +281,38 @@
 
 /* Mobile overlay + drawer (portaled to <body>) */
 .mobileOverlay {
-    width: 100VW;
+  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; 
+  bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 11000; /* above modal backdrop */
 }
-.drawerTop{
-    padding: 20px;
+.drawerTop {
+  padding: 20px;
 }
-.drawer { 
+.drawer {
   height: 100vh;
   width: 60vw;
   overflow-y: auto;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  overflow: hidden; 
+  overflow: hidden;
   justify-self: end;
 }
 
 .drawerTop {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
-  z-index: 40
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  z-index: 40;
+  margin-bottom: 20px;
 }
 
 /* Mobile list */
@@ -303,32 +320,32 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  justify-content: space-between; ;
+  justify-content: space-between;
 }
-.mobileCtaWrap{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 60px;
-    border-top: #0046bf4b 1px dashed ;
+.mobileCtaWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 60px;
+  border-top: #0046bf4b 1px dashed;
 }
 .mobileLink {
   display: block;
   border-radius: 0.75rem;
   padding: 0.75rem 0.75rem;
   font-size: 0.875rem;
-  font-weight:600;
+  font-weight: 600;
   text-decoration: none;
   color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
   transition: background 150ms ease, color 150ms ease;
 }
-.activeLink{
-    color: #0046bf;
-    font-weight: 700;
+.activeLink {
+  color: #0046bf;
+  font-weight: 700;
 }
-.activeLinkMobile{
-    color: #0046bf;
-    font-weight: 700;
+.activeLinkMobile {
+  color: #0046bf;
+  font-weight: 700;
 }
 .mobileLink:hover {
   background: color-mix(in srgb, var(--foreground, #111827) 10%, transparent);
@@ -385,16 +402,16 @@
 /* Buttons */
 .closeBtn {
   border-radius: 0.75rem;
-  padding: 0.3rem;
-  box-shadow: 0 0 0 1px var(--ring, rgba(0, 0, 0, 0.1)) inset;
+  padding: 0.1rem; 
   background: transparent;
   transition: background 120ms ease;
-  color:  #0046bf;
+  color: #062252;
   font-weight: 800;
+  font-size: 22px;
 }
 .closeBtn:hover {
   background: rgba(0, 0, 0, 0.05);
-}/* make the host positioned so ::after has a box */
+} /* make the host positioned so ::after has a box */
 .navLink {
   position: relative;
 }
@@ -409,7 +426,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -2px;              /* push below text; tweak to taste */
+  bottom: -2px; /* push below text; tweak to taste */
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
@@ -432,4 +449,3 @@
   border-radius: 50%;
   pointer-events: none;
 }
-
