@@ -20,18 +20,7 @@ export default function HeroCalculators() {
           </div>
         </div>
 
-        <div className={styles.iconWrapper}>
-          {/* SVG remains the same */}
-          <svg
-            width="113"
-            height="43"
-            viewBox="0 0 113 43"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* ... SVG Path ... */}
-          </svg>
-        </div>
+         
       </section>
     </div>
   );
