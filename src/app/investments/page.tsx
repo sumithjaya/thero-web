@@ -12,11 +12,12 @@ import { BsArrowLeft, BsArrowRight, BsGeoAlt, BsLinkedin, BsTwitterX, BsYoutube 
 import { FaFacebook } from "react-icons/fa";
 
 import styles from "./Home.module.css";
+import HeroInvestment from "@/components/hero/HeroInvestment";
 
 export default function Home() {
   return (
     <div className="font-sans grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20">
-      <Hero />
+       <HeroInvestment/>
 
       <div className={styles.waveWrapper}>
         <svg
