@@ -22,6 +22,12 @@ export type Post = {
   tags: string[];
 };
 
+export type FAQ={
+  slug: string;
+  question: string;
+  answer: string;
+}
+
 export const CATEGORIES = ["Planning", "Super", "Investing"] as const;
 export type Category = (typeof CATEGORIES)[number];
 
@@ -169,15 +175,13 @@ export function toPost(node: any): Post {
     : [];
 
   const tags = Array.isArray(a.Tags)
-  ? a.Tags
-      .filter((tag: any) => tag?.Slug === "tag")
-      .map((tag: any) => ({
+    ? a.Tags.filter((tag: any) => tag?.Slug === "tag").map((tag: any) => ({
         Title: tag.Title,
-        Slug: tag.Slug
+        Slug: tag.Slug,
       }))
-  : [];
+    : [];
 
-console.log("tags", tags);
+  console.log("tags", tags);
   return {
     slug: a.slug ?? a.documentId ?? String(a.id ?? ""),
     title: a.Title ?? "",
@@ -243,5 +247,33 @@ export async function fetchLatestPost(): Promise<Post | null> {
   } catch (e) {
     console.error("❌ fetchLatestPost failed:", e);
     return fallbackPosts[0] ?? null;
+  }
+}
+
+
+export async function fetchFAQ(slug: string): Promise<FAQ | null> {
+  if (!STRAPI_URL || !slug) return null;
+
+  try {
+    const q = encodeURIComponent(slug);
+    const json = await strapiFetch<{ data: any[] }>(
+      `/api/thero-faqs?populate=*&filters[slug][$eq]=${q}&pagination[page]=1&pagination[pageSize]=1`
+    );
+
+    const row = json.data?.[0];
+    if (!row) return null;
+
+    // Accept both flat and attributes-shaped rows
+    const a = row.attributes ?? row;
+
+    const faq: FAQ = {
+      slug: a.slug ?? a.Slug ?? "",
+      question: a.Question ?? a.question ?? "",
+      answer: a.Answer ?? a.answer ?? "",
+    };
+    return faq.slug ? faq : null;
+  } catch (e) {
+    console.error("❌ fetchFAQ failed:", e);
+    return null;
   }
 }

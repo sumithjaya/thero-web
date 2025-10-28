@@ -8,6 +8,7 @@
   background: color-mix(in srgb, var(--background, #ffffff) 80%, transparent);
   backdrop-filter: blur(6px);
   isolation: isolate; /* clean stacking context for children */
+  padding: 15px;
 }
 
 /* Container */
@@ -75,13 +76,38 @@
   text-decoration: none;
   color: color-mix(in srgb, var(--foreground, #111827) 80%, transparent);
   transition: opacity 150ms ease, color 150ms ease, background 150ms ease;
+  position: relative;
 }
 .navLink:hover {
   opacity: 0.9;
+  color: #0046bf;
 }
 .navLinkActive {
-  color: var(--brand-blue01, #0046bf);
+    color: var(--brand-blue01, #0046bf);
   font-weight: 700;
+}
+.navLinkActive::after {
+ content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;              /* push below the text a bit */
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--brand-blue01, #0046bf);
+  border-radius: 50%;
+  pointer-events: none;  
+}
+.navLink:hover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: rgba(0, 70, 191, 0.4);
+  border-radius: 50%;
 }
 
 /* Dropdown group (desktop) */
@@ -359,4 +385,42 @@
 }
 .closeBtn:hover {
   background: rgba(0, 0, 0, 0.05);
+}/* make the host positioned so ::after has a box */
+.navLink {
+  position: relative;
 }
+
+/* ACTIVE dot – always visible */
+.activeLink {
+  color: var(--brand-blue01, #0046bf);
+  font-weight: 700;
+}
+
+.navLink.activeLink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;              /* push below text; tweak to taste */
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: currentColor; /* stays in sync with active color */
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* HOVER preview dot – only for non-active items */
+.navLink:not(.activeLink):hover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: rgba(0, 70, 191, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+}
+

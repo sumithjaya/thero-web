@@ -24,6 +24,7 @@ const faqs: FAQ[] = [
   },
 ];
 
+
 function AccordionItem({
   id,
   q,
