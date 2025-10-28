@@ -15,6 +15,9 @@
   justify-content: center;
   align-items: center;
 }
+.mob_FlloatStars{
+    display: none;
+}
 
 .section {
   position: relative;
@@ -78,4 +81,18 @@
 
 .iconWrapper {
   padding-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .mob_FlloatStars{
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+  }
+  .floatDots{
+    position: absolute;
+    bottom: 20px;
+    right: 20px
+  }
 }

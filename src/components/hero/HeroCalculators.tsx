@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./HeroCalculators.module.css";
+import Image from "next/image";
 
 export default function HeroCalculators() {
   return (
@@ -19,8 +20,22 @@ export default function HeroCalculators() {
             </Link>
           </div>
         </div>
-
-         
+        <div className={styles.mob_FlloatStars}>
+          <Image
+            src="/images/svg/stars.svg"
+            alt="image"
+            width={120}
+            height={200}
+          />
+        </div>
+        <div className={styles.floatDots}>
+          <Image
+            src="/images/svg/dots.svg" 
+            alt="image"
+            width={120}
+            height={200}
+          />
+        </div>
       </section>
     </div>
   );
