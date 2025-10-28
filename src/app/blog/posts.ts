@@ -224,7 +224,7 @@ export async function fetchPosts(): Promise<Post[]> {
 
   try {
     const json = await strapiFetch<{ data: any[] }>(
-      `/api/thero-posts?populate=*&sort[0]=CreatedDate:desc&sort[1]=publishedAt:desc&sort[2]=createdAt:desc`
+      `/api/thero-posts?populate=*&sort[0]=createdAt:desc`
     );
     return (json.data ?? []).map(toPost);
   } catch (err) {
