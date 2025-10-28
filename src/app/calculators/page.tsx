@@ -92,61 +92,7 @@ export default function Calculators() {
             <ContactForm />
           </div>
 
-          <div className={styles.contactRight}>
-            <h5 className={styles.contactTitle}>Contact Us</h5>
-            <p className={styles.contactIntro}>
-              There is now an abundance of readable dummy texts. These are
-              usually used when a text is required purely to fill a space.
-            </p>
-
-            <div className={styles.contactRow}>
-              <div className={styles.contactItem}>
-                <div className={styles.contactIcon}>
-                  <BiPhone className={styles.iconLg} />
-                </div>
-                <div className={styles.contactTextCol}>
-                  <p className={styles.contactLabel}>Phone</p>
-                  <p className={styles.contactValue}>(+081) 9876 1234</p>
-                </div>
-              </div>
-
-              <div className={styles.contactItem}>
-                <div className={styles.contactIcon}>
-                  <BiMailSend className={styles.iconLg} />
-                </div>
-                <div className={styles.contactTextCol}>
-                  <p className={styles.contactLabel}>Email</p>
-                  <p className={styles.contactValue}>johndoe@gmail.com</p>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.contactItem}>
-              <div className={styles.contactIcon}>
-                <BsGeoAlt className={styles.iconLg} />
-              </div>
-              <div className={styles.contactTextCol}>
-                <p className={styles.contactLabel}>Address</p>
-                <p className={styles.contactValue}>London Eye, London</p>
-              </div>
-            </div>
-
-            <div className={styles.socialBlock}>
-              <div className={styles.socialTitle}>Social Media</div>
-              <div className={styles.socialIcon}>
-                <FaFacebook />
-              </div>
-              <div className={styles.socialIcon}>
-                <BsTwitterX />
-              </div>
-              <div className={styles.socialIcon}>
-                <BsYoutube />
-              </div>
-              <div className={styles.socialIcon}>
-                <BsLinkedin />
-              </div>
-            </div>
-          </div>
+         
         </div>
       </section>
     </div>
