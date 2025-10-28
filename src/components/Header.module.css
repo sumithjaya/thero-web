@@ -19,8 +19,8 @@
   max-width: 80rem; /* max-w-7xl */
   align-items: center;
   gap: 0.75rem; /* gap-3 */
-  padding-left: 1rem; /* px-4 */
-  padding-right: 1rem;
+  padding-left: 100px; /* px-4 */
+  padding-right: 100px;
 }
 @media (min-width: 640px) {
   .inner {
@@ -38,8 +38,7 @@
 }
 
 .logoBox {
-  position: relative;
-  height: 5rem; /* h-20 */
+  position: relative; 
   width: 130px; /* w-[130px] */
 }
 
