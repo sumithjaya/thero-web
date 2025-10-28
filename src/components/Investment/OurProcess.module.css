@@ -1,0 +1,77 @@
+.op_container {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f9fbff;
+}
+
+.op_container h2 {
+  font-size: 2.5rem;
+  color: #001f3f;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.op_card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.op_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.op_icon {
+  flex-shrink: 0;
+}
+
+.op_icon_wrap {
+  width: 70px;
+  height: 70px;
+  background: rgba(0, 71, 171, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.op_content {
+  text-align: left;
+}
+
+.op_title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #0047ab;
+  font-weight: 600;
+}
+
+.op_description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+.op_cards{
+    display: flex;
+    gap: 25px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .op_card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .op_content {
+    text-align: center;
+  }
+}
