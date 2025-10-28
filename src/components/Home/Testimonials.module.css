@@ -108,4 +108,7 @@ z-index: 2;
     .testimonialRow{
         flex-direction: column;
     }
+    .arrowGroup{
+        display: none;
+    }
 }

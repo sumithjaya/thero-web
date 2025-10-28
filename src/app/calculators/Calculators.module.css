@@ -229,6 +229,9 @@
 
 /* Responsive tweaks */
 @media (max-width: 1024px) {
+  .waveWrapper{
+    display: none;
+  }
   .chartsRow,
   .howWeCalcGrid,
   .contactGrid {
