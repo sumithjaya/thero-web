@@ -253,3 +253,34 @@
   font-size: 0.8rem;
   color: #64748b;
 }
+.skeletoncard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px #e0dede; 
+}
+.skeletongrid{
+  padding:10px 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;  
+  gap: 122px;
+}
+
+.skeletoncardFeature{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px #e0dede;
+}
+.skeletongrid2{
+  padding: 50px 100px;
+}
