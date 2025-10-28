@@ -17,6 +17,7 @@ import { BiMailSend, BiPhone } from "react-icons/bi";
 import { FaFacebook } from "react-icons/fa";
 
 import styles from "./Calculators.module.css";
+import Banner from "@/components/Calculators/Banner";
 
 export default function Calculators() {
   return (
@@ -39,6 +40,7 @@ export default function Calculators() {
       </div>
 
       <section className={styles.sectionForm}>
+        <Banner />
         <CalForm />
       </section>
 

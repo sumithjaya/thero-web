@@ -76,6 +76,7 @@
 }
 @media (max-width: 640px) {
   .banner {
+    display: none;
     flex-direction: column;
     padding: 16px;
     border-radius: 16px;
