@@ -77,13 +77,24 @@ padding: 120px;
 }
  
 @media (max-width: 768px) {
+   
+   .heroSection{
+       padding: 100px 20px;
+   }
     .heroStack{
-        padding: 50px 50px;
+        padding: 0 0;
     }
     .heroTitle{
-        font-size: 44px;
+        font-size: 34px;
     }
     .heroSubtitle{
+        font-size: 16px;
         padding: 0 50px;  
+    }
+    .leftOrnamentPad{
+        display: none;
+    }
+    .rightOrnamentPad{
+        display: none;
     }
 }
