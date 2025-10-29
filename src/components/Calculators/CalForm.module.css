@@ -16,6 +16,7 @@
   gap: 50px;
   box-shadow: 0 0 10px 10px rgba(189, 185, 185, 0.15);
   border-radius: 26px;
+  width: 100%;
 }
 
 @media (max-width: 640px) {
