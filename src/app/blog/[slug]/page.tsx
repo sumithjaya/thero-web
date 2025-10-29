@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles2 from "./BlogPost.module.css";
-import { fetchPosts, toPost } from "../posts"; // <-- you already have this
+import { fetchPosts, toPost } from "../posts";
 
 // ✅ Fetch a single post by slug
 async function fetchPostBySlug(slug: string) {
@@ -20,13 +20,15 @@ async function fetchPostBySlug(slug: string) {
   return node ? toPost(node) : null;
 }
 
-// ✅ Metadata for SEO
+// ✅ Metadata for SEO - UPDATED FOR NEXT.JS 15
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // Changed: params is now a Promise
 }): Promise<Metadata> {
-  const post = await fetchPostBySlug(params.slug);
+  const { slug } = await params; // Changed: await params first
+  const post = await fetchPostBySlug(slug);
+  
   if (!post)
     return {
       title: "Post not found | Blog",
@@ -44,12 +46,14 @@ export async function generateMetadata({
   };
 }
 
+// ✅ Main component - UPDATED FOR NEXT.JS 15
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // Changed: params is now a Promise
 }) {
-  const p = await fetchPostBySlug(params.slug);
+  const { slug } = await params; // Changed: await params first
+  const p = await fetchPostBySlug(slug);
 
   if (!p) {
     return <div className="p-8 text-center text-gray-500">❌ Post not found</div>;
