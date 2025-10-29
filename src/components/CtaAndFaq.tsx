@@ -2,10 +2,13 @@
 
 import { useRef, useState, useEffect } from "react";
 import styles from "./CtaAndFaq.module.css";
+import { fetchFAQs } from "./Testimonials/FAQ"; // adjust the path if needed
 
-type FAQ = { q: string; a: string };
+// Local UI type
+type FAQItem = { q: string; a: string };
 
-const faqs: FAQ[] = [
+// (Optional) local fallback so page renders even if Strapi is down
+const defaultFaqs: FAQItem[] = [
   {
     q: "How this work?",
     a: "We prioritize the security of your insurance information. We use advanced encryption and strict data protection measures to ensure your data is safe and confidential.",
@@ -23,7 +26,6 @@ const faqs: FAQ[] = [
     a: "There may be a waiting period for certain insurance claims, depending on the policy terms and conditions. Please refer to your policy documents for details.",
   },
 ];
-
 
 function AccordionItem({
   id,
@@ -61,7 +63,6 @@ function AccordionItem({
 
         {/* plus/minus icon */}
         <svg className={styles.icon} viewBox="0 0 16 16" aria-hidden>
-          {/* Horizontal bar */}
           <rect
             y="7"
             width="16"
@@ -69,7 +70,6 @@ function AccordionItem({
             rx="1"
             className={`${styles.iconBar} ${styles.iconBarHorizontal}`}
           />
-          {/* Vertical bar rotates away when open */}
           <rect
             y="7"
             width="16"
@@ -96,24 +96,61 @@ function AccordionItem({
 
 export default function CtaAndFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [items, setItems] = useState<FAQItem[]>(defaultFaqs);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        setLoading(true);
+        const data = await fetchFAQs(); // returns FAQs[]
+        const mapped: FAQItem[] = (data || []).map((d) => ({
+          q: d.Question ?? "Untitled",
+          a: d.Answer ?? "",
+        }));
+
+        if (!cancelled) {
+          setItems(mapped.length ? mapped : defaultFaqs);
+        }
+      } catch (err) {
+        console.error("Error fetching FAQs:", err);
+        if (!cancelled) setItems(defaultFaqs);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section className={styles.section}>
       <div className={styles.wrapper}>
         <div className={styles.col}>
           <div className={styles.inner}>
-            <ul className={styles.faqList}>
-              {faqs.map((f, i) => (
-                <AccordionItem
-                  key={i}
-                  id={`faq-${i}`}
-                  q={f.q}
-                  a={f.a}
-                  open={openIndex === i}
-                  onToggle={() => setOpenIndex((idx) => (idx === i ? null : i))}
-                />
-              ))}
-            </ul>
+            {loading ? (
+              <div className={styles.loading}>Loading FAQs…</div>
+            ) : (
+              <ul className={styles.faqList}>
+                {items.map((f, i) => (
+                  <AccordionItem
+                    key={`faq-${i}`}
+                    id={`faq-${i}`}
+                    q={f.q}
+                    a={f.a}
+                    open={openIndex === i}
+                    onToggle={() =>
+                      setOpenIndex((idx) => (idx === i ? null : i))
+                    }
+                  />
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

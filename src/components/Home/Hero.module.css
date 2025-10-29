@@ -1,9 +1,9 @@
 .heroRoot{
-   position: relative; 
+   position: relative;  
 }
 .heroSection{
-   background: #ffffff;
    background: linear-gradient(0deg,rgba(255, 255, 255, 0) 0%, rgba(236, 244, 254, 1) 100%);
+padding: 120px;
  
 }
 
@@ -29,7 +29,17 @@
 .brand{
     color: #0047AB;
 }
-
+.leftOrnamentPad{
+    position: absolute;
+    bottom: 170px   ;
+    left: 77px;
+}
+.rightOrnamentPad{
+    position: absolute;
+    padding: 25px;
+    bottom:40px;
+    right: 0;
+}
 .heroSubtitle{
     font-size: 18px;
     font-weight: 400;

@@ -3,14 +3,20 @@
   justify-content: space-between;
   padding: 10px 100px;
   margin-bottom: 25px;
+  position: relative;
 }
-
+.floatElementDts{
+  position: absolute;
+  top: 0;
+  left: 100
+}
 .rowBetween {
   padding: 10px;
   display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 40px;
+  flex: 2;
 }
 .donutSvgWrapMobile {
   display: none;
@@ -24,11 +30,15 @@
 }
 .leftCol {
   height: 100%;
+  width: 100% ;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }
-
+.planPanel{
+  flex: 1;
+}
 .assessmentCard {
   background-color: #ecf4fe;
   display: flex;
@@ -48,7 +58,7 @@
 }
 
 .cardTitle {
-  font-size: 22px;
+  font-size: 2rem;
   font-weight: 700;
   font-family: "Open Sans", sans-serif;
   line-height: 1.15;
@@ -88,9 +98,21 @@
 }
 .cardContent {
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; 
+  width: 100%;
+  margin-left:50px ;
 }
 .sustainabilityContent {
   padding: 0 20px;
+  
+    margin-left: 50px;
+    height: 100%  ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .assessmentCta {
   color: #0047ab;
@@ -100,10 +122,12 @@
   border: #0047ab 1px solid;
   padding: 17px 35px;
   margin-top: 20px;
+  text-align: center;
+  max-width: fit-content;
 }
 .sustainabilityTitle {
   color: #fff;
-  font-size: 22px;
+  font-size: 2rem;
   font-weight: 700;
   font-family: "Open Sans", sans-serif;
   line-height: 1.15;
@@ -130,6 +154,8 @@
   margin-top: 20px;
   font-family: "Open Sans", sans-serif;
   padding: 17px 35px;
+  text-align: center;
+  max-width: fit-content;
 }
 
 .planTitle {
@@ -151,6 +177,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-direction: row; 
+  justify-content: center;
 }
 .planCharts {
   display: flex;
@@ -192,11 +220,11 @@
 .legendLabel {
   font-size: 22px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
-  line-height: 1.15;
+  font-family: "Open Sans", sans-serif; 
   letter-spacing: -0.01em;
   color: #1f1f1f;
   margin-bottom: 12px;
+  padding-top:10px ;
 }
 
 @media (max-width: 640px) {

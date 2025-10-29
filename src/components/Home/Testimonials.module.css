@@ -1,10 +1,14 @@
 .sectionPadLg{
     display: flex;
     flex-direction: row; 
-    padding: 50px 100px;
-    background-color: #ffffff;
+    padding: 50px 100px; 
+    position: relative;
 }
-
+.floatElementDts{
+    position: absolute;
+    top: -50px;
+    left: -20px;
+}
 .testimonialTitle{
     font-size: 44px;
     font-weight: 700;
@@ -39,12 +43,13 @@
 }
 .testimonialLeft{
     flex: 2;
+    padding: 150px 150px 100px  0; 
 }
 
 .testimonialCardsCol{
     flex: 3;
     position: relative;
-     
+     padding: 30px 0 0 0;
 }
 
 .testimonialCard{
@@ -52,7 +57,7 @@
     border-radius: 26px;
     padding: 20px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     display: flex;
     max-width: 600px;
 margin-bottom: 30px;
@@ -89,13 +94,26 @@ z-index: 2;
 
 .cardsBacker{
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
-    z-index: 1;
+    z-index: -1;
+}
+.primary{
+    color: #0047AB  ;
+}
+.cardsBackerInner{
+   width: 500px;
+   height: 500px;
+   background-color: #ECF4FE;
+   border-radius: 20px;
+   z-index: -2 ;
 }
 
 .testimonialCard:first-child{
     margin-left: 150px;
+}
+.arrowGroupMobile{
+    display: none;
 }
 
 @media (max-width: 1024px) {
@@ -112,3 +130,40 @@ z-index: 2;
         display: none;
     }
 }
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.slidesWrap { will-change: transform, opacity; }
+.inFromRight { animation: slideInRight 280ms cubic-bezier(.22,.61,.36,1) both; }
+.inFromLeft  { animation: slideInLeft  280ms cubic-bezier(.22,.61,.36,1) both; }
+
+.stagger {
+  opacity: 0;
+  animation: cardIn 360ms cubic-bezier(.22,.61,.36,1) both;
+  animation-delay: calc(60ms * var(--stagger, 0));
+}
+
+.testimonialCard:hover {
+  transform: translateY(-2px);
+  transition: transform 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inFromRight, .inFromLeft, .stagger {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

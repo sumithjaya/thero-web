@@ -22,10 +22,12 @@ export default function RetirmentAssestment() {
               </div>
             </div>
             <div className={styles.cardContent}>
-              <h5 className={styles.cardTitle}>Retirement Assessment</h5>
+              <div>
+                <h5 className={styles.cardTitle}>Retirement Assessment</h5>
               <p className={styles.cardText}>
                 Answer a few questions to get personalized recommendations
               </p>
+              </div>
               <Link href={"/assessment"} className={styles.assessmentCta}>
                 Take the assessment
               </Link>

@@ -238,9 +238,8 @@ export async function fetchLatestPost(): Promise<Post | null> {
   if (!STRAPI_URL) return fallbackPosts[0] ?? null;
 
   try {
-    const json = await strapiFetch<{ data: any[] }>(
-      `/api/thero-posts?populate=*&pagination[page]=1&pagination[pageSize]=1` +
-        `&sort[0]=CreatedDate:desc&sort[1]=publishedAt:desc&sort[2]=createdAt:desc`
+     const json = await strapiFetch<{ data: any[] }>(
+      `/api/thero-testimonial?populate=*&sort[0]=CreatedDate:desc&sort[1]=publishedAt:desc&sort[2]=createdAt:desc`
     );
     const node = json.data?.[0];
     return node ? toPost(node) : fallbackPosts[0] ?? null;

@@ -8,16 +8,13 @@
   background: color-mix(in srgb, var(--background, #ffffff) 80%, transparent);
   backdrop-filter: blur(6px);
   isolation: isolate; /* clean stacking context for children */
-  padding: 15px;
+  padding: 15px 100px;
 }
 
 /* Container */
-.inner {
-  margin-left: auto;
-  margin-right: auto;
+.inner { 
   display: flex;
-  height: 4rem; /* h-16 */
-  max-width: 80rem; /* max-w-7xl */
+  height: 4rem; /* h-16 */ 
   align-items: center;
   gap: 0.75rem; /* gap-3 */
   padding-left: 100px; /* px-4 */

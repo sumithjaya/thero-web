@@ -4,73 +4,182 @@ import Image from "next/image";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import RatingStars from "../Testimonials/RatingStars";
 import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { fetchTestimonials, type Testimonial } from "../Testimonials/Testimonials";
 
-const TESTIMONIALS = [
+// Fallback testimonials (used if API fails)
+const FALLBACK_TESTIMONIALS = [
   {
-    id: 1,
-    name: "Robert Smith",
-    photo: "/images/client1.jpg",
-    text: "Very helpful in urgent situation, love the product and best service.",
+    slug: "robert-smith",
+    ClientName: "FL Robert Smith",
+    Testimonial: "Very helpful in urgent situation, love the product and best service.",
     rating: 4.6,
+    Avatar: "/images/client1.jpg",
   },
   {
-    id: 2,
-    name: "Sarah K.",
-    photo: "/images/client2.jpg",
-    text: "Love the interface and really easy to use so far. Great service!",
+    slug: "sarah-k",
+    ClientName: " FL Sarah K.",
+    Testimonial: "Love the interface and really easy to use so far. Great service!",
     rating: 4.8,
+    Avatar: "/images/client2.jpg",
   },
   {
-    id: 3,
-    name: "Adeel R.",
-    photo: "/images/client3.jpg",
-    text: "We onboarded our team in a day. Support is lightning fast.",
+    slug: "adeel-r",
+    ClientName: "FL Adeel R.",
+    Testimonial: "We onboarded our team in a day. Support is lightning fast.",
     rating: 5,
+    Avatar: "/images/client3.jpg",
   },
   {
-    id: 4,
-    name: "Maya D.",
-    photo: "/images/client4.jpg",
-    text: "Clean UI, thoughtful features, and stable. Exactly what we needed.",
+    slug: "maya-d",
+    ClientName: "Maya D.",
+    Testimonial: "Clean UI, thoughtful features, and stable. Exactly what we needed.",
     rating: 4.7,
+    Avatar: "/images/client4.jpg",
   },
   {
-    id: 5,
-    name: "Kenan P.",
-    photo: "/images/client5.jpg",
-    text: "Migration was painless and our NPS jumped. Highly recommended.",
+    slug: "kenan-p",
+    ClientName: "FL FL Kenan P.",
+    Testimonial: "Migration was painless and our NPS jumped. Highly recommended.",
     rating: 4.9,
+    Avatar: "/images/client5.jpg",
   },
   {
-    id: 6,
-    name: "Elena V.",
-    photo: "/images/client6.jpg",
-    text: "Solid product. Clear roadmap and they actually ship updates.",
+    slug: "elena-v",
+    ClientName: "Elena V.",
+    Testimonial: "Solid product. Clear roadmap and they actually ship updates.",
     rating: 4.7,
+    Avatar: "/images/client6.jpg",
   },
 ];
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
-  const len = TESTIMONIALS.length;
-
-  // advance by 2, wrap around
-  const next = () => setIndex((i) => (i + 2) % len);
-  const prev = () => setIndex((i) => (i - 2 + len) % len);
-
-  // compute the two visible slides
-  const slides = useMemo(() => {
-    const a = TESTIMONIALS[index % len];
-    const b = TESTIMONIALS[(index + 1) % len];
-    return [a, b];
-  }, [index, len]);
-
-  // simple fade trigger
+  const [dir, setDir] = useState<"next" | "prev">("next");
   const [fadeKey, setFadeKey] = useState(0);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(FALLBACK_TESTIMONIALS);
+  const [loading, setLoading] = useState(true);
+  const len = testimonials.length;
+
+  useEffect(() => {
+    async function loadTestimonials() {
+      try {
+        setLoading(true);
+        const data = await fetchTestimonials();
+        console.log("✅ Loaded testimonials:", data);
+        if (data && data.length > 0) {
+          setTestimonials(data);
+        }
+      } catch (error) {
+        console.error("❌ Failed to load testimonials:", error);
+        // Keep using fallback testimonials
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadTestimonials();
+  }, []);
+
+  const next = () => {
+    setDir("next");
+    setIndex((i) => (i + 2) % len);
+  };
+  const prev = () => {
+    setDir("prev");
+    setIndex((i) => (i - 2 + len) % len);
+  };
+
+  const slides = useMemo(() => {
+    const a = testimonials[index % len];
+    const b = testimonials[(index + 1) % len];
+    return [a, b];
+  }, [index, len, testimonials]);
+
+  // trigger re-mount animation on index change
   useEffect(() => setFadeKey((k) => k + 1), [index]);
+
+  /* ---------- Motion variants (vertical slide up) ---------- */
+  const groupVariants = {
+    initial: {
+      opacity: 1,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren" as const,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 1,
+      transition: {
+        when: "afterChildren" as const,
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    initial: (cardIndex: number) => ({
+      opacity: 0,
+      y: 120,
+      scale: 0.92,
+    }),
+    animate: (cardIndex: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        opacity: {
+          duration: 0.6,
+          ease: [0.25, 0.1, 0.25, 1] as const,
+          delay: cardIndex === 1 ? 0.3 : 0,
+        },
+        y: {
+          duration: 0.7,
+          ease: [0.25, 0.1, 0.25, 1] as const,
+          delay: cardIndex === 1 ? 0.3 : 0,
+        },
+        scale: {
+          duration: 0.7,
+          ease: [0.25, 0.1, 0.25, 1] as const,
+          delay: cardIndex === 1 ? 0.3 : 0,
+        },
+      },
+    }),
+    exit: (cardIndex: number) => ({
+      opacity: 0,
+      y: -120,
+      scale: 0.92,
+      transition: {
+        opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+        y: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
+        scale: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
+      },
+    }),
+  };
+
+  /* ------------------------------------------------------------ */
 
   return (
     <section className={styles.sectionPadLg}>
+      <div className={styles.floatElementDts}>
+        <svg
+          width="118"
+          height="43"
+          viewBox="0 0 118 43"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            opacity="0.5"
+            d="M111.95 39.7637C111.95 38.3832 113.07 37.2639 114.45 37.2637H114.926C116.306 37.2637 117.426 38.3831 117.426 39.7637C117.426 41.1443 116.306 42.2637 114.926 42.2637H114.45C113.07 42.2635 111.95 41.1441 111.95 39.7637ZM91.9766 39.7637C91.9767 38.3832 93.0961 37.2639 94.4766 37.2637H95.4277C96.8084 37.2637 97.9276 38.3831 97.9277 39.7637C97.9276 41.1443 96.8084 42.2637 95.4277 42.2637H94.4766C93.0961 42.2634 91.9767 41.1441 91.9766 39.7637ZM88.0938 21.3086C88.0939 19.928 89.2132 18.8087 90.5938 18.8086H91.0693C92.45 18.8086 93.5692 19.928 93.5693 21.3086C93.5692 22.6892 92.45 23.8086 91.0693 23.8086H90.5938C89.2132 23.8085 88.0939 22.6892 88.0938 21.3086ZM72.0029 39.7637C72.0031 38.3833 73.1225 37.264 74.5029 37.2637H75.4541C76.8347 37.2637 77.954 38.3831 77.9541 39.7637C77.954 41.1443 76.8347 42.2637 75.4541 42.2637H74.5029C73.1225 42.2634 72.0031 41.1441 72.0029 39.7637ZM69.3389 2.5C69.339 1.11953 70.4584 0.00019455 71.8389 0H72.3145C73.6951 0 74.8143 1.1194 74.8145 2.5C74.8143 3.8806 73.6951 5 72.3145 5H71.8389C70.4584 4.99981 69.339 3.88048 69.3389 2.5ZM68.1201 21.3086C68.1203 19.9281 69.2396 18.8087 70.6201 18.8086H71.5713C72.9519 18.8086 74.0712 19.928 74.0713 21.3086C74.0712 22.6892 72.9519 23.8086 71.5713 23.8086H70.6201C69.2396 23.8085 68.1203 22.6891 68.1201 21.3086ZM52.0293 39.7637C52.0294 38.3833 53.149 37.264 54.5293 37.2637H55.4805C56.8611 37.2637 57.9803 38.3831 57.9805 39.7637C57.9803 41.1443 56.8611 42.2637 55.4805 42.2637H54.5293C53.149 42.2633 52.0294 41.1441 52.0293 39.7637ZM49.3652 2.5C49.3654 1.11956 50.4848 0.000244141 51.8652 0H52.8164C54.197 0 55.3163 1.1194 55.3164 2.5C55.3163 3.8806 54.197 5 52.8164 5H51.8652C50.4848 4.99976 49.3654 3.88045 49.3652 2.5ZM48.1465 21.3086C48.1466 19.9281 49.266 18.8088 50.6465 18.8086H51.5977C52.9783 18.8086 54.0975 19.928 54.0977 21.3086C54.0975 22.6892 52.9783 23.8086 51.5977 23.8086H50.6465C49.266 23.8084 48.1466 22.6891 48.1465 21.3086ZM32.0557 39.7637C32.0558 38.3833 33.1754 37.2641 34.5557 37.2637H35.5068C36.8875 37.2637 38.0067 38.3831 38.0068 39.7637C38.0067 41.1443 36.8875 42.2637 35.5068 42.2637H34.5557C33.1754 42.2633 32.0558 41.144 32.0557 39.7637ZM29.3916 2.5C29.3917 1.11958 30.5112 0.000293732 31.8916 0H32.8428C34.2234 0 35.3426 1.1194 35.3428 2.5C35.3426 3.8806 34.2234 5 32.8428 5H31.8916C30.5112 4.99971 29.3917 3.88042 29.3916 2.5ZM28.1729 21.3086C28.173 19.9281 29.2924 18.8088 30.6729 18.8086H31.624C33.0047 18.8086 34.1239 19.928 34.124 21.3086C34.1239 22.6892 33.0047 23.8086 31.624 23.8086H30.6729C29.2924 23.8084 28.173 22.6891 28.1729 21.3086ZM12.082 39.7637C12.0822 38.3833 13.2018 37.2641 14.582 37.2637H15.5332C16.9138 37.2637 18.0331 38.3831 18.0332 39.7637C18.0331 41.1443 16.9138 42.2637 15.5332 42.2637H14.582C13.2018 42.2632 12.0822 41.144 12.082 39.7637ZM9.41797 2.5C9.41811 1.11961 10.5376 0.000339508 11.918 0H12.8691C14.2498 0 15.369 1.1194 15.3691 2.5C15.369 3.8806 14.2498 5 12.8691 5H11.918C10.5376 4.99966 9.41811 3.88039 9.41797 2.5ZM8.19922 21.3086C8.19936 19.9282 9.31881 18.8089 10.6992 18.8086H11.6504C13.031 18.8086 14.1503 19.928 14.1504 21.3086C14.1503 22.6892 13.031 23.8086 11.6504 23.8086H10.6992C9.31881 23.8083 8.19936 22.689 8.19922 21.3086ZM-7.89062 39.7637C-7.89049 38.3832 -6.7711 37.2639 -5.39062 37.2637L-4.43945 37.2637C-3.05904 37.2639 -1.93959 38.3832 -1.93945 39.7637C-1.93959 41.1441 -3.05904 42.2634 -4.43945 42.2637H-5.39062C-6.7711 42.2635 -7.89049 41.1442 -7.89062 39.7637ZM-10.5557 2.5C-10.5555 1.11964 -9.43596 0.000392914 -8.05566 0H-7.10449C-5.72386 0 -4.60463 1.1194 -4.60449 2.5C-4.60463 3.8806 -5.72386 5 -7.10449 5H-8.05566C-9.43596 4.99961 -10.5555 3.88036 -10.5557 2.5ZM-11.7744 21.3086C-11.7743 19.9282 -10.6548 18.8089 -9.27441 18.8086H-8.32324C-6.94262 18.8086 -5.82338 19.928 -5.82324 21.3086C-5.82338 22.6892 -6.94262 23.8086 -8.32324 23.8086H-9.27441C-10.6548 23.8083 -11.7743 22.689 -11.7744 21.3086ZM-27.3887 39.7637C-27.3885 38.3832 -26.2691 37.2639 -24.8887 37.2637H-24.4131C-23.0326 37.2639 -21.9132 38.3832 -21.9131 39.7637C-21.9132 41.1441 -23.0326 42.2635 -24.4131 42.2637H-24.8887C-26.2691 42.2635 -27.3885 41.1442 -27.3887 39.7637ZM-30.5293 2.5C-30.5292 1.11968 -29.4095 0.000442505 -28.0293 0H-27.0781C-25.6975 0 -24.5783 1.1194 -24.5781 2.5C-24.5783 3.8806 -25.6975 5 -27.0781 5H-28.0293C-29.4095 4.99956 -30.5292 3.88033 -30.5293 2.5ZM-31.7471 21.3086C-31.7469 19.928 -30.6277 18.8086 -29.2471 18.8086H-28.2959C-26.9155 18.8088 -25.796 19.9282 -25.7959 21.3086C-25.796 22.689 -26.9155 23.8083 -28.2959 23.8086H-29.2471C-30.6277 23.8085 -31.7469 22.6892 -31.7471 21.3086ZM-50.502 2.5C-50.5018 1.11951 -49.3824 0.000183105 -48.002 0H-47.0508C-45.6704 0.000247955 -44.5509 1.11956 -44.5508 2.5C-44.5509 3.88044 -45.6704 4.99975 -47.0508 5H-48.002C-49.3824 4.99982 -50.5018 3.88049 -50.502 2.5ZM-51.2451 21.3086C-51.245 19.928 -50.1257 18.8086 -48.7451 18.8086H-48.2695C-46.8891 18.8088 -45.7697 19.9281 -45.7695 21.3086C-45.7697 22.6891 -46.8891 23.8084 -48.2695 23.8086H-48.7451C-50.1257 23.8085 -51.245 22.6892 -51.2451 21.3086ZM-70 2.5C-69.9999 1.11951 -68.8805 0.000183105 -67.5 0H-67.0244C-65.644 0.000198364 -64.5245 1.11953 -64.5244 2.5C-64.5245 3.88047 -65.644 4.9998 -67.0244 5H-67.5C-68.8805 4.99982 -69.9999 3.88049 -70 2.5Z"
+            fill="#0047AB"
+          />
+        </svg>
+      </div>
       <div className={styles.testimonialRow}>
         <div className={styles.testimonialLeft}>
           <div>
@@ -118,80 +227,83 @@ export default function Testimonials() {
         </div>
 
         <div className={styles.testimonialCardsCol}>
-          {/* visible slides */}
-          <div key={fadeKey} className={styles.slidesWrap}>
-            {slides.map((t) => (
-              <div
-                key={t.id}
-                className={`${styles.testimonialCard} ${styles.testimonialCardOffset}`}
-              >
-                <div>
-                  <div className={styles.avatarPad}>
-                    <div
-                      className="relative"
-                      style={{ height: "80px", width: "80px" }}
-                    >
-                      <Image
-                        src={t.photo}
-                        alt={`${t.name} photo`}
-                        fill
-                        className="rounded-full object-cover object-center"
-                      />
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={fadeKey}
+              className={styles.slidesWrap}
+              variants={groupVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {slides.map((t, idx) => (
+                <motion.div
+                  key={t.slug}
+                  className={`${styles.testimonialCard} ${styles.testimonialCardOffset}`}
+                  variants={cardVariants}
+                  custom={idx}
+                >
+                  <div>
+                    <div className={styles.avatarPad}>
+                      <div
+                        className="relative"
+                        style={{ height: "80px", width: "80px" }}
+                      >
+                        <Image
+                          src={t.Avatar}
+                          alt={`${t.ClientName} photo`}
+                          fill
+                          className="rounded-full object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={styles.testimonialContentPad}>
-                  <p className={styles.testimonialCopy}>{t.text}</p>
-                  <RatingStars value={t.rating} colorClass="text-amber-400" />
-                  <div className={styles.userRow}>
-                    <svg
-                      width="24px"
-                      height="64px"
-                      viewBox="0 0 16 16"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#000000"
-                    >
-                      <path
-                        d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
-                        fill="#bdbfc0ff"
-                      ></path>
-                    </svg>
-                    <p className={styles.userName}>{t.name}</p>
+
+                  <div className={styles.testimonialContentPad}>
+                    <p className={styles.testimonialCopy}>{t.Testimonial}</p>
+                    <RatingStars value={t.rating} colorClass="text-amber-400" />
+                    <div className={styles.userRow}>
+                      <svg
+                        width="24px"
+                        height="64px"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="#000000"
+                      >
+                        <path
+                          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+                          fill="#bdbfc0ff"
+                        ></path>
+                      </svg>
+                      <p className={styles.userName}>{t.ClientName}</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* background rectangle behind the cards */}
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
           <div className={styles.cardsBacker}>
-            <svg
-              width="532"
-              height="540"
-              viewBox="0 0 532 540"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="532" height="540" rx="20" fill="#ECF4FE" />
-            </svg>
+            <div className={styles.cardsBackerInner}></div>
           </div>
         </div>
+
         <div className={styles.arrowGroupMobile}>
-            <button
-              className={`${styles.arrowBtn} ${styles.arrowBtnLight}`}
-              onClick={prev}
-              aria-label="Previous testimonials"
-            >
-              <BsArrowLeft />
-            </button>
-            <button
-              className={`${styles.arrowBtn} ${styles.arrowBtnDark}`}
-              onClick={next}
-              aria-label="Next testimonials"
-            >
-              <BsArrowRight />
-            </button>
-          </div>
+          <button
+            className={`${styles.arrowBtn} ${styles.arrowBtnLight}`}
+            onClick={prev}
+            aria-label="Previous testimonials"
+          >
+            <BsArrowLeft />
+          </button>
+          <button
+            className={`${styles.arrowBtn} ${styles.arrowBtnDark}`}
+            onClick={next}
+            aria-label="Next testimonials"
+          >
+            <BsArrowRight />
+          </button>
+        </div>
       </div>
     </section>
   );
