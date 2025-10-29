@@ -1,15 +1,16 @@
-/* Wave */
-.waveWrapper {
-  min-height: 400px;
-  box-sizing: border-box;
+/* Wave header */
+.waveWrapper { 
+  display: flex;
+    width: 100%; 
+    justify-content: center;
+    padding: 10px 100px;
+    margin-bottom: 100px;
 }
 .waveSvg {
-  width: 1240px;
-  height: 160px;
+  width: 100%; 
   display: block;
-  margin: 0 auto;
+  
 }
-
 /* Testimonials block */
 .testimonialsSection {
   padding: 60px 70px;

@@ -10,7 +10,7 @@ export default function HeroInvestment() {
 
         <div className={styles.leftOrnamentPad}>
           <svg
-            width="734"
+            width="74"
             height="74"
             viewBox="0 0 73 73"
             fill="none"

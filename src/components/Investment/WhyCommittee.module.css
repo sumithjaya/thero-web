@@ -1,5 +1,5 @@
 .container {
-  padding: 80px 20px;
+  padding: 80px 100px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -83,4 +83,24 @@
     margin-right: auto;
     max-width: 400px;
   }
+}
+
+
+
+/* Philosophy */
+.philosophySection { padding: 70px 100px; }
+.philosophyGrid { display: flex; gap: 50px; }
+.philosophyImgCol { flex: 1; }
+.philosophyImg { height: 270px; width: 100%; border-radius: 20px; object-fit: cover; }
+.philosophyTextCol { flex: 1; }
+.h44 { font-size: 44px; font-weight: 700; margin: 0 0 16px 0; }
+.accent { color: #0047ab; }
+.lead { color: #545454; font-weight: 400; font-size: 18px; }
+.philosophyList{
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: dashed;
+ list-style-type: "⬤  ";
+ color: #1F1F1F;
+ padding-left: 50px;
 }
