@@ -52,7 +52,9 @@ export default function Calculators() {
             </div>
           ))}
         </div>
-        <Link href="/team" className={styles.teamLink}>Book a meeting</Link>
+       <div className={styles.teamLinkWrap}>
+         <Link href="/team" className={styles.teamLink}>Book a Chat</Link> 
+       </div>
       </section>
 
       {/* How we calculate */}

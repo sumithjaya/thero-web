@@ -94,9 +94,14 @@
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
-  margin: 25px;
+  
 }
-
+.teamLinkWrap{
+  width: 100%;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .teamSection { padding: 0 24px; }

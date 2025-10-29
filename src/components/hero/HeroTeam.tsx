@@ -1,52 +1,37 @@
 import Link from "next/link";
+import styles from "./HeroTeam.module.css";
 
 export default function HeroTeam() {
   return (
-    <div
-      style={{
-        boxSizing: "border-box",
-        background:
-          "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(255,255,255,1) 0%, rgba(0,71,171,0.51) 100%)",
-         
-      }}
-      className="w-full mb-20 m-0 flex flex-col justify-center items-center"
-    >
-      <section
-        className="relative   text-center  flex flex-row"
-        aria-labelledby="hero-heading"
-      >
-        {/* Subtle backdrop */}
-     
-         
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:pt-16 lg:pb-24   ">
-          <div className="flex flex-col items-center gap-6 pt-25">
-            <h1 style={{color:'#1F1F1F',fontSize:'54px',fontWeight:700}}><span style={{color:'#0047AB',fontSize:'54px',fontWeight:700}}>Meet Our</span>Team</h1>
-            <p style={{color:'#545454',fontSize:'18px',fontWeight:400}}  >
-            Let’s get it sorted for you...meet with one of our Retirement Experts. Via chat, video or face to face.
+    <div className={styles.wrapper}>
+      <section className={styles.section} aria-labelledby="hero-heading">
+        <div className={styles.container}>
+          <div className={styles.stack}>
+            <h1 id="hero-heading" className={styles.heading}>
+              <span className={styles.emphasis}>Meet Our</span> Team
+            </h1>
+
+            <p className={styles.subtext}>
+              Let’s get it sorted for you...meet with one of our Retirement Experts. Via chat, video or face to face.
             </p>
-            <div style={{display:'flex',gap:20}}>
-              <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-brand border-brand font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
-            >
-         Book A Demo
-            </Link>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 text-base font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
-            >
-      Get In Touch
-            </Link>
+
+            <div className={styles.actions}>
+              <Link href="/get-started" className={`${styles.btn} ${styles.btnPrimary}`}>
+                Book A Demo
+              </Link>
+              <Link href="/get-started" className={`${styles.btn} ${styles.btnSecondary}`}>
+                Get In Touch
+              </Link>
             </div>
           </div>
         </div>
-        <div className="pt-50 ">
+
+        <div className={styles.svgWrap}>
           <svg
-            width="113"
-            height="43"
+            className={styles.svg}
             viewBox="0 0 113 43"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               opacity="0.5"
@@ -54,6 +39,16 @@ export default function HeroTeam() {
               fill="#0047AB"
             />
           </svg>
+        </div>
+        <div className={styles.stars}>
+          <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.1">
+<path d="M31 51.0137C29.4447 58.5523 28.1796 59.8771 21 61.5137C28.1796 63.1502 29.4392 64.4751 31 72.0137C32.5553 64.4751 33.8204 63.1502 41 61.5137C33.8204 59.8771 32.5553 58.5523 31 51.0137Z" fill="#0047AB"/>
+<path d="M47.7085 55.9662C51.6482 35.8747 54.838 32.3407 72.9874 27.9831C54.838 23.6255 51.6482 20.0915 47.7085 0C43.7689 20.0915 40.5791 23.6255 22.4297 27.9831C40.5791 32.3407 43.7689 35.8747 47.7085 55.9662Z" fill="#0047AB"/>
+<path d="M11 52.0137C12.7128 43.3988 14.1011 41.8844 22 40.0137C14.1011 38.1429 12.7128 36.6285 11 28.0137C9.28723 36.6285 7.89894 38.1429 0 40.0137C7.89894 41.8844 9.28723 43.3988 11 52.0137Z" fill="#0047AB"/>
+</g>
+</svg>
+
         </div>
       </section>
     </div>
