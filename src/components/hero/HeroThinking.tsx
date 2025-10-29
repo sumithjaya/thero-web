@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import styles from "./HeroThinking.module.css";
 export default function HeroThinking() {
   return (
     <div

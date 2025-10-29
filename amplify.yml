@@ -3,24 +3,25 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Use the Node version from .nvmrc if present (recommended)
-        - 'if command -v nvm >/dev/null 2>&1; then nvm install && nvm use; fi'
+        # Pin Node to LTS (uses .nvmrc if present, else falls back to 20.17.0)
+        - if command -v nvm >/dev/null 2>&1; then nvm install && nvm use; else echo "nvm not found; using system Node"; fi
+        - if [ -f .nvmrc ]; then echo "Using $(cat .nvmrc) from .nvmrc"; else echo "20.17.0" > .nvmrc && echo "Using 20.17.0 (written to .nvmrc)"; fi
+        - nvm install "$(cat .nvmrc)" || true
+        - nvm use "$(cat .nvmrc)" || true
         - node -v
-        # Use pnpm via Corepack and pin the version for reproducibility
-        - corepack enable
-        - corepack prepare pnpm@9 --activate
-        - pnpm -v
-        # Deterministic install (fails if pnpm-lock.yaml is out of sync)
-        - pnpm install --frozen-lockfile
+        - npm -v
+
+        # Deterministic install with npm (requires package-lock.json in repo)
+        - npm ci --ignore-scripts=false
     build:
       commands:
-        - pnpm run build
+        - npm run build
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
   cache:
     paths:
-      - .next/cache/**/*
       - node_modules/**/*
-      - ~/.pnpm-store/**/*
+      - .next/cache/**/*
+      - ~/.npm/**/*   # npm cache (safe to keep)

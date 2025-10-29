@@ -16,11 +16,26 @@
   align-items: center; 
 }
 
+.svgWrap {
+  padding-top: 3rem; /* pt-12-ish (your original had pt-50 which is unusual) */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 50px;
+  right: -10px;
+}
+.stars{
+  position: absolute;
+  bottom: 150px;
+  left: 180px;
+  display: block;
+}
 .section {
   position: relative;
   text-align: center;
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .container {
