@@ -1,11 +1,4 @@
-:root {
-  --card-bg: #ffffff;
-  --border: #e5e7eb;
-  --text: #1f1f1f;
-  --muted: #545454;
-  --brand: #0047ab;
-  --ring: #3b82f6;
-}
+
 
 /* Card wrapper */
 .wrapper {

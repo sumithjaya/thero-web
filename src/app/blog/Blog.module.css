@@ -1,16 +1,4 @@
-:root {
-  --brand-900: #002855; /* dark navy */
-  --brand-700: #0047ab; /* royal blue */
-  --brand-grad: linear-gradient(90deg, #0047ab 0%, #00a1ff 100%);
-  --ink-900: #1f1f1f;
-  --ink-700: #2b2b2b;
-  --ink-600: #545454;
-  --ink-400: #8a8a8a;
-  --bg-soft: #ecf4fe;
-  --bg-card: #ffffff;
-  --border: #e7eef7;
-  --ring: rgba(0, 71, 171, 0.35);
-}
+
 /* Wave */
 .waveWrapper {
   display: flex;
