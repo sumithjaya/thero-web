@@ -11,9 +11,19 @@
   --border: #e7eef7;
   --ring: rgba(0, 71, 171, 0.35);
 }
-/* Wave header */
-.waveWrapper { min-height: 160px; box-sizing: border-box;padding: 0 150px; }
-.waveSvg { width: 100%; height: auto; display: block; }
+/* Wave */
+.waveWrapper { 
+  display: flex;
+    width: 100%; 
+    justify-content: center;
+    padding: 10px 100px;
+    margin-bottom: 100px;
+}
+.waveSvg {
+  width: 100%; 
+  display: block;
+  
+} 
 
 /* Index header */
 .indexHeader { padding: 40px 70px 14px; }
@@ -33,7 +43,7 @@
 .lead { color: var(--ink-600); font-size: 18px; line-height: 1.7; }
 
 /* Grid */
-.gridSection { padding: 20px 70px 70px; }
+.gridSection { padding: 20px 100px}
 .grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -79,6 +89,7 @@
   /* ~16:10 aspect ratio for a modern look */
   padding-top: 62%;
   overflow: hidden;
+  border-radius: 20px;
 }
 .cardImage {
   object-fit: cover;

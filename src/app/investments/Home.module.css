@@ -114,14 +114,14 @@
   justify-content: space-between;
 }
 .ctaCopy { display: flex; flex-direction: column; }
-.ctaTitle { font-size: 36px; font-weight: 700; }
+.ctaTitle { font-size: 36px; font-weight: 700;padding-right: 50px; }
 .ctaSubtitle { font-size: 18px; font-weight: 400; }
 .ctaButton {
   background-color: #ffffff;
   color: #002855;
   font-size: 18px;
   font-weight: 700;
-  padding: 30px 40px;
+  padding: 18px 40px;
   border-radius: 16px;
   text-decoration: none;
   display: inline-block;

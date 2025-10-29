@@ -3,7 +3,7 @@ import styles from "./OurProcess.module.css";
 export default function OurProcess() {
   return (
     <section className={styles.op_container}>
-      <h2>Our Process</h2>
+      <h2>Our <span className={styles.brand}>Process</span></h2>
       <div className={styles.op_cards}>
         <div className= {styles.op_card}>
           <div className={styles.op_icon}>
