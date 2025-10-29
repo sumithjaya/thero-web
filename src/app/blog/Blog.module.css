@@ -50,6 +50,7 @@
 /* Grid */
 .gridSection {
   padding: 20px 100px;
+  margin-bottom: 50px;
 }
 .grid {
   display: grid;
@@ -72,7 +73,7 @@
   background: var(--bg-card);
   border-radius: 20px;
   overflow: hidden;
-  position: relative; 
+  position: relative;
   transition: transform 180ms ease, box-shadow 180ms ease,
     border-color 180ms ease;
   will-change: transform;
@@ -90,7 +91,7 @@
   height: 100%;
   outline: none;
   color: #0047ab;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 20px 50px;
   border-radius: 16px;
   font-weight: 800;
@@ -135,19 +136,19 @@
   align-items: center;
   gap: 8px;
   width: fit-content;
-} 
+}
 
 .cardTitle {
   font-size: 20px;
   line-height: 1.25;
   font-weight: 700;
-  color: #1F1F1F;
+  color: #1f1f1f;
   margin: 0;
 }
 .cardExcerpt {
   color: var(--ink-600);
   font-size: 16px;
-  font-weight: 400  ;
+  font-weight: 400;
   line-height: 1.6;
   margin: 0 0 4px;
 }
@@ -169,18 +170,18 @@
   margin: 0 auto;
 }
 .postBadge {
-   
 } /* re-use badge style if your build supports CSS Modules compose */
 .postTitle {
   font-size: 56px;
   font-weight: 900;
   letter-spacing: -0.02em;
-  margin: 12px 0 8px; color: #000;
+  margin: 12px 0 8px;
+  color: #000;
 }
 .postMeta {
   display: flex;
   gap: 10px;
- color: #000;
+  color: #000;
   font-size: 14px;
 }
 
@@ -196,7 +197,8 @@
 .postContent {
   max-width: 900px;
   margin: 0 auto;
-  padding: 32px 24px 80px; color: #000;
+  padding: 32px 24px 80px;
+  color: #000;
 }
 .contentBlock {
   margin: 18px 0;
@@ -204,17 +206,17 @@
 .h2 {
   font-size: 30px;
   font-weight: 800;
-color: #000;
+  color: #000;
   margin: 16px 0 10px;
 }
 .p {
- color: #000;
+  color: #000;
   font-size: 18px;
   line-height: 1.8;
 }
 .ul {
   margin: 10px 0 0 18px;
-color: #000;
+  color: #000;
 }
 .ul li {
   margin: 6px 0;
@@ -224,7 +226,7 @@ color: #000;
 .ctaBar {
   background: var(--brand-900);
   border-radius: 20px;
-color: #000;
+  color: #000;
   padding: 28px 30px;
   margin-top: 28px;
   display: flex;
@@ -299,15 +301,34 @@ color: #000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 50px;
+  padding: 80px 200px;
   display: flex;
   justify-content: center;
   color: #fff;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
+  overflow: hidden; /* ensure overlay stays inside radius */
+  position: relative;
+  margin-bottom: 60px;
+} /* Dark Overlay */
+.featuredPostBody::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* increase opacity for darker */
+  border-radius: inherit;
+  z-index: 1;
 }
 
+/* Make actual content appear above overlay */
+.featuredPostBody > * {
+  position: relative;
+  z-index: 2;
+}
 .badge {
   background-color: transparent;
   color: #f1f1f1;
@@ -324,25 +345,26 @@ color: #000;
   font-size: 18px;
   font-weight: 400;
 }
-.featuredPostbadge{
+.featuredPostbadge {
   font-size: 36px;
   font-weight: 700;
-  color: #FFF;
+  color: #fff;
 }
 
-.featuredPostcardExcerpt{
-  color: #FFF;
+.featuredPostcardExcerpt {
+  color: #fff;
   font-size: 18px;
   font-weight: 400;
   margin-top: 20px;
+  text-align: center;
 }
 
-.featuredPostcardLink{
+.featuredPostcardLink {
   color: #0047ab;
   font-size: 18px;
   font-weight: 400;
   text-decoration: none;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 16px;
   padding: 20px 50px;
   margin-top: 20px;
