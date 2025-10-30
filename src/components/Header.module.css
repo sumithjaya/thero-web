@@ -8,7 +8,7 @@
   background: color-mix(in srgb, var(--background, #ffffff) 80%, transparent);
   backdrop-filter: blur(6px);
   isolation: isolate; /* clean stacking context for children */
-  padding: 15px 100px;
+  
 }
 
 /* Container */
@@ -21,6 +21,7 @@
   padding-right: 100px;
   display: flex;
   justify-content: space-between;
+  width: 100%; 
 }
 @media (min-width: 640px) {
   .inner {
