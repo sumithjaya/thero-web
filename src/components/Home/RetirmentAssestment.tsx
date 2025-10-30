@@ -88,8 +88,8 @@ export default function RetirmentAssestment() {
               </div>{" "}
               <div className={styles.donutSvgWrapMobile}>
                 <svg
-                  width="75"
-                  height="75"
+                  width="200"
+                  height="200"
                   viewBox="0 0 218 219"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@ export default function RetirmentAssestment() {
               </div>{" "}
               <div className={styles.areaSvgWrapMobile}>
                 <svg
-                  width="100"
+                  width="220"
                   height="151"
                   viewBox="0 0 301 151"
                   fill="none"
