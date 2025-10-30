@@ -56,7 +56,7 @@
 
 @media (max-width: 1024px) {
   .sectionPadLg {
-    padding: 50px 50px;
+    padding: 20px 50px;
   }
   .faqIntro {
     padding: 50px 0 50px 0;
@@ -66,10 +66,23 @@
   }
   .faqTitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 44px;
   }
   .faqCopy{
     text-align: center;
-    font-size: 16px;
+    font-size: 22px;
+  }
+  .moreFaqRow{
+    display: none;
+  }
+  .moreFaqRowMob{
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+  }
+  .moreFaqIcon{
+    font-size: 50px;
   }
 }
