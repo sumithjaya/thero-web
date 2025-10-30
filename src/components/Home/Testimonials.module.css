@@ -193,6 +193,9 @@
 }
 
 @media (max-width: 670px) {
+    .sectionPadLg{
+        overflow: hidden;
+    }
   .testimonialTitle {
     text-align: center;
   }
