@@ -153,10 +153,10 @@ export default function RetirmentAssestment() {
                 </svg>
               </div>
               <div
-                className={`${styles.legendRow} flex flex-row items-center justify-center`}
+                className= {styles.legendRow  }
               >
                 <div className={styles.legendDotSecondary} />
-                <p className={styles.legendLabel}>conservative invested</p>
+                <p className={styles.legendLabel}>Conservative Invested</p>
               </div>
             </div>
           </div>

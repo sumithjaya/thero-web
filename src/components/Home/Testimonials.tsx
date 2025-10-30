@@ -87,6 +87,7 @@ export default function Testimonials() {
   };
   const prev = () => {
     setDir("prev");
+    console.log("pre clicked")
     setIndex((i) => (i - 2 + len) % len);
   };
 
@@ -182,7 +183,7 @@ export default function Testimonials() {
       </div>
       <div className={styles.testimonialRow}>
         <div className={styles.testimonialLeft}>
-          <div>
+          <div className= {styles.testimonialQuote}>
             <svg
               width="65"
               height="52"
