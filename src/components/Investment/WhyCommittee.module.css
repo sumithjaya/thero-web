@@ -104,3 +104,14 @@
  color: #1F1F1F;
  padding-left: 50px;
 }
+
+@media (max-width:670px){
+  .philosophySection{
+    display: flex;
+    flex-direction: column;
+  }
+  .philosophyGrid{
+    display: flex;
+    flex-direction: column;
+  }
+}
