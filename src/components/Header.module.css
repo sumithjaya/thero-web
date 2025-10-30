@@ -16,17 +16,14 @@
   display: flex;
   height: 4rem; /* h-16 */ 
   align-items: center;
-  gap: 0.75rem; /* gap-3 */
-  padding-left: 100px; /* px-4 */
-  padding-right: 100px;
+  gap: 0.75rem; 
   display: flex;
   justify-content: space-between;
-  width: 100%; 
+  width: 100%;  
 }
 @media (min-width: 640px) {
   .inner {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding: 50px 100px;
   }
 }
 
@@ -36,6 +33,7 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  
 }
 
 .logoBox {
