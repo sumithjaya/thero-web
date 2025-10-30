@@ -281,6 +281,7 @@
     align-items: center;
     text-align: center;
     padding: 30px;
+    margin: 0;
   }
   .sustainabilityTitle {
     font-size: 19px;
@@ -300,12 +301,12 @@
   }
 
   .iconCirclePrimary {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
   }
   .iconCirclePrimary img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
   .cardTitle {
@@ -319,12 +320,13 @@
     margin-bottom: 0;
   }
   .sustainabilityTitle {
-    font-size: 17px;
+    font-size: 24px;
     margin-bottom: 20px;
   }
   .sustainabilityText {
     margin-bottom: 50px;
-    font-size: 12px;
+    font-size: 20px;
+    font-weight: 400  ;
   }
 
   .sustainabilityCta {
