@@ -76,7 +76,9 @@
     flex-direction: column;
     text-align: center;
   }
-
+.op_cards{
+  flex-direction: column;
+}
   .op_content {
     text-align: center;
   }
