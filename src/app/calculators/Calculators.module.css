@@ -253,4 +253,7 @@
   .card {
     gap: 24px;
   }
+  .sectionForm{
+    padding: 30px;
+  }
 }
