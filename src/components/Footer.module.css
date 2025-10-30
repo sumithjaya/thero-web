@@ -197,3 +197,9 @@
   line-height: 1;
 }
  
+@media (max-width: 640px) {
+  .footer{
+    background-color: #0046bf;
+  }
+  
+}
