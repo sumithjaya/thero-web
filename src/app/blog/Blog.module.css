@@ -391,16 +391,19 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 20px;
+  padding:10px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px #e0dede;
+  width: 100%;
 }
 .skeletongrid {
   padding: 10px 100px;
   display: flex;
   flex-direction: row;
-  align-items: space-between;
-  gap: 122px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  width: 100%;
 }
 
 .skeletoncardFeature {

@@ -122,16 +122,7 @@ const MobileMenu = React.memo(function MobileMenu({
           >
             Blog
           </Link>
-          <Link
-            href="/contact"
-            className={`${styles.navLink} ${
-              isActive("/contact") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/contact") ? "page" : undefined}
-            onClick={onClose}
-          >
-            Contact
-          </Link>
+       
 
           <div className={styles.mobileCtaWrap}>
             <Link
