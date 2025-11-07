@@ -5,23 +5,22 @@ import styles2 from "./BlogPost.module.css";
 import { fetchPosts, toPost } from "../posts";
 
 // ✅ Fetch a single post by slug
+
 async function fetchPostBySlug(slug: string) {
   const base = process.env.NEXT_PUBLIC_STRAPI_URL;
   if (!base) throw new Error("NEXT_PUBLIC_STRAPI_URL not defined");
-try {
-  
-  const res = await fetch(
-    `${base}/api/thero-posts?${slug ? `filters[slug][$eq]=${slug}` : ""}&populate=*&sort[0]=createdAt:desc`,
-    { next: { revalidate: 60 } }
-  );
-  if (!res.ok) return null;
-
-} catch (error) {
-  console.error("🚨 Strapi fetch failed, using fallback:", error);
-}
-  const json = await res.json();
-  const node = json.data?.[0];
-  return node ? toPost(node) : null;
+  try {
+    const res = await fetch(
+      `${base}/api/thero-posts?${slug ? `filters[slug][$eq]=${slug}` : ""}&populate=*&sort[0]=createdAt:desc`,
+      { next: { revalidate: 60 } }
+    );
+    if (!res.ok) return null;
+    const json = await res.json();
+    const node = json.data?.[0];
+    return node ? toPost(node) : null;
+  } catch (error) {
+    console.error("🚨 Strapi fetch failed, using fallback:", error);
+  }
 }
 
 // ✅ Metadata for SEO - UPDATED FOR NEXT.JS 15

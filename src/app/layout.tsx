@@ -16,9 +16,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-// Remove metadata export - it only works in Server Components
-
+ 
 export default function RootLayout({
   children,
 }: Readonly<{

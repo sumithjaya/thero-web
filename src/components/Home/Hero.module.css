@@ -8,7 +8,7 @@ padding: 120px;
 }
 
 .heroStack{
-    padding: 50px 150px;
+    padding: 50px 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -48,7 +48,7 @@ padding: 120px;
     color: #545454;
     text-align: center;
     margin: 0;
-    padding: 0 275px;  
+    padding: 0 75px;  
 }
 
 .ctaBar{

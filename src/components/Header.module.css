@@ -195,6 +195,7 @@
   color: var(--background, #ffffff);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   text-decoration: none;
+  min-width: fit-content;
   transition: opacity 150ms ease;
 }
 .cta:hover {
