@@ -391,8 +391,8 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding:10px;
-  border-radius: 10px;
+  padding:30px;
+  border-radius: 16px;
   box-shadow: 2px 2px 5px 2px #e0dede;
   width: 100%;
 }
@@ -415,6 +415,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px #e0dede;
+  background-color: #3d3d3d;
 }
 .skeletongrid2 {
   padding: 50px 100px;

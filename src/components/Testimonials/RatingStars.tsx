@@ -12,7 +12,7 @@ type RatingStarsProps = {
 };
 
 export default function RatingStars({
-  value,
+  value = 0,
   max = 5,
   size = 24,
   colorClass = "text-amber-400",

@@ -81,7 +81,7 @@ function toTestimonial(node: any): Testimonial {
    console.log("avatarUr.l", n.Avatar);
 console.log("Avatar URL:", avatarUrl);
   const Avatar = avatarAbs ?? "/images/avatar-placeholder.jpg";
-
+console.log("****--Avatar:", Avatar);
   return { slug: String(slug), ClientName, Testimonial, rating, Avatar };
 }
 
@@ -90,6 +90,10 @@ async function strapiFetch<T>(url: string): Promise<T> {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   };
+  
+  console.log("XX--headers", headers);
+  console.log("XX--url", url);
+  console.log("XX--STRAPI_TOKEN", STRAPI_TOKEN);
 
   // Add authorization header if token is available
   if (STRAPI_TOKEN) {
@@ -110,17 +114,29 @@ async function strapiFetch<T>(url: string): Promise<T> {
 
 /** Fetch all testimonials (newest first) */
 export async function fetchTestimonials(): Promise<Testimonials> {
+
+  console.log("✅ fetching testimonials...");
   if (!STRAPI_URL) {
     console.warn("⚠️ STRAPI_URL not defined, using fallback testimonials");
     return [...fallbackTestimonials];
   }
 
+  console.log("STRAPI_URL:",STRAPI_URL);
+  console.log("TESTIMONIALS_API:",TESTIMONIALS_API);
+  console.log("URL FETCH:",`${STRAPI_URL}${TESTIMONIALS_API}?populate=*&sort[0]=publishedAt:desc&sort[1]=createdAt:desc`);
   try {
     const json = await strapiFetch<{ data: any[] }>(
       `${STRAPI_URL}${TESTIMONIALS_API}?populate=*&sort[0]=publishedAt:desc&sort[1]=createdAt:desc`
     );
+    console.log("json:",json);
     const rows = json?.data ?? [];
     console.log("✅ Loaded testimonials rows:", rows);
+
+    const rowsss = rows.length ? rows.map(toTestimonial) : [...fallbackTestimonials];
+
+    console.log("✅✅✅✅ Loaded testimonials:", rowsss);
+
+
     return rows.length ? rows.map(toTestimonial) : [...fallbackTestimonials];
   } catch (e) {
     console.error("❌ fetchTestimonials failed, using fallback:", e);

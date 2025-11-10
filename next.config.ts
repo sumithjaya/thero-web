@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'ec2-44-208-31-214.compute-1.amazonaws.com',
+        hostname: 'blog.wealfy.com.au',
         port: '1337',
         pathname: '/uploads/**',
       },

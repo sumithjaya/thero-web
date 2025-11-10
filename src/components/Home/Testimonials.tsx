@@ -5,70 +5,35 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import RatingStars from "../Testimonials/RatingStars";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { fetchTestimonials, type Testimonial } from "../Testimonials/Testimonials";
+import {
+  fetchTestimonials,
+  type Testimonial,
+} from "../Testimonials/Testimonials";
+import { div } from "framer-motion/client";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-// Fallback testimonials (used if API fails)
-const FALLBACK_TESTIMONIALS = [
-  {
-    slug: "robert-smith",
-    ClientName: "FL Robert Smith",
-    Testimonial: "Very helpful in urgent situation, love the product and best service.",
-    rating: 4.6,
-    Avatar: "/images/client1.jpg",
-  },
-  {
-    slug: "sarah-k",
-    ClientName: " FL Sarah K.",
-    Testimonial: "Love the interface and really easy to use so far. Great service!",
-    rating: 4.8,
-    Avatar: "/images/client2.jpg",
-  },
-  {
-    slug: "adeel-r",
-    ClientName: "FL Adeel R.",
-    Testimonial: "We onboarded our team in a day. Support is lightning fast.",
-    rating: 5,
-    Avatar: "/images/client3.jpg",
-  },
-  {
-    slug: "maya-d",
-    ClientName: "Maya D.",
-    Testimonial: "Clean UI, thoughtful features, and stable. Exactly what we needed.",
-    rating: 4.7,
-    Avatar: "/images/client4.jpg",
-  },
-  {
-    slug: "kenan-p",
-    ClientName: "FL FL Kenan P.",
-    Testimonial: "Migration was painless and our NPS jumped. Highly recommended.",
-    rating: 4.9,
-    Avatar: "/images/client5.jpg",
-  },
-  {
-    slug: "elena-v",
-    ClientName: "Elena V.",
-    Testimonial: "Solid product. Clear roadmap and they actually ship updates.",
-    rating: 4.7,
-    Avatar: "/images/client6.jpg",
-  },
-];
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<"next" | "prev">("next");
   const [fadeKey, setFadeKey] = useState(0);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(FALLBACK_TESTIMONIALS);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
-  const len = testimonials.length;
+  // const [testimonialSlides, setTestimonialSlides] = useState<Testimonial[]>([]);
+
+  const len = useMemo(() => testimonials.length, [testimonials]);
 
   useEffect(() => {
     async function loadTestimonials() {
       try {
+        console.log("⏳ Loading testimonials...");
         setLoading(true);
         const data = await fetchTestimonials();
-        console.log("✅ Loaded testimonials:", data);
+        console.log("✅⏳⏳⏳✅ Loaded testimonials:", data);
         if (data && data.length > 0) {
           setTestimonials(data);
+          // setTestimonialSlides(data);
         }
       } catch (error) {
         console.error("❌ Failed to load testimonials:", error);
@@ -82,16 +47,23 @@ export default function Testimonials() {
   }, []);
 
   const next = () => {
+    if (len === 0) return;
     setDir("next");
     setIndex((i) => (i + 2) % len);
   };
+
   const prev = () => {
+    if (len === 0) return;
     setDir("prev");
-    console.log("pre clicked")
+    console.log("pre clicked");
     setIndex((i) => (i - 2 + len) % len);
   };
 
   const slides = useMemo(() => {
+    if (!testimonials || testimonials.length === 0) {
+      // Return empty placeholders when loading
+      return [null, null];
+    }
     const a = testimonials[index % len];
     const b = testimonials[(index + 1) % len];
     return [a, b];
@@ -183,7 +155,7 @@ export default function Testimonials() {
       </div>
       <div className={styles.testimonialRow}>
         <div className={styles.testimonialLeft}>
-          <div className= {styles.testimonialQuote}>
+          <div className={styles.testimonialQuote}>
             <svg
               width="65"
               height="52"
@@ -239,7 +211,7 @@ export default function Testimonials() {
             >
               {slides.map((t, idx) => (
                 <motion.div
-                  key={t.slug}
+                  key={t && t.slug ? t.slug : "testimonials-" + idx}
                   className={`${styles.testimonialCard} ${styles.testimonialCardOffset}`}
                   variants={cardVariants}
                   custom={idx}
@@ -250,9 +222,20 @@ export default function Testimonials() {
                         className="relative"
                         style={{ height: "80px", width: "80px" }}
                       >
+                        {t && t.Avatar ? (
+                          <div>{t.Avatar}</div>
+                        ) : (
+                          <SkeletonTheme
+                            baseColor="#c4c4c4ff"
+                            highlightColor="#adaeb8ff"
+                          >
+                            <Skeleton height={75} width={75} circle={true} />
+                          </SkeletonTheme>
+                        )}
+
                         <Image
-                          src={t.Avatar}
-                          alt={`${t.ClientName} photo`}
+                          src={t?.Avatar||"/images/svg/avatar.svg"}
+                          alt={`${t?.ClientName||"Client"} photo`}
                           fill
                           className="rounded-full object-cover object-center"
                         />
@@ -261,8 +244,29 @@ export default function Testimonials() {
                   </div>
 
                   <div className={styles.testimonialContentPad}>
-                    <p className={styles.testimonialCopy}>{t.Testimonial}</p>
-                    <RatingStars value={t.rating} colorClass="text-amber-400" />
+                    {t && t.Testimonial ? (
+                      <p className={styles.testimonialCopy}>{t.Testimonial}</p>
+                    ) : (
+                      <div className={styles.testimonialSkletonWrapper}>
+                        <SkeletonTheme
+                          baseColor="#c4c4c4ff"
+                          highlightColor="#adaeb8ff"
+                        >
+                          <div style={{width:'100%',padding:'10px 10px',display:'flex',flexDirection:'column',gap:'8px'}}>
+                            <Skeleton width={400} height={25} />
+                            <Skeleton width={150} height={25} />
+                          </div>
+                        </SkeletonTheme>
+                      </div>
+                    )}
+                    {t && t.rating ? (
+                      <RatingStars
+                        value={t.rating}
+                        colorClass="text-amber-400"
+                      />
+                    ) : (
+                      <RatingStars value={5} colorClass="text-amber-400" />
+                    )}
                     <div className={styles.userRow}>
                       <svg
                         width="24px"
@@ -276,7 +280,20 @@ export default function Testimonials() {
                           fill="#bdbfc0ff"
                         ></path>
                       </svg>
-                      <p className={styles.userName}>{t.ClientName}</p>
+                      {t && t.ClientName ? (
+                        <p className={styles.userName}>{t.ClientName}</p>
+                      ) : (
+                        <div >
+                          <SkeletonTheme
+                            baseColor="#c4c4c4ff"
+                            highlightColor="#adaeb8ff"
+                          >
+                            <div style={{width:'100%'}}>
+                              <Skeleton height={15} width={100} />
+                            </div>
+                          </SkeletonTheme>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>

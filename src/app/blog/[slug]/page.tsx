@@ -10,8 +10,19 @@ async function fetchPostBySlug(slug: string) {
   const base = process.env.NEXT_PUBLIC_STRAPI_URL;
   if (!base) throw new Error("NEXT_PUBLIC_STRAPI_URL not defined");
   try {
+    const resn = await fetch(
+      "/api/strapi-proxy/api/wealfy-testimonials?populate=*"
+    );
+    console.log("resn", resn);
+    const jsonn = await resn.json();
+  } catch (error) {
+    console.error("🚨 Strapi fetch failed, using fallback:", error);
+  }
+  try {
     const res = await fetch(
-      `${base}/api/thero-posts?${slug ? `filters[slug][$eq]=${slug}` : ""}&populate=*&sort[0]=createdAt:desc`,
+      `${base}/api/thero-posts?${
+        slug ? `filters[slug][$eq]=${slug}` : ""
+      }&populate=*&sort[0]=createdAt:desc`,
       { next: { revalidate: 60 } }
     );
     if (!res.ok) return null;
@@ -31,7 +42,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params; // Changed: await params first
   const post = await fetchPostBySlug(slug);
-  
+
   if (!post)
     return {
       title: "Post not found | Blog",
@@ -59,7 +70,9 @@ export default async function BlogPostPage({
   const p = await fetchPostBySlug(slug);
 
   if (!p) {
-    return <div className="p-8 text-center text-gray-500">❌ Post not found</div>;
+    return (
+      <div className="p-8 text-center text-gray-500">❌ Post not found</div>
+    );
   }
 
   return (

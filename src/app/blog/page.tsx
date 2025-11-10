@@ -12,24 +12,19 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 function SkeletonCard() {
   return (
     <div className={styles.skeletoncard}>
-      <div>
+      <div style={{ width: "100%" }}>
         <SkeletonTheme baseColor="#c4c4c4ff" highlightColor="#adaeb8ff">
-          <Skeleton height={300} width={"100%"} />
+          <Skeleton height={300} width={"100%"} borderRadius={16} />
           <div style={{ marginTop: 12 }}>
-            <Skeleton height={35} />
+            <Skeleton height={25} />
           </div>
           <div style={{ marginTop: 8 }}>
-            <Skeleton height={35} width={300} />
+            <Skeleton height={25} width={300} />
           </div>
           <div style={{ marginTop: 8 }}>
-            <Skeleton count={3} />
+            <Skeleton count={2} />
           </div>
-          <div style={{ marginTop: 8 }}>
-            <Skeleton />
-          </div>
-          <div className={styles.grid} style={{ marginTop: 8 }}>
-            <Skeleton width={70} /> <Skeleton width={40} />
-          </div>
+
           <div style={{ marginTop: 8 }}>
             <Skeleton width={100} />
           </div>
@@ -59,12 +54,12 @@ export default function BlogIndexPage() {
     loadPosts();
   }, []);
 
- // if (true) {
+  // if (true) {
      if (loading) {
     return (
       <div className={styles.container}>
-        <HeroBlog />
-        <div className={styles.waveWrapper}>
+        {/* <HeroBlog /> */}
+        {/* <div className={styles.waveWrapper}>
           <svg
             className={styles.waveSvg}
             height="160"
@@ -78,7 +73,7 @@ export default function BlogIndexPage() {
               fill="#002855"
             />
           </svg>
-        </div>
+        </div> */}
         <div className={styles.skeletongrid}>
           {" "}
           {Array.from({ length: 3 }).map((_, i) => (
@@ -87,10 +82,25 @@ export default function BlogIndexPage() {
         </div>
         <div className={styles.skeletongrid2}>
           <div className={styles.skeletoncardFeature}>
-            <div>
+            <div
+              style={{
+                width: "100%", 
+                padding: "50px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <SkeletonTheme baseColor="#c4c4c4ff" highlightColor="#adaeb8ff">
-                <Skeleton /> <Skeleton />
-                <Skeleton /> <Skeleton width={100} />
+                <div style={{ padding: "10px 150px" }}>
+                  <Skeleton height={25} />
+                </div>
+                <div style={{ padding: "15px 200px" }}>
+                  <Skeleton />
+                  <Skeleton />
+                </div>
+                <div style={{width:"100%",display:'flex' ,justifyContent:'center'}}> 
+                  <Skeleton width={200} height={30} borderRadius={10} />
+                </div>
               </SkeletonTheme>
             </div>
           </div>
@@ -200,13 +210,14 @@ export default function BlogIndexPage() {
       {/* Featured section (unchanged structure) */}
       <section className={styles.featuredPost}>
         <div className={styles.featuredPostBody}>
-          <div className={styles.featuredPostbadge}>
-            {latestPost?.title}
-          </div>
+          <div className={styles.featuredPostbadge}>{latestPost?.title}</div>
           <div className={styles.featuredPostcardExcerpt}>
             {latestPost?.excerpt}
           </div>
-          <Link className={styles.featuredPostcardLink} href={`/blog/${latestPost?.slug}`}>
+          <Link
+            className={styles.featuredPostcardLink}
+            href={`/blog/${latestPost?.slug}`}
+          >
             Read More
           </Link>
         </div>
