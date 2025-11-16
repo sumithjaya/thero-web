@@ -22,10 +22,7 @@ export default function FAQ() {
             <p className={styles.moreFaqLink}>More FAQs</p>
             <BsArrowRight className={styles.moreFaqIcon} />
           </div>
-          <div className={styles.moreFaqRowMob}>
-            <p className={styles.moreFaqLink}>More FAQs</p>
-            <FaAngleDown className={styles.moreFaqIcon} />
-          </div>
+           
         </div>
         <div className={styles.faqListCol}>
           <CtaAndFaq />

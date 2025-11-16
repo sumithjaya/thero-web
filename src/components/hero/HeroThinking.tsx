@@ -1,44 +1,26 @@
 import Link from "next/link";
 import styles from "./HeroThinking.module.css";
+
 export default function HeroThinking() {
   return (
-    <div
-      style={{
-        boxSizing: "border-box",
-        background:
-          "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(255,255,255,1) 0%, rgba(0,71,171,0.51) 100%)",
-      }}
-      className="w-full mb-20 m-0 flex flex-col justify-center items-center"
-    >
-      <section
-        className="relative   text-center  flex flex-row"
-        aria-labelledby="hero-heading"
-      >
-        {/* Subtle backdrop */}
-
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:pt-16 lg:pb-24   ">
-          <div className="flex flex-col items-center gap-6 pt-25">
-            <h1 style={{ color: "#1F1F1F", fontSize: "54px", fontWeight: 700 }}>
-              <span
-                style={{ color: "#0047AB", fontSize: "54px", fontWeight: 700 }}
-              >
-                Financial Advice
-              </span>{" "}
+    <div className={styles.heroWrapper}>
+      <section className={styles.heroSection} aria-labelledby="hero-heading">
+        <div className={styles.heroContainer}>
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>
+              <span className={styles.heroTitleHighlight}>Financial Advice</span>{" "}
               That Actually Makes Sense
             </h1>
-            <p style={{ color: "#545454", fontSize: "18px", fontWeight: 400 }}>
+            <p className={styles.heroText}>
               Simple, clear strategies tailored to your goals—no jargon, no
               stress.
             </p>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 text-base font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground"
-            >
-            See How It Works
+            <Link href="/get-started" className={styles.heroButton}>
+              See How It Works
             </Link>
           </div>
         </div>
-        <div className="pt-50 ">
+        <div className={styles.heroSvgWrapper}>
           <svg
             width="113"
             height="43"

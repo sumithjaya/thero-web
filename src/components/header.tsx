@@ -6,13 +6,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
-import { HiOutlineBars3, HiOutlineBars4, HiXMark } from "react-icons/hi2";
+import { HiOutlineBars3, HiXMark } from "react-icons/hi2";
+
+/** tiny classNames helper (no dependency) */
+const cx = (...parts: Array<string | false | null | undefined>) =>
+  parts.filter(Boolean).join(" ");
 
 /** helper hook */
 function useActive() {
   const pathname = usePathname();
 
-  const normalize = (p: string) => {
+  const normalize = (p: string | null | undefined) => {
     if (!p) return "/";
     const n = p.replace(/\/+$/, "");
     return n.length ? n : "/";
@@ -33,7 +37,7 @@ const MobileMenu = React.memo(function MobileMenu({
 }: {
   onClose: () => void;
 }) {
-  const { pathname, isActive } = useActive();
+  const { isSectionActive } = useActive();
 
   return (
     <div
@@ -63,17 +67,18 @@ const MobileMenu = React.memo(function MobileMenu({
             onClick={onClose}
             aria-label="Close menu"
           >
-             <HiXMark/> 
+            <HiXMark />
           </button>
         </div>
 
-        <nav className={styles.mobileList}>
+        <nav className={styles.mobileList} aria-label="Mobile Main">
           <Link
             href="/calculators"
-            className={`${styles.navLink} ${
-              isActive("/calculators") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/calculators") ? "page" : undefined}
+            className={cx(
+              styles.navLink,
+              isSectionActive("/calculators") ? styles.activeLinkMobile : undefined
+            )}
+            aria-current={isSectionActive("/calculators") ? "page" : undefined}
             onClick={onClose}
           >
             Calculators
@@ -81,10 +86,11 @@ const MobileMenu = React.memo(function MobileMenu({
 
           <Link
             href="/investments"
-            className={`${styles.navLink} ${
-              isActive("/investments") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/investments") ? "page" : undefined}
+            className={cx(
+              styles.navLink,
+              isSectionActive("/investments") ? styles.activeLinkMobile : undefined
+            )}
+            aria-current={isSectionActive("/investments") ? "page" : undefined}
             onClick={onClose}
           >
             Investments
@@ -92,10 +98,11 @@ const MobileMenu = React.memo(function MobileMenu({
 
           <Link
             href="/thinking"
-            className={`${styles.navLink} ${
-              isActive("/thinking") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/thinking") ? "page" : undefined}
+            className={cx(
+              styles.navLink,
+              isSectionActive("/thinking") ? styles.activeLinkMobile : undefined
+            )}
+            aria-current={isSectionActive("/thinking") ? "page" : undefined}
             onClick={onClose}
           >
             Thinking
@@ -103,10 +110,11 @@ const MobileMenu = React.memo(function MobileMenu({
 
           <Link
             href="/team"
-            className={`${styles.navLink} ${
-              isActive("/team") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/team") ? "page" : undefined}
+            className={cx(
+              styles.navLink,
+              isSectionActive("/team") ? styles.activeLinkMobile : undefined
+            )}
+            aria-current={isSectionActive("/team") ? "page" : undefined}
             onClick={onClose}
           >
             Team
@@ -114,15 +122,15 @@ const MobileMenu = React.memo(function MobileMenu({
 
           <Link
             href="/blog"
-            className={`${styles.navLink} ${
-              isActive("/blog") ? styles.activeLinkMobile : ""
-            }`}
-            aria-current={isActive("/blog") ? "page" : undefined}
+            className={cx(
+              styles.navLink,
+              isSectionActive("/blog") ? styles.activeLinkMobile : undefined
+            )}
+            aria-current={isSectionActive("/blog") ? "page" : undefined}
             onClick={onClose}
           >
             Blog
           </Link>
-       
 
           <div className={styles.mobileCtaWrap}>
             <Link
@@ -142,7 +150,7 @@ const MobileMenu = React.memo(function MobileMenu({
 export default function Header() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
-  const { isActive } = useActive();
+  const { isSectionActive } = useActive();
 
   useEffect(() => setMounted(true), []);
 
@@ -180,49 +188,59 @@ export default function Header() {
           <nav className={styles.navDesktop} aria-label="Main">
             <Link
               href="/calculators"
-              className={`${styles.navLink} ${
-                isActive("/calculators") ? styles.activeLink : ""
-              }`}
-              aria-current={isActive("/calculators") ? "page" : undefined}
+              className={cx(
+                styles.navLink,
+                isSectionActive("/calculators") ? styles.activeLink : undefined
+              )}
+              aria-current={isSectionActive("/calculators") ? "page" : undefined}
             >
               Calculators
             </Link>
+
             <Link
               href="/investments"
-              className={`${styles.navLink} ${
-                isActive("/investments") ? styles.activeLink : ""
-              }`}
-              aria-current={isActive("/investments") ? "page" : undefined}
+              className={cx(
+                styles.navLink,
+                isSectionActive("/investments") ? styles.activeLink : undefined
+              )}
+              aria-current={isSectionActive("/investments") ? "page" : undefined}
             >
               Investments
             </Link>
+
             <Link
               href="/thinking"
-              className={`${styles.navLink} ${
-                isActive("/thinking") ? styles.activeLink : ""
-              }`}
-              aria-current={isActive("/thinking") ? "page" : undefined}
+              className={cx(
+                styles.navLink,
+                isSectionActive("/thinking") ? styles.activeLink : undefined
+              )}
+              aria-current={isSectionActive("/thinking") ? "page" : undefined}
             >
               Thinking
             </Link>
+
             <Link
               href="/team"
-              className={`${styles.navLink} ${
-                isActive("/team") ? styles.activeLink : ""
-              }`}
-              aria-current={isActive("/team") ? "page" : undefined}
+              className={cx(
+                styles.navLink,
+                isSectionActive("/team") ? styles.activeLink : undefined
+              )}
+              aria-current={isSectionActive("/team") ? "page" : undefined}
             >
               Team
             </Link>
+
             <Link
               href="/blog"
-              className={`${styles.navLink} ${
-                isActive("/blog") ? styles.activeLink : ""
-              }`}
-              aria-current={isActive("/blog") ? "page" : undefined}
+              className={cx(
+                styles.navLink,
+                isSectionActive("/blog") ? styles.activeLink : undefined
+              )}
+              aria-current={isSectionActive("/blog") ? "page" : undefined}
             >
               Blog
             </Link>
+
             <div className={styles.vrule} />
             <Link href="/get-started" className={styles.cta}>
               Get Started
@@ -234,16 +252,16 @@ export default function Header() {
             className={styles.mobileToggle}
             onClick={handleOpen}
             aria-label="Open menu"
+            aria-haspopup="dialog"
+            aria-expanded={open}
           >
-            <HiOutlineBars3/>
+            <HiOutlineBars3 />
           </button>
         </div>
       </header>
 
       {/* Portal the memoized child when open */}
-      {mounted && open
-        ? createPortal(<MobileMenu onClose={handleClose} />, document.body)
-        : null}
+      {mounted && open ? createPortal(<MobileMenu onClose={handleClose} />, document.body) : null}
     </>
   );
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import RatingStars from "../Testimonials/RatingStars";
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   fetchTestimonials,
   type Testimonial,
@@ -17,10 +17,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<"next" | "prev">("next");
-  const [fadeKey, setFadeKey] = useState(0);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
-  // const [testimonialSlides, setTestimonialSlides] = useState<Testimonial[]>([]);
 
   const len = useMemo(() => testimonials.length, [testimonials]);
 
@@ -33,7 +31,6 @@ export default function Testimonials() {
         console.log("✅⏳⏳⏳✅ Loaded testimonials:", data);
         if (data && data.length > 0) {
           setTestimonials(data);
-          // setTestimonialSlides(data);
         }
       } catch (error) {
         console.error("❌ Failed to load testimonials:", error);
@@ -47,13 +44,13 @@ export default function Testimonials() {
   }, []);
 
   const next = () => {
-    if (len === 0) return;
+    if (len < 2) return;
     setDir("next");
     setIndex((i) => (i + 2) % len);
   };
 
   const prev = () => {
-    if (len === 0) return;
+    if (len < 2) return;
     setDir("prev");
     console.log("pre clicked");
     setIndex((i) => (i - 2 + len) % len);
@@ -69,67 +66,32 @@ export default function Testimonials() {
     return [a, b];
   }, [index, len, testimonials]);
 
-  // trigger re-mount animation on index change
-  useEffect(() => setFadeKey((k) => k + 1), [index]);
-
   /* ---------- Motion variants (vertical slide up) ---------- */
-  const groupVariants = {
-    initial: {
-      opacity: 1,
-    },
-    animate: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren" as const,
-        staggerChildren: 0.05,
-      },
-    },
-    exit: {
-      opacity: 1,
-      transition: {
-        when: "afterChildren" as const,
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    initial: (cardIndex: number) => ({
+  
+  const cardVariants: Variants = {
+    initial: (custom: number) => ({
       opacity: 0,
-      y: 120,
-      scale: 0.92,
+      y: dir === "next" ? 40 : -40,
+      scale: 0.97,
     }),
-    animate: (cardIndex: number) => ({
+    animate: (custom: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        opacity: {
-          duration: 0.6,
-          ease: [0.25, 0.1, 0.25, 1] as const,
-          delay: cardIndex === 1 ? 0.3 : 0,
-        },
-        y: {
-          duration: 0.7,
-          ease: [0.25, 0.1, 0.25, 1] as const,
-          delay: cardIndex === 1 ? 0.3 : 0,
-        },
-        scale: {
-          duration: 0.7,
-          ease: [0.25, 0.1, 0.25, 1] as const,
-          delay: cardIndex === 1 ? 0.3 : 0,
-        },
+        duration: 0.55,
+        ease: [0.22, 0.26, 0.23, 1],
+        delay: custom * 0.15,
       },
     }),
-    exit: (cardIndex: number) => ({
+    exit: (custom: number) => ({
       opacity: 0,
-      y: -120,
-      scale: 0.92,
+      y: dir === "next" ? -40 : 40,
+      scale: 0.97,
       transition: {
-        opacity: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
-        y: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
-        scale: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
+        duration: 0.55,
+        ease: [0.22, 0.26, 0.23, 1],
+        delay: custom * 0.1,
       },
     }),
   };
@@ -200,106 +162,105 @@ export default function Testimonials() {
         </div>
 
         <div className={styles.testimonialCardsCol}>
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
-              key={fadeKey}
-              className={styles.slidesWrap}
-              variants={groupVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              {slides.map((t, idx) => (
+          <div className={styles.slidesWrap}>
+            <AnimatePresence mode="wait" initial={false}>
+              {loading || !(slides && slides.length > 0) ? (
+                // SINGLE GLOBAL SKELETON CARD
                 <motion.div
-                  key={t && t.slug ? t.slug : "testimonials-" + idx}
+                  key="skeleton-global"
                   className={`${styles.testimonialCard} ${styles.testimonialCardOffset}`}
-                  variants={cardVariants}
-                  custom={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <div>
-                    <div className={styles.avatarPad}>
-                      <div
-                        className="relative"
-                        style={{ height: "80px", width: "80px" }}
+                  <div className={styles.avatarPad}>
+                    <div className="relative" style={{ height: 80, width: 80 }}>
+                      <SkeletonTheme
+                        baseColor="#c4c4c4ff"
+                        highlightColor="#adaeb8ff"
                       >
-                        {t && t.Avatar ? (
-                          <div>{t.Avatar}</div>
-                        ) : (
-                          <SkeletonTheme
-                            baseColor="#c4c4c4ff"
-                            highlightColor="#adaeb8ff"
-                          >
-                            <Skeleton height={75} width={75} circle={true} />
-                          </SkeletonTheme>
-                        )}
-
-                        <Image
-                          src={t?.Avatar||"/images/svg/avatar.svg"}
-                          alt={`${t?.ClientName||"Client"} photo`}
-                          fill
-                          className="rounded-full object-cover object-center"
-                        />
-                      </div>
+                        <Skeleton height={75} width={75} circle />
+                      </SkeletonTheme>
                     </div>
                   </div>
 
                   <div className={styles.testimonialContentPad}>
-                    {t && t.Testimonial ? (
-                      <p className={styles.testimonialCopy}>{t.Testimonial}</p>
-                    ) : (
-                      <div className={styles.testimonialSkletonWrapper}>
-                        <SkeletonTheme
-                          baseColor="#c4c4c4ff"
-                          highlightColor="#adaeb8ff"
-                        >
-                          <div style={{width:'100%',padding:'10px 10px',display:'flex',flexDirection:'column',gap:'8px'}}>
-                            <Skeleton width={400} height={25} />
-                            <Skeleton width={150} height={25} />
-                          </div>
-                        </SkeletonTheme>
-                      </div>
-                    )}
-                    {t && t.rating ? (
-                      <RatingStars
-                        value={t.rating}
-                        colorClass="text-amber-400"
-                      />
-                    ) : (
-                      <RatingStars value={5} colorClass="text-amber-400" />
-                    )}
-                    <div className={styles.userRow}>
-                      <svg
-                        width="24px"
-                        height="64px"
-                        viewBox="0 0 16 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="#000000"
+                    <div style={{ width: "100%", padding: 10 }}>
+                      <SkeletonTheme
+                        baseColor="#c4c4c4ff"
+                        highlightColor="#adaeb8ff"
                       >
-                        <path
-                          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
-                          fill="#bdbfc0ff"
-                        ></path>
-                      </svg>
-                      {t && t.ClientName ? (
-                        <p className={styles.userName}>{t.ClientName}</p>
-                      ) : (
-                        <div >
-                          <SkeletonTheme
-                            baseColor="#c4c4c4ff"
-                            highlightColor="#adaeb8ff"
-                          >
-                            <div style={{width:'100%'}}>
-                              <Skeleton height={15} width={100} />
-                            </div>
-                          </SkeletonTheme>
-                        </div>
-                      )}
+                        <Skeleton width="100%" height={22} />
+                        <div style={{ height: 8 }} />
+                        <Skeleton width="70%" height={22} />
+                      </SkeletonTheme>
+                    </div>
+
+                    <div style={{ marginTop: 12 }}>
+                      <Skeleton width={120} height={16} />
+                    </div>
+
+                    <div className={styles.userRow} style={{ marginTop: 12 }}>
+                      <Skeleton width={110} height={14} />
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              ) : (
+                // REAL CARDS — animate each card individually
+                slides.map((t, idx) => {
+                  const hasAvatar = Boolean(t?.Avatar);
+                  return (
+                    <motion.div
+                      key={`${t?.slug || 'testimonial'}-${index}-${idx}`}
+                      className={`${styles.testimonialCard} ${styles.testimonialCardOffset}`}
+                      variants={cardVariants}
+                      custom={idx}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                    >
+                      <div className={styles.avatarPad}>
+                        <div
+                          className="relative"
+                          style={{ height: 80, width: 80 }}
+                        >
+                          <Image
+                            src={
+                              hasAvatar && t
+                                ? t.Avatar
+                                : "/images/svg/avatar.svg"
+                            }
+                            alt={`${t?.ClientName || "Client"} photo`}
+                            fill
+                            className="rounded-full object-cover object-center"
+                          />
+                        </div>
+                      </div>
+
+                      <div className={styles.testimonialContentPad}>
+                        {t?.Testimonial ? (
+                          <p className={styles.testimonialCopy}>
+                            {t.Testimonial}
+                          </p>
+                        ) : null}
+
+                        <RatingStars
+                          value={t?.rating || 5}
+                          colorClass="text-amber-400"
+                        />
+
+                        <div className={styles.userRow}>
+                          {/* svg omitted for brevity */}
+                          <p className={styles.userName}>{t?.ClientName}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
+            </AnimatePresence>
+          </div>
 
           <div className={styles.cardsBacker}>
             <div className={styles.cardsBackerInner}></div>
