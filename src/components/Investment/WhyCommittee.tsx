@@ -15,8 +15,8 @@ export default function WhyCommittee() {
             <Image
               src="/images/think.jpg"
               alt="hero"
-              width={600}
-              height={270}
+              width={500}
+              height={0}
               className={styles.philosophyImg}
             />
           </div>
@@ -31,6 +31,14 @@ export default function WhyCommittee() {
             </ul>
           </div>
         </div>
+        <div className={styles.dotsTwo}>
+        <Image
+          src="/images/svg/dots.svg"
+          alt="image"
+          width={120}
+          height={187}
+        />
+      </div>
       </section>
   );
 }

@@ -6,19 +6,21 @@
 
 .title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 44px;
   font-weight: 700;
   color: #001f3f;
   margin-bottom: 20px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .description {
   text-align: center;
-  font-size: 1.1rem;
-  color: #555;
+  font-size:  18px;
+  color: #545454;
   max-width: 800px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 100px auto;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 .content {
@@ -85,32 +87,68 @@
   }
 }
 
-
-
 /* Philosophy */
-.philosophySection { padding: 70px 100px; }
-.philosophyGrid { display: flex; gap: 50px; }
-.philosophyImgCol { flex: 1; }
-.philosophyImg { height: 270px; width: 100%; border-radius: 20px; object-fit: cover; }
-.philosophyTextCol { flex: 1; }
-.h44 { font-size: 44px; font-weight: 700; margin: 0 0 16px 0; }
-.accent { color: #0047ab; }
-.lead { color: #545454; font-weight: 400; font-size: 18px; }
-.philosophyList{
+.philosophySection {
+  padding: 70px 100px;
+  position: relative;
+}
+.philosophyGrid {
+  display: flex;
+  gap: 50px; 
+}
+.philosophyImgCol {
+  flex: 1;
+  /* background-color: lightcoral; */
+}
+.philosophyImg {
+  height: 370px;
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.philosophyTextCol {
+  flex: 1;
+  padding: 30px;
+  /* background-color: lightblue; */
+  display: flex; 
+  justify-content: center;
+  flex-direction: column;
+
+}
+.h44 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+.accent {
+  color: #0047ab;
+}
+.lead {
+  color: #545454;
+  font-weight: 400;
+  font-size: 18px;
+}
+.philosophyList {
   font-size: 20px;
   font-weight: 600;
   text-decoration: dashed;
- list-style-type: "⬤  ";
- color: #1F1F1F;
- padding-left: 50px;
+  list-style-type: "⬤  ";
+  color: #1f1f1f;
+  padding-left: 50px;
+  line-height: 56px;
 }
 
-@media (max-width:670px){
-  .philosophySection{
+.dotsTwo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+@media (max-width: 670px) {
+  .philosophySection {
     display: flex;
     flex-direction: column;
   }
-  .philosophyGrid{
+  .philosophyGrid {
     display: flex;
     flex-direction: column;
   }
