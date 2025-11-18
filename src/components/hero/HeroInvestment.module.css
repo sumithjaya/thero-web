@@ -94,8 +94,11 @@
     align-items: center;
   }
   .heroTitle {
-    font-size: 28px;
+    font-size: 39px;
     word-wrap: break-word;
+  }
+  .ctaBar{
+    margin-top: 30px;
   }
   .heroSection {
     display: flex;

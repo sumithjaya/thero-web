@@ -1,19 +1,23 @@
 /* Team */
-.teamSection { padding: 0 70px; }
+.teamSection {
+  padding: 0 70px;
+}
 .teamCard {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0;                /* content spacing handled by overlay */
+  padding: 0; /* content spacing handled by overlay */
   background: #ffffff;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
   transition: box-shadow 150ms ease;
   border-radius: 16px;
   overflow: hidden;
 }
-.teamCard:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+.teamCard:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
 
 .teamImg {
   width: 100%;
@@ -32,61 +36,168 @@
   transform: translateX(-50%);
   max-height: 96px;
   width: calc(100% - 32px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
-.memberName { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin: 0; }
-.memberRole { font-size: 0.875rem; color: #6b7280; margin: 4px 0 0 0; }
+.memberName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+.memberRole {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 4px 0 0 0;
+}
 
 /* How we calculate */
-.calcSection { padding: 60px 70px; }
-.calcGrid { display: flex; }
-.calcLeft { flex: 1; padding: 20px; }
-.calcRight { display: flex; flex: 2; }
+.calcSection {
+  padding: 60px 70px;
+}
+.calcGrid {
+  display: flex;
+}
+.calcLeft {
+  flex: 1;
+  padding: 20px;
+}
+.calcRight {
+  display: flex;
+  flex: 2;
+}
 
-.h1 { font-size: 44px; font-weight: 700; margin-bottom: 25px; }
-.accent { color: #0047ab; }
-.lead { color: #545454; font-weight: 400; font-size: 18px; margin-bottom: 25px; }
+.h1 {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.accent {
+  color: #0047ab;
+}
+.lead {
+  color: #545454;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 25px;
+}
 
-.faqLinkWrap { display: flex; align-items: center; gap: 10px; }
-.faqLinkText { color: #0047ab; font-weight: 700; font-size: 18px; }
-.faqLinkIcon { color: #0047ab; font-weight: 700; font-size: 18px; }
+.faqLinkWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faqLinkText {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
+.faqLinkIcon {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
 
 /* Contact */
-.contactSection { padding: 60px 70px; display: flex; width: 100%; }
-.contactGrid { display: flex; flex: 2; width: 100%; }
-.contactLeft { flex: 1; background-color: #ffffffff; }
-.contactRight { flex: 1; padding: 36px; }
+.contactSection {
+  padding: 60px 70px;
+  display: flex;
+  width: 100%;
+}
+.contactGrid {
+  display: flex;
+  flex: 2;
+  width: 100%;
+}
+.contactLeft {
+  flex: 1;
+  background-color: #ffffffff;
+}
+.contactRight {
+  flex: 1;
+  padding: 36px;
+}
 
-.contactTitle { color: #1f1f1f; font-size: 44px; font-weight: 700; }
-.contactIntro { color: #1f1f1f; font-size: 18px; font-weight: 400; }
+.contactTitle {
+  color: #1f1f1f;
+  font-size: 44px;
+  font-weight: 700;
+}
+.contactIntro {
+  color: #1f1f1f;
+  font-size: 18px;
+  font-weight: 400;
+}
 
-.contactRow2 { display: flex; gap: 10px; }
-.contactItem { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 10px; }
+.contactRow2 {
+  display: flex;
+  gap: 10px;
+}
+.contactItem {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
 
 .contactIcon {
   background-color: #002855;
   color: #fff;
   border-radius: 16px;
-  width: 60px; height: 60px;
-  display: flex; justify-content: center; align-items: center;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
 }
-.iconLg { font-size: 32px; color: #fff; }
+.iconLg {
+  font-size: 32px;
+  color: #fff;
+}
 
-.contactTextCol { display: flex; flex-direction: column; gap: 10px; }
-.contactLabel { font-weight: 700; font-size: 22px; color: #1f1f1f; margin: 0; }
-.contactValue { font-weight: 400; font-size: 16px; color: #545454; margin: 0; }
+.contactTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contactLabel {
+  font-weight: 700;
+  font-size: 22px;
+  color: #1f1f1f;
+  margin: 0;
+}
+.contactValue {
+  font-weight: 400;
+  font-size: 16px;
+  color: #545454;
+  margin: 0;
+}
 
 /* Social */
 .socialBlock {
-  display: flex; gap: 20px; padding: 50px; border-top: 1px solid #dddddd;
-  margin-top: 20px; align-items: center;
+  display: flex;
+  gap: 20px;
+  padding: 50px;
+  border-top: 1px solid #dddddd;
+  margin-top: 20px;
+  align-items: center;
 }
-.socialTitle { color: #1f1f1f; font-size: 22px; font-weight: 700; }
+.socialTitle {
+  color: #1f1f1f;
+  font-size: 22px;
+  font-weight: 700;
+}
 .socialIcon {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: #0047ab solid 1px; display: flex; align-items: center; justify-content: center; color: #0047ab;
-}.teamLink{ 
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: #0047ab solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0047ab;
+}
+.teamLink {
   font-weight: 700;
   font-size: 18px;
   background-color: #0047ab;
@@ -94,9 +205,8 @@
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
-  
 }
-.teamLinkWrap{
+.teamLinkWrap {
   width: 100%;
   margin: 50px;
   display: flex;
@@ -104,8 +214,43 @@
 }
 /* Responsive */
 @media (max-width: 1024px) {
-  .teamSection { padding: 0 24px; }
-  .calcSection, .contactSection { padding: 40px 24px; }
-  .calcGrid, .contactGrid { flex-direction: column; }
-  .namePlate { width: calc(100% - 24px); }
+  .teamSection {
+    padding: 0 24px;
+  }
+  .calcSection,
+  .contactSection {
+    padding: 40px 24px;
+  }
+  .calcGrid,
+  .contactGrid {
+    flex-direction: column;
+  }
+  .namePlate {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 670px) {
+  .helpTitle {
+    text-align: center;
+    font-size: 30px;
+  }
+  .howWeCalcLeft {
+    text-align: center;
+  }
+  .h1 {
+    font-size: 30px;
+    margin: 0;
+  }
+  .faqLinkWrap {
+    margin-top: 30px;
+    text-align: center;
+    justify-content: center;
+  }
+  .accent {
+    margin: 0;
+  }
+  .lead {
+    margin-top: 20px;
+  }
 }

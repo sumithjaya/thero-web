@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import styles from "./FilledAreaChart.module.css";
 
 const data = [
   { month: "Jan", value: 1200 },
@@ -21,10 +22,9 @@ const data = [
 
 export default function FilledAreaChart() {
   return (
-    <div className="w-full h-72 rounded-2xl border border-black/10 p-4 bg-white">
+    <div className={styles.container}>
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 8, right: 24, left: 0, bottom: 8 }}>
-          {/* Gradient definition */}
+        <AreaChart data={data} margin={{ top: 8, right: 0, left: 0, bottom: 8 }}>
           <defs>
             <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#0047AB" stopOpacity={0.4} />
@@ -37,7 +37,6 @@ export default function FilledAreaChart() {
           <YAxis />
           <Tooltip />
 
-          {/* The filled area line */}
           <Area
             type="monotone"
             dataKey="value"

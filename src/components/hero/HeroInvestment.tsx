@@ -36,7 +36,7 @@ export default function HeroInvestment() {
         <div className={styles.container}>
           <div className={styles.heroStack}>
             <h1 id="hero-heading" className={styles.heroTitle}>
-              Smart <span className={styles.TitleSpan}>Investing </span> , Backed by
+              Smart <span className={styles.TitleSpan}>Investing, </span>Backed by
               Expertise
             </h1>
             <p className={styles.heroSubtitle}>

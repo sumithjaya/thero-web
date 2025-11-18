@@ -446,3 +446,10 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+  .mobileCtaWrap{
+    padding: 10px;
+    text-align: center;
+  }
+}

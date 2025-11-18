@@ -1,102 +1,133 @@
- .wrap {
-          width: 100%; 
-          margin: 0 auto;
-          padding: 8px 16px 32px;
-        }
-.TitleContainer{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 100px;
+.wrap {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 16px 32px;
 }
-        .title {
-          text-align: center;
-          font-size: 44px;
-          margin: 8px 0 6px;
-          font-weight: 800;
+.TitleContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 100px;
+}
+.title {
+  text-align: center;
+  font-size: 44px;
+  margin: 8px 0 6px;
+  font-weight: 800;
   font-family: "Open Sans", sans-serif;
-          color: #1f1f1f;
-        }
+  color: #1f1f1f;
+}
 
-        .susbTitle
-        {
-            font-size: 18px;
-            font-weight: 400;
-            
+.susbTitle {
+  font-size: 18px;
+  font-weight: 400;
+
   font-family: "Open Sans", sans-serif;
-        }
-        .accent { color: #0047ab; }
+}
+.accent {
+  color: #0047ab;
+}
 
-        .rail {
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-        }
+.rail {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
 
-       
+.track {
+  --dur: 120s; /* tweak speed here */
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+  animation: scrollLeft var(--dur) linear infinite;
+}
 
-        .track {
-          --dur: 120s; /* tweak speed here */
-          display: flex;
-          gap: 18px;
-          width: max-content;
-          will-change: transform;
-          animation: scrollLeft var(--dur) linear infinite;
-        }
+/* Pause on hover */
+.rail:hover .track {
+  animation-play-state: paused;
+}
 
-        /* Pause on hover */
-        .rail:hover .track {
-          animation-play-state: paused;
-        }
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* matches duplication */
+}
 
-        @keyframes scrollLeft {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); } /* matches duplication */
-        }
+.card {
+  flex: 0 0 auto;
+  width: 260px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 #ecf4fe inset;
+  overflow: hidden;
+  position: relative;
+}
 
-        .card {
-          flex: 0 0 auto;
-          width: 260px;
-          border-radius: 16px;
-          background: #ffffff;
-          box-shadow: 0 1px 0 #ecf4fe inset;
-          overflow: hidden;
-          position: relative;
-        }
+.imgWrap :global(img) {
+  display: block;
+  width: 260px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #e6e6e6;
+}
 
-        .imgWrap :global(img) {
-          display: block;
-          width: 260px;
-          height: 320px;
-          object-fit: cover;
-          border-radius: 16px;
-          background: #e6e6e6;
-        }
+.meta {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 #ecf4fe inset;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.meta strong {
+  color: #1f1f1f;
+  font-size: 14px;
+}
+.meta span {
+  color: #6b7280;
+  font-size: 12px;
+}
 
-        .meta {
-          position: absolute;
-          left: 12px;
-          right: 12px;
-          bottom: 12px;
-          padding: 10px 14px;
-          border-radius: 12px;
-          background: #ffffff;
-          box-shadow: 0 1px 0 #ecf4fe inset;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-        .meta strong { color: #1f1f1f; font-size: 14px; }
-        .meta span   { color: #6b7280; font-size: 12px; }
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .card {
+    width: 200px;
+  }
+  .imgWrap :global(img) {
+    width: 200px;
+    height: 260px;
+  }
+  .track {
+    --dur: 22s;
+  } /* slightly faster on mobile */
+  .TitleContainer{
+    padding: 50px;
+  }
+  
+.track {
+  --dur: 120s; /* tweak speed here */
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+  animation: scrollLeft  150s linear infinite;
+}
+}
 
-        /* Responsive tweaks */
-        @media (max-width: 768px) {
-          .card { width: 200px; }
-          .imgWrap :global(img) { width: 200px; height: 260px; }
-          .track { --dur: 22s; } /* slightly faster on mobile */
-        }
-
-        /* Respect user motion prefs */
-        @media (prefers-reduced-motion: reduce) {
-          .track { animation: none; transform: translateX(0); }
-        }
+/* Respect user motion prefs */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: translateX(0);
+  }
+} 

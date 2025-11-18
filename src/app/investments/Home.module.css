@@ -1,15 +1,14 @@
 /* Wave header */
-.waveWrapper { 
+.waveWrapper {
   display: flex;
-    width: 100%; 
-    justify-content: center;
-    padding: 10px 100px;
-    margin-bottom: 100px;
+  width: 100%;
+  justify-content: center;
+  padding: 10px 100px;
+  margin-bottom: 100px;
 }
 .waveSvg {
-  width: 100%; 
+  width: 100%;
   display: block;
-  
 }
 /* Testimonials block */
 .testimonialsSection {
@@ -25,7 +24,9 @@
   font-weight: 700;
   margin-bottom: 30px;
 }
-.accent { color: #0047ab; }
+.accent {
+  color: #0047ab;
+}
 .testimonialsSubtitle {
   color: #545454;
   margin-bottom: 30px;
@@ -75,13 +76,17 @@
 
 .card {
   width: 640px;
-  box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 26px;
   display: flex;
   background-color: #ffffff;
 }
-.avatarWrap { padding: 20px; }
-.cardBody { padding: 20px; }
+.avatarWrap {
+  padding: 20px;
+}
+.cardBody {
+  padding: 20px;
+}
 .cardText {
   font-size: 20px;
   color: #1f1f1f;
@@ -99,7 +104,10 @@
 }
 
 /* CTA wide bar */
-.ctaWideSection { padding: 60px 70px; width: 100%; }
+.ctaWideSection {
+  padding: 60px 70px;
+  width: 100%;
+}
 .ctaWide {
   background-color: #002855;
   border-radius: 30px;
@@ -113,9 +121,19 @@
   align-items: center;
   justify-content: space-between;
 }
-.ctaCopy { display: flex; flex-direction: column; }
-.ctaTitle { font-size: 36px; font-weight: 700;padding-right: 50px; }
-.ctaSubtitle { font-size: 18px; font-weight: 400; }
+.ctaCopy {
+  display: flex;
+  flex-direction: column;
+}
+.ctaTitle {
+  font-size: 36px;
+  font-weight: 700;
+  padding-right: 50px;
+}
+.ctaSubtitle {
+  font-size: 18px;
+  font-weight: 400;
+}
 .ctaButton {
   background-color: #ffffff;
   color: #002855;
@@ -128,20 +146,46 @@
 }
 
 /* FAQ block */
-.faqSection { padding: 60px 70px; }
-.faqGrid { display: flex; }
-.faqLeft { flex: 1; padding: 20px; }
-.faqH1 { font-size: 44px; font-weight: 700; margin-bottom: 25px; }
+.faqSection {
+  padding: 60px 70px;
+}
+.faqGrid {
+  display: flex;
+}
+.faqLeft {
+  flex: 1;
+  padding: 20px;
+}
+.faqH1 {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
 .faqLead {
   color: #545454;
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 25px;
 }
-.faqLinkWrap { display: flex; align-items: center; gap: 10px; }
-.faqLinkText { color: #0047ab; font-weight: 700; font-size: 18px; }
-.faqLinkIcon { color: #0047ab; font-weight: 700; font-size: 18px; }
-.faqRight { display: flex; flex: 2; }
+.faqLinkWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faqLinkText {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
+.faqLinkIcon {
+  color: #0047ab;
+  font-weight: 700;
+  font-size: 18px;
+}
+.faqRight {
+  display: flex;
+  flex: 2;
+}
 
 /* Contact */
 .contactSection {
@@ -149,13 +193,34 @@
   display: flex;
   width: 100%;
 }
-.contactGrid { display: flex; flex: 2; width: 100%; }
-.contactLeft { flex: 1; background-color: #ffffffff; }
-.contactRight { flex: 1; padding: 36px; }
-.contactTitle { color: #1f1f1f; font-size: 44px; font-weight: 700; }
-.contactIntro { color: #1f1f1f; font-size: 18px; font-weight: 400; }
+.contactGrid {
+  display: flex;
+  flex: 2;
+  width: 100%;
+}
+.contactLeft {
+  flex: 1;
+  background-color: #ffffffff;
+}
+.contactRight {
+  flex: 1;
+  padding: 36px;
+}
+.contactTitle {
+  color: #1f1f1f;
+  font-size: 44px;
+  font-weight: 700;
+}
+.contactIntro {
+  color: #1f1f1f;
+  font-size: 18px;
+  font-weight: 400;
+}
 
-.contactRow2 { display: flex; gap: 10px; }
+.contactRow2 {
+  display: flex;
+  gap: 10px;
+}
 .contactItem {
   display: flex;
   gap: 20px;
@@ -173,10 +238,27 @@
   align-items: center;
   margin-bottom: 10px;
 }
-.iconLg { font-size: 32px; color: #fff; }
-.contactTextCol { display: flex; flex-direction: column; gap: 10px; }
-.contactLabel { font-weight: 700; font-size: 22px; color: #1f1f1f; margin: 0; }
-.contactValue { font-weight: 400; font-size: 16px; color: #545454; margin: 0; }
+.iconLg {
+  font-size: 32px;
+  color: #fff;
+}
+.contactTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contactLabel {
+  font-weight: 700;
+  font-size: 22px;
+  color: #1f1f1f;
+  margin: 0;
+}
+.contactValue {
+  font-weight: 400;
+  font-size: 16px;
+  color: #545454;
+  margin: 0;
+}
 
 /* Social */
 .socialBlock {
@@ -187,7 +269,11 @@
   margin-top: 20px;
   align-items: center;
 }
-.socialTitle { color: #1f1f1f; font-size: 22px; font-weight: 700; }
+.socialTitle {
+  color: #1f1f1f;
+  font-size: 22px;
+  font-weight: 700;
+}
 .socialIcon {
   width: 44px;
   height: 44px;
@@ -203,16 +289,27 @@
 @media (max-width: 1024px) {
   .testimonialsSection,
   .faqGrid,
-  .contactGrid { flex-direction: column; }
+  .contactGrid {
+    flex-direction: column;
+  }
 
-  .testimonialsRight .card { width: 100%; }
-  .bgRectWrap { display: none; }
-  .waveSvg { width: 100%; height: auto; }
+  .testimonialsRight .card {
+    width: 100%;
+  }
+  .bgRectWrap {
+    display: none;
+  }
+  .waveSvg {
+    width: 100%;
+    height: auto;
+  }
 
   .testimonialsSection,
   .ctaWideSection,
   .faqSection,
-  .contactSection { padding: 40px 24px; }
+  .contactSection {
+    padding: 40px 24px;
+  }
 
   .ctaWide {
     height: auto;
@@ -220,7 +317,33 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .waveWrapper{
+  .waveWrapper {
     display: none;
   }
+}
+
+@media (max-width: 640px) {
+  .ctaCopy{
+    padding: 0px;
+    text-align: center;
+  }
+  .ctaTitle{
+    padding: 0px;
+    text-align: center;
+  }
+
+  .ctaButtonWrap{
+    padding: 0px;
+    text-align: center;
+  }
+  .ctaButton{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .ctaWide{
+    padding: 30px;
+  }
+  
 }

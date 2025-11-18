@@ -199,7 +199,11 @@
  
 @media (max-width: 640px) {
   .footer{
-    background-color: #0046bf;
+    background-color: #0047ab;
+    padding: 0px;
+  }
+  .bgWrap{
+    padding: 30px;
   }
   
 }

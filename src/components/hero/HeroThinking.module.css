@@ -99,3 +99,26 @@
 .heroSvgWrapper {
   padding-top: 12.5rem; /* pt-50 */
 }
+
+@media (max-width: 670px) {
+  .heroTitle {
+    font-size: 40px;
+  }
+  .heroTitleHighlight {
+    font-size: 40px;
+  }
+  .heroText {
+    font-size: 16px;
+  }
+  .heroButton {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    font-size: 0.875rem; /* text-sm */
+    border-radius: 10px;
+  }
+  .heroSvgWrapper {
+    display: none;
+  }
+  .heroContent{
+    padding: 30px;
+  }
+}

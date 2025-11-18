@@ -199,8 +199,8 @@
 }
 
 @media (max-width: 640px) {
-  .container { 
-    padding: 50px;
+  .container {
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -210,47 +210,47 @@
     font-size: 12px;
   }
 
-  .input{
+  .input {
     font-size: 12px;
   }
 
-  .form{
+  .form {
     padding: 20px;
     width: 100%;
     border-radius: 10px;
   }
 
-  .contactTitle{
+  .contactTitle {
     font-size: 24px;
   }
-  .contactIntro{
+  .contactIntro {
     font-size: 12px;
   }
-  .contactLabel{
+  .contactLabel {
     font-size: 12px;
   }
-  .contactValue{
+  .contactValue {
     font-size: 12px;
   }
-  .button{
+  .button {
     font-size: 12px;
     padding: 10px 20px;
     border-radius: 10px;
   }
-.textarea{
-  font-size: 12px;
-}
-  .contactGridTop{
+  .textarea {
+    font-size: 12px;
+  }
+  .contactGridTop {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-bottom: 20px;
   }
-  .contactGrid{
+  .contactGrid {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
   }
-  .contactIcon{
+  .contactIcon {
     width: 40px;
     height: 40px;
     padding: 10px;

@@ -147,9 +147,25 @@
   .philosophySection {
     display: flex;
     flex-direction: column;
+    padding: 30px;
   }
   .philosophyGrid {
     display: flex;
     flex-direction: column;
+  }
+  .h44{
+    text-align: center;
+  }
+  .philosophyTextCol{
+    padding: 0;
+  }
+  .philosophyList{
+    padding: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: dashed;
+    list-style-type: "⬤  ";
+    color: #1f1f1f;
+    line-height: 40px;
   }
 }

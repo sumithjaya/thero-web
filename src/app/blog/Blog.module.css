@@ -420,3 +420,17 @@
 .skeletongrid2 {
   padding: 50px 100px;
 }
+
+@media (max-width:670px)
+{
+  .waveWrapper{
+    display: none;
+  }
+  .featuredPost{
+    padding: 30px;
+  }
+  .featuredPostBody{
+    padding: 30px;
+    text-align: center;
+  }
+}
