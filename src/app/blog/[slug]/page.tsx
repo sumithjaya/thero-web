@@ -2,35 +2,41 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles2 from "./BlogPost.module.css";
-import { fetchPosts, toPost } from "../posts";
+import { toPost } from "../posts";
 
-// ✅ Fetch a single post by slug
-
+// ✅ Fetch a single post by slug (using documentId as slug)
 async function fetchPostBySlug(slug: string) {
   const base = process.env.NEXT_PUBLIC_STRAPI_URL;
   if (!base) throw new Error("NEXT_PUBLIC_STRAPI_URL not defined");
+  
   try {
-    const resn = await fetch(
-      "/api/strapi-proxy/api/wealfy-testimonials?populate=*"
-    );
-    console.log("resn", resn);
-    const jsonn = await resn.json();
-  } catch (error) {
-    console.error("🚨 Strapi fetch failed, using fallback:", error);
-  }
-  try {
+    // Use the direct endpoint with slug (documentId)
     const res = await fetch(
-      `${base}/api/thero-posts?${
-        slug ? `filters[slug][$eq]=${slug}` : ""
-      }&populate=*&sort[0]=createdAt:desc`,
-      { next: { revalidate: 60 } }
+      `${base}/api/thero-posts/${slug}?populate=*`,
+      { 
+        next: { revalidate: 60 },
+        cache: 'no-store'
+      }
     );
-    if (!res.ok) return null;
+    
+    if (!res.ok) {
+      console.error(`Strapi responded with status: ${res.status}`);
+      return null;
+    }
+    
     const json = await res.json();
-    const node = json.data?.[0];
-    return node ? toPost(node) : null;
+    console.log("📦 Strapi response:", json);
+    
+    const node = json.data;
+    if (!node) {
+      console.log("❌ No post found with slug:", slug);
+      return null;
+    }
+    
+    return toPost(node);
   } catch (error) {
-    console.error("🚨 Strapi fetch failed, using fallback:", error);
+    console.error("🚨 Strapi fetch failed:", error);
+    return null;
   }
 }
 
@@ -38,9 +44,9 @@ async function fetchPostBySlug(slug: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>; // Changed: params is now a Promise
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params; // Changed: await params first
+  const { slug } = await params;
   const post = await fetchPostBySlug(slug);
 
   if (!post)
@@ -64,14 +70,20 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>; // Changed: params is now a Promise
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // Changed: await params first
+  const { slug } = await params;
   const p = await fetchPostBySlug(slug);
 
   if (!p) {
     return (
-      <div className="p-8 text-center text-gray-500">❌ Post not found</div>
+      <div className="p-8 text-center text-gray-500">
+        <h1 className="text-2xl font-bold mb-4">❌ Post not found</h1>
+        <p className="mb-4">Slug: {slug}</p>
+        <Link href="/blog" className="text-blue-600 hover:underline">
+          ← Back to Blog
+        </Link>
+      </div>
     );
   }
 
@@ -79,8 +91,7 @@ export default async function BlogPostPage({
     <div className="font-sans min-h-screen pb-20">
       {/* Hero banner */}
       <header className={styles2.postHero}>
-        <div className={styles2.postHeroInner}>
-          <div className={styles2.postBadge}>{p.category}</div>
+        <div className={styles2.postHeroInner}> 
           <h1 className={styles2.postTitle}>{p.title}</h1>
           <div className={styles2.postMeta}>
             <span>{p.author}</span>
@@ -103,32 +114,26 @@ export default async function BlogPostPage({
 
       {/* Content */}
       <main className={styles2.postContent}>
-        {p.content.map((block, i) => (
-          <section key={i} className={styles2.contentBlock}>
-            {block.h2 && <h2 className={styles2.h2}>{block.h2}</h2>}
-            {block.p && <p className={styles2.p}>{block.p}</p>}
-            {block.ul && (
-              <ul className={styles2.ul}>
-                {block.ul.map((li, idx) => (
-                  <li key={idx}>{li}</li>
-                ))}
-              </ul>
-            )}
-          </section>
-        ))}
+        {p.content && p.content.length > 0 ? (
+          p.content.map((block, i) => (
+            <section key={i} className={styles2.contentBlock}>
+              {block.h2 && <h2 className={styles2.h2}>{block.h2}</h2>}
+              {block.p && <p className={styles2.p}>{block.p}</p>}
+              {block.ul && (
+                <ul className={styles2.ul}>
+                  {block.ul.map((li, idx) => (
+                    <li key={idx}>{li}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))
+        ) : (
+          <p className="text-gray-500 text-center py-8">No content available</p>
+        )}
 
-        {/* CTA Section */}
-        <div className={styles2.ctaBar}>
-          <div>
-            <h3 className={styles2.ctaTitle}>Will I have enough money?</h3>
-            <p className={styles2.ctaSubtitle}>
-              Find out if your income will be sufficient in the years ahead.
-            </p>
-          </div>
-          <Link href="/calculators" className={styles2.ctaButton}>
-            Run the calculator
-          </Link>
-        </div>
+       
+         
       </main>
     </div>
   );

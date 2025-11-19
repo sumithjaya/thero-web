@@ -10,6 +10,7 @@ export type ContentBlock = {
 };
 
 export type Post = {
+  id: string; // Changed from slug to id
   slug: string;
   title: string;
   excerpt: string;
@@ -40,6 +41,7 @@ export type FAQ={
 // -----------------------------
 const fallbackPosts: ReadonlyArray<Post> = [
   {
+    id: "1",
     slug: "retirement-checklist-2025",
     title: "Your 2025 Retirement Readiness Checklist",
     excerpt:
@@ -68,15 +70,16 @@ const fallbackPosts: ReadonlyArray<Post> = [
       },
       {
         h2: "3) Insurance sanity check",
-        p: "If one thing goes wrong, your plan shouldn’t implode.",
+        p: "If one thing goes wrong, your plan shouldn't implode.",
       },
     ],
   },
   {
+    id: "2",
     slug: "super-fees-explained",
     title: "Super Fees: What Actually Matters",
     excerpt:
-      "Cut the noise. Here’s how to compare funds without getting lost in PDFs.",
+      "Cut the noise. Here's how to compare funds without getting lost in PDFs.",
     author: "Bob Smith",
     date: "2025-09-12",
     prettyDate: "Sep 12, 2025",
@@ -102,9 +105,10 @@ const fallbackPosts: ReadonlyArray<Post> = [
     ],
   },
   {
+    id: "3",
     slug: "sequence-risk",
-    title: "Sequence Risk: The Retirement Killer You Don’t See Coming",
-    excerpt: "Order of returns can wreck a plan. Here’s how to blunt it.",
+    title: "Sequence Risk: The Retirement Killer You Don't See Coming",
+    excerpt: "Order of returns can wreck a plan. Here's how to blunt it.",
     author: "Clara Lee",
     date: "2025-08-03",
     prettyDate: "Aug 3, 2025",
@@ -182,8 +186,13 @@ export function toPost(node: any): Post {
     : [];
 
   console.log("tags", tags);
+  
+  // Get ID - prioritize documentId, then id, then slug as fallback
+  const postId = a.documentId ?? String(a.id ?? a.slug ?? "");
+  
   return {
-    slug: a.slug ?? a.documentId ?? String(a.id ?? ""),
+    id: postId,
+    slug: a.slug ?? postId,
     title: a.Title ?? "",
     excerpt: safeExcerptFromContent(a.Content) || "",
     author: a.Author ?? "Admin",
@@ -230,6 +239,81 @@ export async function fetchPosts(): Promise<Post[]> {
   } catch (err) {
     console.error("🚨 Strapi fetch failed, using fallback:", err);
     return [...fallbackPosts];
+  }
+}
+
+/** Fetch a single post by ID (documentId) */
+export async function fetchPostById(id: string): Promise<Post | null> {
+  if (!STRAPI_URL) {
+    // Return fallback post if it exists
+    const fallback = fallbackPosts.find((p) => p.id === id);
+    return fallback ?? null;
+  }
+
+  try {
+    console.log("🔍 Fetching post with ID:", id);
+    
+    // Fetch directly by document ID using the single endpoint
+    const json = await strapiFetch<{ data: any }>(
+      `/api/thero-posts/${id}?populate=*`
+    );
+
+    console.log("📦 Strapi response:", json);
+    const node = json.data;
+    
+    if (!node) {
+      console.log("❌ No post found with ID:", id);
+      // Try fallback
+      const fallback = fallbackPosts.find((p) => p.id === id);
+      return fallback ?? null;
+    }
+
+    console.log("✅ Found post node:", node);
+    const post = toPost(node);
+    console.log("✅ Transformed post:", post);
+    return post;
+  } catch (err) {
+    console.error("❌ fetchPostById failed:", err);
+    // Try fallback on error
+    const fallback = fallbackPosts.find((p) => p.id === id);
+    return fallback ?? null;
+  }
+}
+
+/** Fetch a single post by slug (kept for compatibility) */
+export async function fetchPostBySlug(slug: string): Promise<Post | null> {
+  if (!STRAPI_URL) {
+    // Return fallback post if it exists
+    const fallback = fallbackPosts.find((p) => p.slug === slug);
+    return fallback ?? null;
+  }
+
+  try {
+    console.log("🔍 Fetching post with slug:", slug);
+    const q = encodeURIComponent(slug);
+    const json = await strapiFetch<{ data: any[] }>(
+      `/api/thero-posts?populate=*&filters[slug][$eq]=${q}&pagination[page]=1&pagination[pageSize]=1`
+    );
+
+    console.log("📦 Strapi response:", json);
+    const node = json.data?.[0];
+    
+    if (!node) {
+      console.log("❌ No post found with slug:", slug);
+      // Try fallback
+      const fallback = fallbackPosts.find((p) => p.slug === slug);
+      return fallback ?? null;
+    }
+
+    console.log("✅ Found post node:", node);
+    const post = toPost(node);
+    console.log("✅ Transformed post:", post);
+    return post;
+  } catch (err) {
+    console.error("❌ fetchPostBySlug failed:", err);
+    // Try fallback on error
+    const fallback = fallbackPosts.find((p) => p.slug === slug);
+    return fallback ?? null;
   }
 }
 
