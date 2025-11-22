@@ -135,8 +135,7 @@ export default function BlogIndexPage() {
       {/* Posts Grid */}
       <section className={styles.gridSection}>
         <div className={styles.grid}>
-          {posts.map((p: Post) => {
-            console.log("post-", p);
+          {posts.map((p: Post) => { 
             return (
               <article key={p.slug} className={styles.card}>
                 <div className={styles.cardImageWrap}>
@@ -225,8 +224,7 @@ export default function BlogIndexPage() {
 
       <section className={styles.gridSection}>
         <div className={styles.grid}>
-          {posts.map((p: Post) => {
-            console.log("post-", p);
+          {posts.map((p: Post) => { 
             return (
               <article key={p.slug} className={styles.card}>
                 <div className={styles.cardImageWrap}>

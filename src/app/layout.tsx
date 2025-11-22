@@ -1,49 +1,39 @@
-'use client';
+// No "use client" directive here. This file is a Server Component by default.
 
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import { useEffect, useState } from "react";  
-import Loading from "@/components/loading";
+import RootLayoutClient from "./RootLayoutClient"; // Import the client component
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// --- Metadata Definition (MUST be in a Server Component) ---
+export const metadata = {
+  // --- Title (The primary <title> tag)
+  title: 'THERO: Retirement Planning & Investment Optimizer', 
+  
+  // --- Description (The <meta name="description"> tag)
+  description: 'Optimize your retirement plan with confidence. THERO helps you plan & manage your retirement income, investments, and projections with expert, easy-to-understand guidance.',
+  
+  // --- Open Graph / Social Sharing (Optional but highly recommended)
+  openGraph: {
+    title: 'THERO: Retirement Planning & Investment Optimizer',
+    description: 'Optimize your retirement plan with confidence. THERO helps you plan & manage your retirement income, investments, and projections with expert, easy-to-understand guidance.',
+    url: 'https://thero.com.au', // Replace with your actual URL
+    siteName: 'THERO',
+    type: 'website',
+  },
+};
+// -----------------------------------------------------------
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
- 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <html lang="en"> 
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Header />
-            {children}
-            <Footer />
-          </>
-        )}
+    <html lang="en">
+      {/* The actual content and client logic is now handled by the imported 
+        RootLayoutClient component.
+      */}
+      <body>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );

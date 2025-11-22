@@ -25,10 +25,10 @@ export default function Testimonials() {
   useEffect(() => {
     async function loadTestimonials() {
       try {
-        console.log("⏳ Loading testimonials...");
+        
         setLoading(true);
         const data = await fetchTestimonials();
-        console.log("✅⏳⏳⏳✅ Loaded testimonials:", data);
+        
         if (data && data.length > 0) {
           setTestimonials(data);
         }
@@ -52,7 +52,7 @@ export default function Testimonials() {
   const prev = () => {
     if (len < 2) return;
     setDir("prev");
-    console.log("pre clicked");
+    
     setIndex((i) => (i - 2 + len) % len);
   };
 

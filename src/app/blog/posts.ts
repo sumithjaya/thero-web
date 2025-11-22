@@ -154,8 +154,7 @@ function safeExcerptFromContent(content: any[]): string {
 // Map Strapi node (your API is flattened: Title/Content/CoverImage at root)
 export function toPost(node: any): Post {
   const a = node ?? {};
-
-  console.log("node", node);
+ 
   const imgUrl =
     toAbsUrl(a?.CoverImage?.url) ??
     toAbsUrl(a?.CoverImage?.data?.attributes?.url) ??
@@ -184,8 +183,7 @@ export function toPost(node: any): Post {
         Slug: tag.Slug,
       }))
     : [];
-
-  console.log("tags", tags);
+ 
   
   // Get ID - prioritize documentId, then id, then slug as fallback
   const postId = a.documentId ?? String(a.id ?? a.slug ?? "");
@@ -251,26 +249,26 @@ export async function fetchPostById(id: string): Promise<Post | null> {
   }
 
   try {
-    console.log("🔍 Fetching post with ID:", id);
+    
     
     // Fetch directly by document ID using the single endpoint
     const json = await strapiFetch<{ data: any }>(
       `/api/thero-posts/${id}?populate=*`
     );
 
-    console.log("📦 Strapi response:", json);
+    
     const node = json.data;
     
     if (!node) {
-      console.log("❌ No post found with ID:", id);
+     
       // Try fallback
       const fallback = fallbackPosts.find((p) => p.id === id);
       return fallback ?? null;
     }
 
-    console.log("✅ Found post node:", node);
+     
     const post = toPost(node);
-    console.log("✅ Transformed post:", post);
+     
     return post;
   } catch (err) {
     console.error("❌ fetchPostById failed:", err);
@@ -289,25 +287,25 @@ export async function fetchPostBySlug(slug: string): Promise<Post | null> {
   }
 
   try {
-    console.log("🔍 Fetching post with slug:", slug);
+    
     const q = encodeURIComponent(slug);
     const json = await strapiFetch<{ data: any[] }>(
       `/api/thero-posts?populate=*&filters[slug][$eq]=${q}&pagination[page]=1&pagination[pageSize]=1`
     );
 
-    console.log("📦 Strapi response:", json);
+    
     const node = json.data?.[0];
     
     if (!node) {
-      console.log("❌ No post found with slug:", slug);
+      
       // Try fallback
       const fallback = fallbackPosts.find((p) => p.slug === slug);
       return fallback ?? null;
     }
 
-    console.log("✅ Found post node:", node);
+     
     const post = toPost(node);
-    console.log("✅ Transformed post:", post);
+    
     return post;
   } catch (err) {
     console.error("❌ fetchPostBySlug failed:", err);

@@ -59,7 +59,7 @@ export default function CalForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    
   };
 
   return (

@@ -25,17 +25,17 @@ async function fetchPostBySlug(slug: string) {
     }
     
     const json = await res.json();
-    console.log("📦 Strapi response:", json);
+     
     
     const node = json.data;
     if (!node) {
-      console.log("❌ No post found with slug:", slug);
+       
       return null;
     }
     
     return toPost(node);
   } catch (error) {
-    console.error("🚨 Strapi fetch failed:", error);
+    
     return null;
   }
 }
