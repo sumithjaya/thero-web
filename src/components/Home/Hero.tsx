@@ -1,7 +1,9 @@
-import Link from "next/link";
+"use client";
 import styles from "./Hero.module.css";
+import { PopupButton } from "@typeform/embed-react";
 
 export default function Hero() {
+  const typeformId = process.env.NEXT_PUBLIC_TYPEFORM_ID ?? "";
   return (
     <div className={styles.heroRoot}>
       <section className={styles.heroSection} aria-labelledby="hero-heading">
@@ -36,15 +38,22 @@ export default function Hero() {
         <div className={styles.container}>
           <div className={styles.heroStack}>
             <h1 id="hero-heading" className={styles.heroTitle}>
-              <span className={styles.brand}>Optimize your retirement </span>plan with confidence
+              <span className={styles.brand}>Optimize your retirement </span>
+              plan with confidence
             </h1>
             <p className={styles.heroSubtitle}>
-              We help you plan & manage your retirement income, investments, and projections. We’re experts, but we explain things in a way that’s easy to understand. We’re here to help.
+              We help you plan & manage your retirement income, investments, and
+              projections. We’re experts, but we explain things in a way that’s
+              easy to understand. We’re here to help.
             </p>
             <div className={styles.ctaBar}>
-              <Link href="/get-started" className={styles.ctaPrimary}>
+              {/* <Link href="/get-started" className={styles.ctaPrimary}>
               Get Started
             </Link>
+             */}
+              <PopupButton id={typeformId} className={styles.ctaPrimary}>
+                <div>Get Started</div>
+              </PopupButton>
             </div>
           </div>
         </div>

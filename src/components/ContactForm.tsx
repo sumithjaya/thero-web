@@ -27,7 +27,7 @@ export default function ContactForm() {
                   type="text"
                   id="first-name"
                   name="first-name"
-                  placeholder="John"
+                  placeholder="Your first name"
                   className={styles.input}
                   suppressHydrationWarning
                 />
@@ -48,7 +48,7 @@ export default function ContactForm() {
                   type="text"
                   id="last-name"
                   name="last-name"
-                  placeholder="Doe"
+                  placeholder="Your last name"
                   className={styles.input}
                   suppressHydrationWarning
                 />
@@ -69,7 +69,7 @@ export default function ContactForm() {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="john@example.com"
+                  placeholder="Your email address"
                   className={styles.input}
                   suppressHydrationWarning
                 />
@@ -90,7 +90,7 @@ export default function ContactForm() {
                   id="message"
                   name="message"
                   rows={4}
-                  placeholder="Write your message..."
+                  placeholder="Type your message"
                   className={styles.textarea}
                   suppressHydrationWarning
                 />

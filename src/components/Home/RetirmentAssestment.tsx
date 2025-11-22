@@ -1,9 +1,12 @@
+"use client";
 import Image from "next/image";
 import styles from "./RetirmentAssestment.module.css";
 import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import RatingStars from "../Testimonials/RatingStars";
+import { PopupButton } from "@typeform/embed-react";
 export default function RetirmentAssestment() {
+  const typeformId = process.env.NEXT_PUBLIC_TYPEFORM_ID ?? "";
   return (
     <section className={styles.sectionPadLg}>
       <div className={`${styles.rowBetween}`}>
@@ -24,13 +27,16 @@ export default function RetirmentAssestment() {
             <div className={styles.cardContent}>
               <div>
                 <h5 className={styles.cardTitle}>Retirement Assessment</h5>
-              <p className={styles.cardText}>
-                Answer a few questions to get personalized recommendations
-              </p>
+                <p className={styles.cardText}>
+                  Answer a few questions to get personalized recommendations
+                </p>
               </div>
-              <Link href={"/assessment"} className={styles.assessmentCta}>
+              {/* <Link href={"/assessment"} className={styles.assessmentCta}>
                 Take the assessment
-              </Link>
+              </Link> */}
+              <PopupButton id={typeformId} className={styles.assessmentCta}>
+                <div> Take the assessment</div>
+              </PopupButton>
             </div>
           </div>
 
@@ -48,9 +54,12 @@ export default function RetirmentAssestment() {
               <p className={styles.sustainabilityText}>
                 Will your money last through retirement?
               </p>
-              <Link href={"/assessment"} className={styles.sustainabilityCta}>
+              {/* <Link href={"/assessment"} className={styles.sustainabilityCta}>
                 Calculate now
-              </Link>
+              </Link> */}
+              <PopupButton id={typeformId} className={styles.sustainabilityCta}>
+                <div> Calculate now</div>
+              </PopupButton>
             </div>
           </div>
         </div>
@@ -152,9 +161,7 @@ export default function RetirmentAssestment() {
                   />
                 </svg>
               </div>
-              <div
-                className= {styles.legendRow  }
-              >
+              <div className={styles.legendRow}>
                 <div className={styles.legendDotSecondary} />
                 <p className={styles.legendLabel}>Conservative Invested</p>
               </div>

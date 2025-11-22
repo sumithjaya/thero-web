@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
 import { HiOutlineBars3, HiXMark } from "react-icons/hi2";
+import { PopupButton } from "@typeform/embed-react";
 
 /** tiny classNames helper (no dependency) */
 const cx = (...parts: Array<string | false | null | undefined>) =>
@@ -39,6 +40,7 @@ const MobileMenu = React.memo(function MobileMenu({
 }) {
   const { isSectionActive } = useActive();
 
+  const typeformId = process.env.NEXT_PUBLIC_TYPEFORM_ID ?? "";
   return (
     <div
       className={styles.mobileOverlay}
@@ -76,7 +78,9 @@ const MobileMenu = React.memo(function MobileMenu({
             href="/calculators"
             className={cx(
               styles.navLink,
-              isSectionActive("/calculators") ? styles.activeLinkMobile : undefined
+              isSectionActive("/calculators")
+                ? styles.activeLinkMobile
+                : undefined
             )}
             aria-current={isSectionActive("/calculators") ? "page" : undefined}
             onClick={onClose}
@@ -88,7 +92,9 @@ const MobileMenu = React.memo(function MobileMenu({
             href="/investments"
             className={cx(
               styles.navLink,
-              isSectionActive("/investments") ? styles.activeLinkMobile : undefined
+              isSectionActive("/investments")
+                ? styles.activeLinkMobile
+                : undefined
             )}
             aria-current={isSectionActive("/investments") ? "page" : undefined}
             onClick={onClose}
@@ -133,13 +139,16 @@ const MobileMenu = React.memo(function MobileMenu({
           </Link>
 
           <div className={styles.mobileCtaWrap}>
-            <Link
+            {/* <Link
               href="/get-started"
               className={styles.mobileCta}
               onClick={onClose}
             >
               Get Started
-            </Link>
+            </Link> */}
+            <PopupButton id={typeformId} className={styles.mobileCta}>
+              <div>Get Started</div>
+            </PopupButton>
           </div>
         </nav>
       </div>
@@ -154,6 +163,7 @@ export default function Header() {
 
   useEffect(() => setMounted(true), []);
 
+  const typeformId = process.env.NEXT_PUBLIC_TYPEFORM_ID ?? "";
   // body scroll lock while menu is open
   useEffect(() => {
     if (!mounted) return;
@@ -192,7 +202,9 @@ export default function Header() {
                 styles.navLink,
                 isSectionActive("/calculators") ? styles.activeLink : undefined
               )}
-              aria-current={isSectionActive("/calculators") ? "page" : undefined}
+              aria-current={
+                isSectionActive("/calculators") ? "page" : undefined
+              }
             >
               Calculators
             </Link>
@@ -203,7 +215,9 @@ export default function Header() {
                 styles.navLink,
                 isSectionActive("/investments") ? styles.activeLink : undefined
               )}
-              aria-current={isSectionActive("/investments") ? "page" : undefined}
+              aria-current={
+                isSectionActive("/investments") ? "page" : undefined
+              }
             >
               Investments
             </Link>
@@ -242,9 +256,12 @@ export default function Header() {
             </Link>
 
             <div className={styles.vrule} />
-            <Link href="/get-started" className={styles.cta}>
+            {/* <Link href="/get-started" className={styles.cta}>
               Get Started
-            </Link>
+            </Link> */}
+            <PopupButton id={typeformId} className={styles.cta}>
+              <div>Get Started</div>
+            </PopupButton>
           </nav>
 
           {/* Mobile toggle */}
@@ -261,7 +278,9 @@ export default function Header() {
       </header>
 
       {/* Portal the memoized child when open */}
-      {mounted && open ? createPortal(<MobileMenu onClose={handleClose} />, document.body) : null}
+      {mounted && open
+        ? createPortal(<MobileMenu onClose={handleClose} />, document.body)
+        : null}
     </>
   );
 }
