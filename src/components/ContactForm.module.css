@@ -162,7 +162,6 @@
   letter-spacing: -0.01em;
   color: #545454;
 }
-
 .socialMedia {
   display: flex;
   gap: 10px;
@@ -177,6 +176,7 @@
   gap: 12px;
   align-items: center;
 }
+
 .socialIcon {
   border: #0047ab 1px solid;
   padding: 10px;
@@ -187,7 +187,55 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: transparent;
+  transition: all 300ms ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Hover effects */
+.socialIcon:hover {
+  background-color: #0047ab;
+  border-color: #0047ab;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 71, 171, 0.3);
+}
+
+.socialIcon:active {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 3px 10px rgba(0, 71, 171, 0.2);
+}
+
+/* Icon color change on hover */
+.socialIcon svg {
+  width: 18px;
+  height: 18px;
+  fill: #0047ab;
+  transition: fill 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.socialIcon:hover svg {
+  fill: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Optional: Ripple effect */
+.socialIcon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.socialIcon:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .socialMediaTitle {
   font-size: 22px;
   font-weight: 700;
@@ -196,12 +244,38 @@
   letter-spacing: -0.01em;
   color: #1f1f1f;
 }
-.socialIcon svg {
-  width: 18px;
-  height: 18px;
-  fill: #0047ab;
+
+/* Optional: Add smooth entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.socialIcon {
+  animation: fadeInUp 400ms ease-out backwards;
+}
+
+.socialIcon:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.socialIcon:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.socialIcon:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.socialIcon:nth-child(4) {
+  animation-delay: 300ms;
+}
 @media (max-width: 640px) {
   .container {
     padding: 30px;

@@ -1,9 +1,24 @@
 "use client";
 import styles from "./Hero.module.css";
-import { PopupButton } from "@typeform/embed-react";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const typeformId = process.env.NEXT_PUBLIC_TYPEFORM_ID ?? "";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
+
   return (
     <div className={styles.heroRoot}>
       <section className={styles.heroSection} aria-labelledby="hero-heading">
@@ -12,8 +27,8 @@ export default function Hero() {
 
         <div className={styles.leftOrnamentPad}>
           <svg
-            width="74"
-            height="74"
+            width="174"
+            height="174"
             viewBox="0 0 73 73"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,25 +58,21 @@ export default function Hero() {
             </h1>
             <p className={styles.heroSubtitle}>
               We help you plan & manage your retirement income, investments, and
-              projections. We’re experts, but we explain things in a way that’s
-              easy to understand. We’re here to help.
+              projections. We're experts, but we explain things in a way that's
+              easy to understand. We're here to help.
             </p>
             <div className={styles.ctaBar}>
-              {/* <Link href="/get-started" className={styles.ctaPrimary}>
-              Get Started
-            </Link>
-             */}
-              <PopupButton id={typeformId} className={styles.ctaPrimary}>
-                <div>Get Started</div>
-              </PopupButton>
+              <button className={styles.ctaPrimary} onClick={openModal}>
+                Get Started
+              </button>
             </div>
           </div>
         </div>
 
         <div className={styles.rightOrnamentPad}>
           <svg
-            width="113"
-            height="43"
+            width="213"
+            height="143"
             viewBox="0 0 113 43"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +85,47 @@ export default function Hero() {
           </svg>
         </div>
       </section>
+
+      {/* Modal */}
+      {isModalOpen && <TypeformModal onClose={closeModal} />}
+    </div>
+  );
+}
+
+// Separate component for the modal with Typeform
+function TypeformModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    // Load Typeform script
+    const script = document.createElement("script");
+    script.src = "//embed.typeform.com/next/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Reinitialize Typeform when script loads
+    script.onload = () => {
+      // @ts-ignore
+      if (window.tf && window.tf.load) {
+        // @ts-ignore
+        window.tf.load();
+      }
+    };
+
+    return () => {
+      // Remove script on unmount
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div data-tf-live="01JVV0Z9AD1YHFTP7P7Z2QVB4A"></div>{" "}
+        <button className={styles.modalClose} onClick={onClose}>
+          ×
+        </button>
+      </div>
     </div>
   );
 }

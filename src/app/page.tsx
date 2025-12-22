@@ -23,12 +23,14 @@ import JournalPlan from "@/components/Home/JournalPlan";
 import Testimonials from "@/components/Home/Testimonials";
 import CallToAction from "@/components/Home/CallToAction";
 import FAQ from "@/components/Home/FAQ";
+import Script from "next/script";
 
 export default function Home() {
   return (
     <div className={styles.pageRoot}>
       <Hero />
-      <TopWave />
+      <TopWave /> 
+      
       <RetirmentAssestment/>
       <JournalPlan/>
       <Testimonials />

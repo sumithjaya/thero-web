@@ -19,6 +19,7 @@ export const metadata = {
     siteName: 'THERO',
     type: 'website',
   },
+    
 };
 // -----------------------------------------------------------
 

@@ -164,11 +164,8 @@
   .copyright {
     font-size: 0.875rem; /* sm:text-sm */
   }
-}
-
-.socials {
+}.socials {
   display: flex;
-  align-items: center;
   gap: 0.75rem; /* gap-3 */
 }
 
@@ -182,13 +179,61 @@
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05); /* bg-white/5 */
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25); /* ring-1 ring-white/25 */
-  transition: background 150ms ease-in-out, transform 150ms ease-in-out;
+  transition: all 250ms ease-in-out;
   text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.socialIcon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
 }
 
 .socialIcon:hover {
   background: rgba(255, 255, 255, 0.1); /* hover:bg-white/10 */
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 
+              0 4px 12px rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 1);
+}
+
+.socialIcon:hover::before {
+  opacity: 1;
+}
+
+.socialIcon:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Optional: Individual color accents on hover */
+.socialIcon:hover:nth-child(1) {
+  /* Facebook blue */
+  box-shadow: 0 0 0 1px rgba(24, 119, 242, 0.5), 
+              0 4px 12px rgba(24, 119, 242, 0.3);
+}
+
+.socialIcon:hover:nth-child(2) {
+  /* Twitter/X black */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 
+              0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.socialIcon:hover:nth-child(3) {
+  /* YouTube red */
+  box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.5), 
+              0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.socialIcon:hover:nth-child(4) {
+  /* LinkedIn blue */
+  box-shadow: 0 0 0 1px rgba(10, 102, 194, 0.5), 
+              0 4px 12px rgba(10, 102, 194, 0.3);
 }
 
 .socialIconInner {
