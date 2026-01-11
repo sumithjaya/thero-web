@@ -1,7 +1,9 @@
 // No "use client" directive here. This file is a Server Component by default.
 
+import Script from "next/script";
 import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient"; // Import the client component
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 // --- Metadata Definition (MUST be in a Server Component) ---
 export const metadata = {
@@ -33,6 +35,9 @@ export default function RootLayout({
       {/* The actual content and client logic is now handled by the imported 
         RootLayoutClient component.
       */}
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body>
         <RootLayoutClient>{children}</RootLayoutClient>
       </body>
